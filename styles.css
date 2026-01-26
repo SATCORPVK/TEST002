@@ -507,3 +507,49 @@ h1{
   .btn{padding:10px 12px}
   .cards{grid-template-columns:1fr}
 }
+/* Sticky Call Bar */
+#sticky-call-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:999;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #f5c400 0 14px,
+      #0a0b0c 14px 28px
+    );
+  padding:8px;
+  box-shadow: 0 -6px 20px rgba(0,0,0,.45);
+}
+
+.sticky-call-btn{
+  display:block;
+  text-align:center;
+  padding:14px 16px;
+  border-radius:999px;
+  background: linear-gradient(180deg, #ffdf4d, #f5c400);
+  color:#101113;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
+/* Pulse Effect */
+.pulse-call{
+  animation: pulse 2.2s infinite;
+}
+
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(245,196,0,.45); }
+  70%{ box-shadow:0 0 0 14px rgba(245,196,0,0); }
+  100%{ box-shadow:0 0 0 0 rgba(245,196,0,0); }
+}
+
+/* Hide sticky bar on desktop */
+@media (min-width: 769px){
+  #sticky-call-bar{ display:none; }
+}
+
