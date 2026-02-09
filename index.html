@@ -1,95 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SATCORP :: SECURE NODE</title>
-<link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATCORP NODE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="boot-sequence">
+        <div id="boot-logs"></div>
+    </div>
 
-<div id="veil"></div>
+    <div id="interface" class="hidden">
+        <header class="panel">
+            <div class="header-grid">
+                <div class="corp-identity">
+                    <h1>SATCORP</h1>
+                    <div class="operator-tag">Concierge / System Architect / Creative Operation</div>
+                </div>
+                <div class="status-display">
+                    <div class="status-line">SYSTEM: ONLINE</div>
+                    <div class="status-line">NODE: PRIME</div>
+                </div>
+            </div>
+        </header>
 
-<div id="boot">
-  <pre id="boot-log"></pre>
-</div>
+        <main class="dashboard">
+            <section class="panel philosophy-panel">
+                <div class="philosophy-text">
+                    "We do not design visuals.<br>
+                    We design functioning structures."
+                </div>
+            </section>
 
-<div id="system" class="hidden">
-  <header class="frame top">
-    <span class="label">SATCORP NODE</span>
-    <span class="status">STATUS: STABLE</span>
-  </header>
+            <section class="panel capabilities-panel">
+                <h2 class="panel-title">CAPABILITY MATRIX</h2>
+                <div class="capability-grid">
+                    <div class="capability-module" data-module="strategy">
+                        <div class="module-header">
+                            <span class="module-id">ST-001</span>
+                            <h3>Strategy Architecture</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Structural planning of operational systems and procedural frameworks for complex creative endeavors.
+                        </div>
+                    </div>
+                    
+                    <div class="capability-module" data-module="identity">
+                        <div class="module-header">
+                            <span class="module-id">ID-002</span>
+                            <h3>Identity Systems</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Development of cohesive identity architectures that function across multiple operational layers.
+                        </div>
+                    </div>
+                    
+                    <div class="capability-module" data-module="experience">
+                        <div class="module-header">
+                            <span class="module-id">XP-003</span>
+                            <h3>Experience Engineering</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Construction of interactive environments and procedural user pathways.
+                        </div>
+                    </div>
+                    
+                    <div class="capability-module" data-module="interface">
+                        <div class="module-header">
+                            <span class="module-id">IF-004</span>
+                            <h3>Interface Design</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Creation of control systems and information architectures for operational dashboards.
+                        </div>
+                    </div>
+                    
+                    <div class="capability-module" data-module="automation">
+                        <div class="module-header">
+                            <span class="module-id">AU-005</span>
+                            <h3>Automation Logic</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Implementation of systematic automation and procedural optimization protocols.
+                        </div>
+                    </div>
+                    
+                    <div class="capability-module" data-module="creative">
+                        <div class="module-header">
+                            <span class="module-id">CR-006</span>
+                            <h3>Creative Direction</h3>
+                            <div class="module-indicator"></div>
+                        </div>
+                        <div class="module-description">
+                            Orchestration of creative resources and strategic artistic implementation.
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  <aside class="frame left">
-    <div class="led active"></div>
-    <div class="led"></div>
-    <div class="led"></div>
-    <div class="coords">X:14.332<br>Y:09.881</div>
-  </aside>
+            <section class="panel network-panel">
+                <h2 class="panel-title">OPERATIONS NETWORK</h2>
+                <div class="network-grid">
+                    <div class="network-node" data-node="anu">
+                        <span class="node-id">ANU·Ki-Ra Studios</span>
+                        <div class="node-info">Creative Research & Development</div>
+                    </div>
+                    <div class="network-node" data-node="kyrax">
+                        <span class="node-id">KYRAX</span>
+                        <div class="node-info">Technical Infrastructure</div>
+                    </div>
+                    <div class="network-node" data-node="pulse">
+                        <span class="node-id">PULSΞ</span>
+                        <div class="node-info">Rhythmic Implementation</div>
+                    </div>
+                    <div class="network-node" data-node="scopu">
+                        <span class="node-id">SCOPU</span>
+                        <div class="node-info">Strategic Observation</div>
+                    </div>
+                </div>
+            </section>
 
-  <aside class="frame right">
-    <div class="build">BUILD 09.7.4</div>
-    <div class="class">CLASSIFICATION: RESTRICTED</div>
-    <div class="time" id="clock"></div>
-  </aside>
+            <section class="panel methodology-panel">
+                <h2 class="panel-title">METHODOLOGY SEQUENCE</h2>
+                <div class="timeline">
+                    <div class="timeline-step" data-step="observe">
+                        <div class="step-marker">01</div>
+                        <div class="step-label">Observe</div>
+                    </div>
+                    <div class="timeline-step" data-step="decode">
+                        <div class="step-marker">02</div>
+                        <div class="step-label">Decode</div>
+                    </div>
+                    <div class="timeline-step" data-step="architect">
+                        <div class="step-marker">03</div>
+                        <div class="step-label">Architect</div>
+                    </div>
+                    <div class="timeline-step" data-step="construct">
+                        <div class="step-marker">04</div>
+                        <div class="step-label">Construct</div>
+                    </div>
+                    <div class="timeline-step" data-step="deploy">
+                        <div class="step-marker">05</div>
+                        <div class="step-label">Deploy</div>
+                    </div>
+                    <div class="timeline-step" data-step="evolve">
+                        <div class="step-marker">06</div>
+                        <div class="step-label">Evolve</div>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="step-content" id="step-observe">
+                        <h3>Observe</h3>
+                        <p>Systematic analysis of existing structures, patterns, and operational gaps.</p>
+                    </div>
+                    <div class="step-content hidden" id="step-decode">
+                        <h3>Decode</h3>
+                        <p>Translation of observations into actionable intelligence and system requirements.</p>
+                    </div>
+                    <div class="step-content hidden" id="step-architect">
+                        <h3>Architect</h3>
+                        <p>Structural design of solutions with scalability and integration capabilities.</p>
+                    </div>
+                    <div class="step-content hidden" id="step-construct">
+                        <h3>Construct</h3>
+                        <p>Precise implementation of designed systems with rigorous quality protocols.</p>
+                    </div>
+                    <div class="step-content hidden" id="step-deploy">
+                        <h3>Deploy</h3>
+                        <p>Strategic rollout and integration of systems into operational environments.</p>
+                    </div>
+                    <div class="step-content hidden" id="step-evolve">
+                        <h3>Evolve</h3>
+                        <p>Continuous optimization and adaptation based on performance metrics.</p>
+                    </div>
+                </div>
+            </section>
 
-  <main class="control">
-    <section class="panel operator locked">
-      <h1>OPERATOR</h1>
-      <div class="content">
-        <strong>SATCORP</strong>
-        <span>Concierge / System Architect / Creative Operation</span>
-        <p>Systems designed to remove operational friction.</p>
-      </div>
-    </section>
+            <section class="panel contact-panel">
+                <h2 class="panel-title">CONTACT PROTOCOL</h2>
+                <div class="console">
+                    <div class="console-output">
+                        <div class="console-line">SATCORP NODE READY FOR TRANSMISSION</div>
+                        <div class="console-line">ENTER MESSAGE BELOW</div>
+                    </div>
+                    <div class="console-input">
+                        <span class="prompt">&gt;</span>
+                        <input type="text" id="message-input" placeholder="TYPE YOUR MESSAGE..." autocomplete="off">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
-    <section class="panel matrix locked">
-      <h1>CAPABILITY MATRIX</h1>
-      <ul>
-        <li data-id="STR-01">Strategy Architecture</li>
-        <li data-id="IDN-02">Identity Systems</li>
-        <li data-id="EXP-03">Experience Engineering</li>
-        <li data-id="INT-04">Interface Design</li>
-        <li data-id="AUT-05">Automation Logic</li>
-        <li data-id="CRD-06">Creative Direction</li>
-      </ul>
-      <div class="detail"></div>
-    </section>
-
-    <section class="panel network locked">
-      <h1>OPERATIONS NETWORK</h1>
-      <div class="nodes">
-        <span>ANU·Ki-Ra</span>
-        <span>KYRAX</span>
-        <span>PULSΞ</span>
-        <span>SCOPU</span>
-      </div>
-      <div class="detail"></div>
-    </section>
-
-    <section class="panel method locked">
-      <h1>METHOD SEQUENCE</h1>
-      <div class="steps">
-        <span>OBSERVE</span>
-        <span>DECODE</span>
-        <span>ARCHITECT</span>
-        <span>CONSTRUCT</span>
-        <span>DEPLOY</span>
-        <span>EVOLVE</span>
-      </div>
-      <div class="detail"></div>
-    </section>
-
-    <section class="panel console locked">
-      <h1>CONTACT PROTOCOL</h1>
-      <div class="terminal">
-        <pre id="console-output"></pre>
-        <input id="console-input" placeholder="SUBMIT TRANSMISSION" />
-      </div>
-    </section>
-  </main>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
