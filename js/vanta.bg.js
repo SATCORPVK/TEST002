@@ -1,4 +1,4 @@
-// Vanta.js Interactive Background
+// Vanta.js Net Background
 VANTA.NET({
   el: "#vanta-bg",
   mouseControls: true,
