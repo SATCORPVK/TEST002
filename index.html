@@ -3,75 +3,88 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SATCORP NODE</title>
+<title>SATCORP :: SECURE NODE</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<div id="veil"></div>
+
 <div id="boot">
   <pre id="boot-log"></pre>
 </div>
 
 <div id="system" class="hidden">
-  <header class="top-bar">
-    <div class="brand">SATCORP</div>
-    <div class="status">NODE ONLINE</div>
+  <header class="frame top">
+    <span class="label">SATCORP NODE</span>
+    <span class="status">STATUS: STABLE</span>
   </header>
 
-  <main class="grid">
-    <section class="panel operator">
-      <h1>OPERATOR PANEL</h1>
-      <div class="identity">
+  <aside class="frame left">
+    <div class="led active"></div>
+    <div class="led"></div>
+    <div class="led"></div>
+    <div class="coords">X:14.332<br>Y:09.881</div>
+  </aside>
+
+  <aside class="frame right">
+    <div class="build">BUILD 09.7.4</div>
+    <div class="class">CLASSIFICATION: RESTRICTED</div>
+    <div class="time" id="clock"></div>
+  </aside>
+
+  <main class="control">
+    <section class="panel operator locked">
+      <h1>OPERATOR</h1>
+      <div class="content">
         <strong>SATCORP</strong>
         <span>Concierge / System Architect / Creative Operation</span>
+        <p>Systems designed to remove operational friction.</p>
       </div>
-      <p class="philosophy">
-        We do not design visuals.<br />
-        We design functioning structures.
-      </p>
     </section>
 
-    <section class="panel capabilities">
+    <section class="panel matrix locked">
       <h1>CAPABILITY MATRIX</h1>
       <ul>
-        <li data-expand="strategy">Strategy Architecture</li>
-        <li data-expand="identity">Identity Systems</li>
-        <li data-expand="experience">Experience Engineering</li>
-        <li data-expand="interface">Interface Design</li>
-        <li data-expand="automation">Automation Logic</li>
-        <li data-expand="creative">Creative Direction</li>
+        <li data-id="STR-01">Strategy Architecture</li>
+        <li data-id="IDN-02">Identity Systems</li>
+        <li data-id="EXP-03">Experience Engineering</li>
+        <li data-id="INT-04">Interface Design</li>
+        <li data-id="AUT-05">Automation Logic</li>
+        <li data-id="CRD-06">Creative Direction</li>
       </ul>
-      <div class="detail" id="cap-detail"></div>
+      <div class="detail"></div>
     </section>
 
-    <section class="panel network">
+    <section class="panel network locked">
       <h1>OPERATIONS NETWORK</h1>
       <div class="nodes">
-        <div data-node="ANU·Ki-Ra Studios">ANU·Ki-Ra</div>
-        <div data-node="KYRAX">KYRAX</div>
-        <div data-node="PULSΞ">PULSΞ</div>
-        <div data-node="SCOPU">SCOPU</div>
+        <span>ANU·Ki-Ra</span>
+        <span>KYRAX</span>
+        <span>PULSΞ</span>
+        <span>SCOPU</span>
       </div>
-      <div class="detail" id="net-detail"></div>
+      <div class="detail"></div>
     </section>
 
-    <section class="panel methodology">
-      <h1>METHODOLOGY SEQUENCE</h1>
+    <section class="panel method locked">
+      <h1>METHOD SEQUENCE</h1>
       <div class="steps">
-        <span data-step="Observe">Observe</span>
-        <span data-step="Decode">Decode</span>
-        <span data-step="Architect">Architect</span>
-        <span data-step="Construct">Construct</span>
-        <span data-step="Deploy">Deploy</span>
-        <span data-step="Evolve">Evolve</span>
+        <span>OBSERVE</span>
+        <span>DECODE</span>
+        <span>ARCHITECT</span>
+        <span>CONSTRUCT</span>
+        <span>DEPLOY</span>
+        <span>EVOLVE</span>
       </div>
-      <div class="detail" id="method-detail"></div>
+      <div class="detail"></div>
     </section>
 
-    <section class="panel contact">
+    <section class="panel console locked">
       <h1>CONTACT PROTOCOL</h1>
-      <div class="console">
-        <div id="console-output"></div>
-        <input type="text" id="console-input" placeholder="ENTER TRANSMISSION…" />
+      <div class="terminal">
+        <pre id="console-output"></pre>
+        <input id="console-input" placeholder="SUBMIT TRANSMISSION" />
       </div>
     </section>
   </main>
