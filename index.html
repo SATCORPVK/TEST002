@@ -1,97 +1,569 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+  <!-- ==== Core Meta ==== -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SATCORP - Concierge, System Architect, Creative Operator. Explore our cinematic, system-driven skill deck.">
-  <meta property="og:title" content="SATCORP - Concierge Systems">
-  <meta property="og:description" content="Explore SATCORP's interactive, cinematic skill deck.">
-  <meta property="og:image" content="assets/images/og-image.png">
-  <title>SATCORP | Concierge Systems</title>
+  <meta name="viewport"     content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SATCORP – System Architecture & Concierge</title>
+  <meta name="description"
+        content="SATCORP designs end‑to‑end systems. From brand systems to AI workflows, architecture to asset delivery — we engineer clarity, execution, and polish.">
+  <link rel="canonical" href="https://yourusername.github.io/satcorp/">
 
-  <!-- Google Fonts (Luxury Sans-Serif) -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- ==== Open Graph / Social ==== -->
+  <meta property="og:title"       content="SATCORP – System Architecture & Concierge">
+  <meta property="og:description" content="Designing high‑end systems, not flashy graphics.">
+  <meta property="og:url"         content="https://yourusername.github.io/satcorp/">
+  <meta property="og:type"        content="website">
+  <meta property="og:image"       content="https://yourusername.github.io/satcorp/assets/placeholder.png">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ==== Favicon ==== -->
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <!-- ==== Fonts ==== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
 
-  <!-- Vanta.js for immersive hero -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="js/vanta.bg.js"></script>
+  <!-- ==== Styles ==== -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==== GSAP (core + ScrollTrigger) ==== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+          integrity="sha512-1Yaf1wohBbz6E4CqO6cGgYVQO/3dB0SKZAIPcoprlGyI66tbAD241Kk5xaF+j2vsl6h7a8Mg8rU5K1je73FmEQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+          integrity="sha512-wd4fOow/0rhPkFVoJM5CDHTEYvbQGO6x+kcGZqU1tZyXKG1RzaJcPGDjYieDHp8dTTUCpKdFxDNLbhCxZfznHg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- ==== Vanta.js background (dots) ==== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
+          integrity="sha512-1S69bPqI6rixYcGhXcVUSBxjJtjMTwiUVe+U6zuq3gJiJblMwV0EG+Zeb4Fc4uSh54FgRs9EE6qNzhXUSP7AHQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+
 </head>
 <body>
 
-  <!-- Fixed HUD Navigation -->
-  <nav class="hud-nav">
+<!-- -------------------------------------------------
+     1️⃣ GLOBAL UI: Cursor, Dark‑Mode Toggle, Navigation
+  ------------------------------------------------- -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<header class="site-header">
+  <a href="#" class="logo"><img src="assets/logo.svg" alt="SATCORP"></a>
+
+  <nav class="main-nav" aria-label="Primary">
     <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#skill1">Core Identity</a></li>
-      <li><a href="#skill2">Brand Systems</a></li>
-      <li><a href="#skill3">Web/UI Systems</a></li>
-      <li><a href="#skill4">Systems Architecture</a></li>
-      <li><a href="#skill5">Broadcast Design</a></li>
-      <li><a href="#skill6">AI Workflows</a></li>
-      <li><a href="#skill7">Game Dev</a></li>
-      <li><a href="#skill8">Client Experience</a></li>
-      <li><a href="#skill9">Platforms</a></li>
-      <li><a href="#skill10">Documentation</a></li>
-      <li><a href="#skill11">Asset Delivery</a></li>
-      <li><a href="#skill12">Ideal Clients</a></li>
-      <li><a href="#skill-map">Skill Map</a></li>
+      <!-- Links scroll to each #section‑id -->
+      <li><a href="#core-identity">Identity</a></li>
+      <li><a href="#brand-systems">Brand</a></li>
+      <li><a href="#web-ui-systems">Web / UI</a></li>
+      <li><a href="#systems-architecture">Architecture</a></li>
+      <li><a href="#streaming-overlay">Streaming</a></li>
+      <li><a href="#ai-workflows">AI</a></li>
+      <li><a href="#game-development">Game</a></li>
+      <li><a href="#client-experience">Client</a></li>
+      <li><a href="#platforms">Platforms</a></li>
+      <li><a href="#documentation">Docs</a></li>
+      <li><a href="#asset-delivery">Delivery</a></li>
+      <li><a href="#ideal-clients">Ideal Clients</a></li>
     </ul>
-    <button id="toggle-darkmode">🌙</button>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <div id="vanta-bg"></div>
-    <div class="hero-content">
-      <h1>SATCORP</h1>
-      <h2>Concierge / System Architect / Creative Operator</h2>
-      <button class="cta-btn" onclick="scrollToSection('skill1')">Explore SATCORP Systems</button>
+  <button id="theme-toggle" aria-label="Toggle dark / light mode">
+    <svg class="sun" viewBox="0 0 24 24"><path d="M12 4V2m0 20v-2m8.485-9.485l1.414-1.414M4.101 19.899l1.414-1.414M20 12h2M2 12h2m15.364 7.364l1.414 1.414M4.101 4.101l1.414 1.414M12 6a6 6 0 110 12 6 6 0 010-12z"/></svg>
+    <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+  </button>
+</header>
+
+<!-- -------------------------------------------------
+     2️⃣ HERO SECTION – Vanta background + CTA
+  ------------------------------------------------- -->
+<section id="hero" class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">SATCORP</h1>
+    <p class="hero-subtitle">System Architecture · Concierge · Precision</p>
+    <button class="cta-btn" data-scroll-to="#core-identity">Explore SATCORP Systems</button>
+  </div>
+  <div id="vanta-bg" class="vanta-bg"></div>
+</section>
+
+<!-- -------------------------------------------------
+     3️⃣ SKILL‑DECK SECTIONS (12 total)
+  ------------------------------------------------- -->
+<main>
+
+  <!-- ==== 1️⃣ Core Identity ==== -->
+  <section id="core-identity" class="skill-section">
+    <h2 class="section-title">Core Identity</h2>
+    <p class="section-intro">
+      The DNA of SATCORP – a purposeful, system‑first brand philosophy.
+    </p>
+
+    <div class="card-grid">
+      <!-- Card 1 -->
+      <article class="skill-card"
+               data-title="Brand Manifesto"
+               data-desc="A living document that defines tone, voice, decision rules, and visual grammar."
+               data-img="assets/placeholder.png">
+        <h3>Brand Manifesto</h3>
+        <p>PDF, 12 pages</p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="skill-card"
+               data-title="Visual Language"
+               data-desc="Pixel‑perfect system of colour, typographic scales, iconography, and motion principles."
+               data-img="assets/placeholder.png">
+        <h3>Visual Language</h3>
+        <p>Design System (Figma)</p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="skill-card"
+               data-title="Tone of Voice Guide"
+               data-desc="From UI micro‑copy to client-facing proposals – a unified voice across every touchpoint."
+               data-img="assets/placeholder.png">
+        <h3>Tone of Voice</h3>
+        <p>Markdown, 4 KB</p>
+      </article>
     </div>
   </section>
 
-  <!-- Skill Deck Sections -->
-  <!-- Skill 1-12 Sections (same as previous code) -->
-  <!-- ...All previous 12 sections remain unchanged... -->
+  <!-- ==== 2️⃣ Brand Systems ==== -->
+  <section id="brand-systems" class="skill-section">
+    <h2 class="section-title">Brand Systems</h2>
+    <p class="section-intro">
+      Systematic assets that scale, stay consistent, and evolve responsibly.
+    </p>
 
-  <!-- Interactive Skill Map & Concierge Simulation -->
-  <section id="skill-map" class="skill-section">
-    <h2>Skill Map & Concierge Simulation</h2>
-    <p>Explore SATCORP capabilities. Click a skill to see its system workflow in action.</p>
-    <div id="skill-map-container"></div>
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Logo Suite"
+               data-desc="Multi‑format, variable‑size logotype with usage rules and animation hooks."
+               data-img="assets/placeholder.png">
+        <h3>Logo Suite</h3>
+        <p>SVG, AI, PNG</p>
+      </article>
 
-    <div id="workflow-display">
-      <h3>Selected Skill Workflow</h3>
-      <p id="workflow-description">Click a skill node to view its workflow.</p>
-      <div id="workflow-animation"></div>
+      <article class="skill-card"
+               data-title="Brand Guidelines"
+               data-desc="A living PDF + InDesign source – color, spacing, hierarchy, and brand‑system models."
+               data-img="assets/placeholder.png">
+        <h3>Brand Guidelines</h3>
+        <p>PDF, 48 pages</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Icon Library"
+               data-desc="Modular iconography built on a single‑stroke system – ready for UI, documentation, and motion."
+               data-img="assets/placeholder.png">
+        <h3>Icon Library</h3>
+        <p>SVG Sprite, 200 icons</p>
+      </article>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <h3>Contact SATCORP</h3>
-      <form action="https://formspree.io/f/yourformid" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="_replyto" placeholder="Email" required>
-        <textarea name="message" placeholder="Message"></textarea>
-        <button type="submit">Send</button>
-      </form>
-      <div class="social-links">
-        <a href="#"><img src="assets/icons/discord.svg" alt="Discord"></a>
-        <a href="#"><img src="assets/icons/github.svg" alt="GitHub"></a>
-        <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
+  <!-- ==== 3️⃣ Web / UI Systems ==== -->
+  <section id="web-ui-systems" class="skill-section">
+    <h2 class="section-title">Web / UI Systems</h2>
+    <p class="section-intro">
+      Robust, component‑driven front‑ends that feel like engineered platforms.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Component Library"
+               data-desc="React + Storybook, CSS‑in‑JS, accessibility‑first components with theming."
+               data-img="assets/placeholder.png">
+        <h3>Component Library</h3>
+        <p>React, 120 components</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Design System Tokens"
+               data-desc="Figma + JSON tokens for colour, spacing, elevation – single source of truth."
+               data-img="assets/placeholder.png">
+        <h3>Design Tokens</h3>
+        <p>JSON, 64 KB</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Performance Dashboard"
+               data-desc="Real‑time Lighthouse + custom metrics integrated via CI."
+               data-img="assets/placeholder.png">
+        <h3>Performance Dashboard</h3>
+        <p>Web, 5 pages</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 4️⃣ Systems Architecture ==== -->
+  <section id="systems-architecture" class="skill-section">
+    <h2 class="section-title">Systems Architecture</h2>
+    <p class="section-intro">
+      Blueprint‑level thinking – data pipelines, micro‑services, and event‑driven flows.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Service Mesh Blueprint"
+               data-desc="Kubernetes, Istio, and API‑gateway patterns for resilient back‑ends."
+               data-img="assets/placeholder.png">
+        <h3>Service Mesh Blueprint</h3>
+        <p>PDF, 30 pages</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Data Lake Architecture"
+               data-desc="Scalable storage, CDC pipelines, and analytics layer – all as code."
+               data-img="assets/placeholder.png">
+        <h3>Data Lake Architecture</h3>
+        <p>Mermaid diagrams + Terraform</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Event‑Driven Design System"
+               data-desc="Domain‑driven events, schema management, and real‑time UI sync."
+               data-img="assets/placeholder.png">
+        <h3>Event‑Driven Design System</h3>
+        <p>Docs + Node examples</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 5️⃣ Streaming / Overlay ==== -->
+  <section id="streaming-overlay" class="skill-section">
+    <h2 class="section-title">Streaming / Overlay</h2>
+    <p class="section-intro">
+      Integrated live‑production pipelines, custom overlays, and brand‑infused streams.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="OBS Plugin Kit"
+               data-desc="Modular Overlay SDK – graphics, alerts, and real‑time data bindings."
+               data-img="assets/placeholder.png">
+        <h3>OBS Plugin Kit</h3>
+        <p>Node + JavaScript</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Live Data Integration"
+               data-desc="WebSocket + GraphQL for live stats, chat, and automations."
+               data-img="assets/placeholder.png">
+        <h3>Live Data Integration</h3>
+        <p>APIs, 500 KB</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Brand‑Sync Overlays"
+               data-desc="Fully branded lower-thirds, dashboards, and splash screens – dynamically themed."
+               data-img="assets/placeholder.png">
+        <h3>Brand‑Sync Overlays</h3>
+        <p>After‑Effects / Lottie</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 6️⃣ AI Workflows ==== -->
+  <section id="ai-workflows" class="skill-section">
+    <h2 class="section-title">AI Workflows</h2>
+    <p class="section-intro">
+      Prompt‑driven pipelines that turn raw data into production‑ready assets.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Prompt Library"
+               data-desc="Versioned, annotated prompts for copy, design, code, and video synthesis."
+               data-img="assets/placeholder.png">
+        <h3>Prompt Library</h3>
+        <p>Git‑repo, 150 prompts</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Automated Asset Generation"
+               data-desc="CI‑integrated Midjourney / DALL·E pipelines delivering ready‑to‑use assets."
+               data-img="assets/placeholder.png">
+        <h3>Asset Generation</h3>
+        <p>Python, 30 scripts</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="LLM‑Powered Docs"
+               data-desc="Dynamic documentation generated from source code and system logs."
+               data-img="assets/placeholder.png">
+        <h3>LLM‑Docs</h3>
+        <p>Node + OpenAI API</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 7️⃣ Game Development ==== -->
+  <section id="game-development" class="skill-section">
+    <h2 class="section-title">Game Development</h2>
+    <p class="section-intro">
+      Systems libraries, procedural pipelines, and cross‑platform deployment frameworks.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Entity‑Component Framework"
+               data-desc="Modular, data‑driven ECS for Unity & Godot – built for scalability."
+               data-img="assets/placeholder.png">
+        <h3>ECS Framework</h3>
+        <p>C#, 25 KB</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Procedural Asset Pipeline"
+               data-desc="Blender + Python scripts auto‑generating textures, meshes, and LODs."
+               data-img="assets/placeholder.png">
+        <h3>Procedural Pipeline</h3>
+        <p>Blender, 15 GB</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Cross‑Platform Build System"
+               data-desc="GitHub Actions + Fastlane – one‑click builds to Steam, consoles, and mobile."
+               data-img="assets/placeholder.png">
+        <h3>Cross‑Platform CI</h3>
+        <p>YAML, 8 KB</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 8️⃣ Client Experience ==== -->
+  <section id="client-experience" class="skill-section">
+    <h2 class="section-title">Client Experience</h2>
+    <p class="section-intro">
+      End‑to‑end concierge workflows that make collaboration feel like an engineered system.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="On‑boarding Engine"
+               data-desc="Self‑serve portal with automated SOW generation and milestone tracking."
+               data-img="assets/placeholder.png">
+        <h3>On‑boarding Engine</h3>
+        <p>Web, 12 pages</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Live Collaboration Suite"
+               data-desc="Shared whiteboard, versioned design files, and real‑time feedback loops."
+               data-img="assets/placeholder.png">
+        <h3>Collaboration Suite</h3>
+        <p>Figma + Miro plugins</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Post‑Delivery Dashboard"
+               data-desc="Analytics on asset usage, performance, and impact – auto‑generated PDFs."
+               data-img="assets/placeholder.png">
+        <h3>Post‑Delivery Dashboard</h3>
+        <p>Power‑BI, 5 reports</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 9️⃣ Platforms ==== -->
+  <section id="platforms" class="skill-section">
+    <h2 class="section-title">Platforms</h2>
+    <p class="section-intro">
+      Tailored ecosystems – from internal tooling to public SaaS – built on systematic foundations.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Internal Knowledge Base"
+               data-desc="GraphQL + MDX, searchable, versioned, and integrated with CI."
+               data-img="assets/placeholder.png">
+        <h3>Knowledge Base</h3>
+        <p>Next.js, 200 docs</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Customer‑Facing Portal"
+               data-desc="White‑labeled dashboard with role‑based access and real‑time updates."
+               data-img="assets/placeholder.png">
+        <h3>Customer Portal</h3>
+        <p>React, 12 modules</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="API Marketplace"
+               data-desc="Self‑service API provisioning, rate‑limiting, billing & analytics."
+               data-img="assets/placeholder.png">
+        <h3>API Marketplace</h3>
+        <p>Node + Kong, 10 endpoints</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 🔟 Documentation ==== -->
+  <section id="documentation" class="skill-section">
+    <h2 class="section-title">Documentation</h2>
+    <p class="section-intro">
+      Living, code‑first docs that stay in sync with your systems.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Architecture Docs"
+               data-desc="Diagrams + format‑as‑code with PlantUML and Markdown."
+               data-img="assets/placeholder.png">
+        <h3>Architecture Docs</h3>
+        <p>Markdown, 100 files</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="API Reference Generator"
+               data-desc="OpenAPI → static site, fully versioned, with request‑/response examples."
+               data-img="assets/placeholder.png">
+        <h3>API Reference</h3>
+        <p>Swagger, 30 endpoints</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Component Storybook"
+               data-desc="Interactive UI component gallery with test cases and accessibility checks."
+               data-img="assets/placeholder.png">
+        <h3>Storybook</h3>
+        <p>React, 150 stories</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 1️⃣1️⃣ Asset Delivery ==== -->
+  <section id="asset-delivery" class="skill-section">
+    <h2 class="section-title">Asset Delivery</h2>
+    <p class="section-intro">
+      Automated, secure, CDN‑backed pipelines that guarantee integrity and traceability.
+    </p>
+
+    <div class="card-grid">
+      <article class="skill-card"
+               data-title="Versioned CDN"
+               data-desc="S3 + CloudFront + signed URLs – every asset is immutable and auditable."
+               data-img="assets/placeholder.png">
+        <h3>Versioned CDN</h3>
+        <p>Terraform, 10 modules</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Automated Conversion Suite"
+               data-desc="Batch processing of PSD → SVG, MP4 → WebM, with checksum validation."
+               data-img="assets/placeholder.png">
+        <h3>Conversion Suite</h3>
+        <p>Node + FFmpeg</p>
+      </article>
+
+      <article class="skill-card"
+               data-title="Secure Transfer Portal"
+               data-desc="One‑click encrypted file drop with expiration and audit logs."
+               data-img="assets/placeholder.png">
+        <h3>Secure Portal</h3>
+        <p>Next.js, 5 pages</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==== 1️⃣2️⃣ Ideal Clients ==== -->
+  <section id="ideal-clients" class="skill-section">
+    <h2 class="section-title">Ideal Clients</h2>
+    <p class="section-intro">
+      Companies who value **systems**, **process**, and **precision** over vanity.
+    </p>
+
+    <div class="ideal-client-grid">
+      <div class="client-card">
+        <h3>Tech‑Scale SaaS</h3>
+        <p>Complex product stacks that need a robust brand + infrastructure system.</p>
       </div>
-      <p>&copy; 2026 SATCORP. All rights reserved.</p>
+      <div class="client-card">
+        <h3>Live‑Entertainment Brands</h3>
+        <p>Streaming, overlay, and real‑time data pipelines integrated with brand DNA.</p>
+      </div>
+      <div class="client-card">
+        <h3>Interactive Game Studios</h3>
+        <p>Procedural asset pipelines, cross‑platform CI, and system‑driven UI/UX.</p>
+      </div>
+      <div class="client-card">
+        <h3>Enterprise Data Teams</h3>
+        <p>Data‑lake, service‑mesh, and AI‑powered documentation frameworks.</p>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="js/main.js"></script>
+</main>
+
+<!-- -------------------------------------------------
+     4️⃣ MODAL (re‑used for all cards)
+  ------------------------------------------------- -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h2 class="modal-title"></h2>
+    <p class="modal-desc"></p>
+    <img class="modal-img" src="" alt="Deliverable preview">
+  </div>
+</div>
+
+<!-- -------------------------------------------------
+     5️⃣ FOOTER & CONTACT FORM
+  ------------------------------------------------- -->
+<footer class="site-footer">
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+
+    <!-- Simple static form – replace ACTION with Formspree endpoint -->
+    <form id="contact-form"
+          method="POST"
+          action="https://formspree.io/f/your-form-id"
+          class="contact-form">
+      <label>
+        <span class="sr-only">Your Name</span>
+        <input type="text" name="name" placeholder="Name" required>
+      </label>
+      <label>
+        <span class="sr-only">Your Email</span>
+        <input type="email" name="_replyto" placeholder="Email" required>
+      </label>
+      <label>
+        <span class="sr-only">Message</span>
+        <textarea name="message" rows="4" placeholder="Your Message…" required></textarea>
+      </label>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </section>
+
+  <section class="social-section">
+    <a href="https://github.com/yourusername" target="_blank" rel="noopener"
+       class="social-link">
+      <img src="assets/icons/github.svg" alt="GitHub">
+    </a>
+    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener"
+       class="social-link">
+      <img src="assets/icons/twitter.svg" alt="Twitter">
+    </a>
+    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener"
+       class="social-link">
+      <img src="assets/icons/linkedin.svg" alt="LinkedIn">
+    </a>
+  </section>
+
+  <small class="legal">&copy; <span id="year"></span> SATCORP. All rights reserved. |
+                  <a href="/privacy.html">Privacy Policy</a></small>
+</footer>
+
+<!-- -------------------------------------------------
+     6️⃣ SCRIPTS – load after DOM
+  ------------------------------------------------- -->
+<script src="script.js"></script>
 </body>
 </html>
