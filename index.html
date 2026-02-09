@@ -1,429 +1,551 @@
 <!DOCTYPE html>
-<html lang="en" class="light"> <!-- light/dark toggles on <html> -->
+<html lang="en" data-theme="dark">
 <head>
-  <!-- ==== Core meta ==== -->
+  <!-- ------------------------------------------- -->
+  <!-- 1. Meta / SEO -->
+  <!-- ------------------------------------------- -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SATCORP – Concierge | System Architect | Creative Operator</title>
-  <meta name="description"
-        content="Explore SATCORP’s premium system‑driven skill deck – from architecture and AI‑enhanced flows to concierge client experiences.">
-  <!-- ==== Open Graph ==== -->
-  <meta property="og:title" content="SATCORP – Premium Systems & Creative Ops">
-  <meta property="og:description"
-        content="Cinematic, interactive showcase of SATCORP’s high‑end skill deck.">
-  <meta property="og:image" content="https://your‑github‑username.github.io/satcorp‑site/assets/og‑image.png">
-  <meta property="og:url" content="https://your‑github‑username.github.io/satcorp‑site/">
-  <meta property="og:type" content="website">
-  <!-- ==== Favicon ==== -->
-  <link rel="icon" href="https://your‑github‑username.github.io/satcorp‑site/assets/icon‑identity.svg" type="image/svg+xml">
-  <!-- ==== Fonts ==== -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
-    rel="stylesheet">
-  <!-- ==== Styles ==== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satcorp – Premier System Architect & Creative Concierge</title>
+  <meta name="description" content="Discover SATCORP’s 12 high‑performance skill modules, from UI systems and AI workflows to streaming design and market‑platform integration.">
+  <meta property="og:title" content="Satcorp – Premier System Architect & Creative Concierge"/>
+  <meta property="og:description" content="Explore SATCORP’s modular skill deck – perfect for creators, studios, and enterprise brands."/>
+  <meta property="og:image" content="https://yourdomain.com/assets/og-image.jpg"/>
+  <meta property="og:url" content="https://yourdomain.com"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- ------------------------------------------- -->
+  <!-- 2. Stylesheets -->
+  <!-- ------------------------------------------- -->
   <link rel="stylesheet" href="style.css">
-  <!-- ==== External libs (CDN) ==== -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
+
+  <!-- ------------------------------------------- -->
+  <!-- 3. Google Fonts -->
+  <!-- ------------------------------------------- -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- ------------------------------------------- -->
+  <!-- 4. External Libraries (defer) -->
+  <!-- ------------------------------------------- -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.birds.min.js" defer></script>
+
+  <!-- ------------------------------------------- -->
+  <!-- 5. Custom script -->
+  <!-- ------------------------------------------- -->
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- ==== Custom Cursor ==== -->
-  <div class="custom-cursor"></div>
+  <!-- ------------------------------------------- -->
+  <!-- 6. Custom Cursor (follows mouse) -->
+  <!-- ------------------------------------------- -->
+  <div id="cursor"></div>
 
-  <!-- ==== Navigation / HUD ==== -->
-  <header class="site-header">
-    <nav class="nav-container">
-      <a href="#" class="nav-logo">SATCORP</a>
-      <ul class="nav-links">
-        <li><a href="#skill-1" class="nav-link">Identity</a></li>
-        <li><a href="#skill-2" class="nav-link">Brand / Visual</a></li>
-        <li><a href="#skill-3" class="nav-link">Web / UI</a></li>
-        <li><a href="#skill-4" class="nav-link">Architecture</a></li>
-        <li><a href="#skill-5" class="nav-link">Streaming</a></li>
-        <li><a href="#skill-6" class="nav-link">AI‑Workflows</a></li>
-        <li><a href="#skill-7" class="nav-link">Game / World</a></li>
-        <li><a href="#skill-8" class="nav-link">Concierge</a></li>
-        <li><a href="#skill-9" class="nav-link">Platforms</a></li>
-        <li><a href="#skill-10" class="nav-link">Docs</a></li>
-        <li><a href="#skill-11" class="nav-link">Packaging</a></li>
-        <li><a href="#skill-12" class="nav-link">Ideal Clients</a></li>
-      </ul>
-      <button id="theme-toggle" aria-label="Toggle dark / light mode">🌓</button>
-    </nav>
+  <!-- ------------------------------------------- -->
+  <!-- 7. Navigation (fixed top) -->
+  <!-- ------------------------------------------- -->
+  <nav id="nav" aria-label="Main navigation">
+    <div class="logo">SATCORP</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#skill-1">Core Identity</a></li>
+      <li><a href="#skill-2">Brand Systems</a></li>
+      <li><a href="#skill-3">Web UI</a></li>
+      <li><a href="#skill-4">Systems Architecture</a></li>
+      <li><a href="#skill-5">Streaming Design</a></li>
+      <li><a href="#skill-6">AI Workflows</a></li>
+      <li><a href="#skill-7">Game Worlds</a></li>
+      <li><a href="#skill-8">Concierge</a></li>
+      <li><a href="#skill-9">Marketplace</a></li>
+      <li><a href="#skill-10">Docs & Knowledge</a></li>
+      <li><a href="#skill-11">Asset Delivery</a></li>
+      <li><a href="#skill-12">Ideal Clients</a></li>
+    </ul>
+    <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+      <span id="themeIcon">🌙</span>
+    </div>
+  </nav>
+
+  <!-- ------------------------------------------- -->
+  <!-- 8. Hero Section -->
+  <!-- ------------------------------------------- -->
+  <header id="hero">
+    <div class="hero-overlay">
+      <h1 class="hero-title">SATCORP</h1>
+      <p class="hero-subtitle">Concierge • System Architect • Creative Operator</p>
+      <a href="#skill-1" class="cta-button">Explore SATCORP Systems</a>
+    </div>
   </header>
 
-  <!-- ==== HERO SECTION ==== -->
-  <section id="hero" class="hero-section">
-    <div class="hero-overlay"></div> <!-- dark overlay for readability -->
-    <div class="hero-content">
-      <h1 class="hero-title">Concierge • System Architect • Creative Operator</h1>
-      <p class="hero-subtitle">A high‑end, system‑driven interface that turns complexity into cinematic experiences.</p>
-      <button class="cta-btn" id="explore-cta">Explore SATCORP Systems</button>
-    </div>
-    <!-- Vanta will attach to this container (background only) -->
-    <div id="vanta-bg"></div>
-  </section>
+  <!-- ------------------------------------------- -->
+  <!-- 9. Main Skill Deck Content -->
+  <!-- ------------------------------------------- -->
+  <main id="main">
 
-  <!-- ==== SKILL DECK SECTIONS ==== -->
-  <!-- ==============================================================
-       Each section follows the same pattern:
-       • .skill-section wrapper
-       • .skill-header (h2 + subheading)
-       • .skill-cards grid of interactive cards
-       • GSAP scroll reveal (script.js)
-       -------------------------------------------------------------->
+    <!-- ========================= -->
+    <!-- Skill Deck 1: Core Identity / Operator Value -->
+    <!-- ========================= -->
+    <section id="skill-1" class="skill-section" aria-labelledby="section-1-title">
+      <div class="section-inner">
+        <h2 id="section-1-title" class="section-title">Core Identity</h2>
+        <p class="section-subtitle">The DNA that informs every engagement.</p>
+        <div class="skills-grid">
 
-  <!-- 1️⃣ Core Identity / Operator Value -->
-  <section id="skill-1" class="skill-section">
-    <div class="skill-header">
-      <h2>Core Identity</h2>
-      <p class="sub">The foundational operator value that fuses concierge service with system‑scale architecture.</p>
-    </div>
-    <div class="skill-cards">
-      <!-- Card 1 -->
-      <div class="card" data-modal="modal-id-1">
-        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
-        <h3>Strategic Vision</h3>
-        <p>Blueprints that align business objectives with technical realities.</p>
-      </div>
-      <!-- Card 2 -->
-      <div class="card" data-modal="modal-id-2">
-        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
-        <h3>Human‑Centric Design</h3>
-        <p>Every system respects the end‑user’s cognitive flow.</p>
-      </div>
-      <!-- Card 3 -->
-      <div class="card" data-modal="modal-id-3">
-        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
-        <h3>Zero‑Tolerance Debugging</h3>
-        <p>Operative resilience built‑in, not bolted on.</p>
-      </div>
-    </div>
-  </section>
+          <!-- Card 1 -->
+          <article class="skill-card"
+            data-modal-title="System Blueprint – Sample Deliverable"
+            data-modal-img="assets/images/system-blueprint.png"
+            data-modal-desc="High‑level diagram mapping revenue flows to core process paths.">
+            <h3 class="card-title">System Blueprint</h3>
+            <p class="card-text">Architecture of value streams.</p>
+          </article>
 
-  <!-- 2️⃣ Brand, Visual / Platform Systems -->
-  <section id="skill-2" class="skill-section">
-    <div class="skill-header">
-      <h2>Brand & Visual Systems</h2>
-      <p class="sub">Unified visual language across every platform, delivered as a living system.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-4">
-        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
-        <h3>Dynamic Brand Tokens</h3>
-        <p>Color palettes, typography, and iconography that evolve with product releases.</p>
-      </div>
-      <div class="card" data-modal="modal-id-5">
-        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
-        <h3>Style‑Code Integration</h3>
-        <p>CSS‑in‑JS pipelines that guarantee pixel‑perfect variance across devices.</p>
-      </div>
-      <div class="card" data-modal="modal-id-6">
-        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
-        <h3>Meta‑Brand Storytelling</h3>
-        <p>Interactive narratives that adapt based on user engagement data.</p>
-      </div>
-    </div>
-  </section>
+          <!-- Card 2 -->
+          <article class="skill-card"
+            data-modal-title="Value Proposition Framework – Sample Pitch"
+            data-modal-img="assets/images/value-prop.png"
+            data-modal-desc="5‑R framework: Reach, Resonance, Return, Reliability, Renewal.">
+            <h3 class="card-title">Value Proposition</h3>
+            <p class="card-text">Communicate ROI and impact.</p>
+          </article>
 
-  <!-- 3️⃣ Web Design / UI Systems -->
-  <section id="skill-3" class="skill-section">
-    <div class="skill-header">
-      <h2>Web Design & UI Systems</h2>
-      <p class="sub">Component‑driven interfaces that feel like premium software, not just a website.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-7">
-        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
-        <h3>Atomic Design Library</h3>
-        <p>Reusable UI primitives built on React + Storybook.</p>
+          <!-- Card 3 -->
+          <article class="skill-card"
+            data-modal-title="Engagement Blueprint – Sample Flowchart"
+            data-modal-img="assets/images/engagement-flow.png"
+            data-modal-desc="Tiered escalation plan from discovery to renewal.">
+            <h3 class="card-title">Engagement Blueprint</h3>
+            <p class="card-text">Full client lifecycle.</p>
+          </article>
+        </div>
       </div>
-      <div class="card" data-modal="modal-id-8">
-        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
-        <h3>Motion‑First Prototyping</h3>
-        <p>GSAP‑driven micro‑interactions that stage the user journey.</p>
-      </div>
-      <div class="card" data-modal="modal-id-9">
-        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
-        <h3>Responsive Scaling Engine</h3>
-        <p>Fluid grids that calculate optimal breakpoints algorithmically.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 4️⃣ Systems Architecture -->
-  <section id="skill-4" class="skill-section">
-    <div class="skill-header">
-      <h2>Systems Architecture</h2>
-      <p class="sub">Scalable back‑ends, event‑driven pipelines, and data‑centric orchestration.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-10">
-        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
-        <h3>Event‑Sourcing Core</h3>
-        <p>Immutable logs powering audit trails and roll‑backs.</p>
-      </div>
-      <div class="card" data-modal="modal-id-11">
-        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
-        <h3>GraphQL‑Layer Fusion</h3>
-        <p>Unified data mesh that merges SaaS and internal services.</p>
-      </div>
-      <div class="card" data-modal="modal-id-12">
-        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
-        <h3>Serverless Orchestration</h3>
-        <p>Zero‑ops pipelines on AWS Lambda + Cloudflare Workers.</p>
-      </div>
-    </div>
-  </section>
+    <!-- ========================= -->
+    <!-- Skill Deck 2: Brand, Visual / Platform Systems -->
+    <!-- ========================= -->
+    <section id="skill-2" class="skill-section" aria-labelledby="section-2-title">
+      <div class="section-inner">
+        <h2 id="section-2-title" class="section-title">Brand & Visual Systems</h2>
+        <p class="section-subtitle">Unified brand language across every medium.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Unified Brand Kit – Sample Package"
+            data-modal-img="assets/images/brand-kit.png"
+            data-modal-desc="Palette, typography, iconography and brand usage guidelines.">
+            <h3 class="card-title">Brand Kit</h3>
+            <p class="card-text">All visual assets in one place.</p>
+          </article>
 
-  <!-- 5️⃣ Streaming / Broadcast / Overlay Design -->
-  <section id="skill-5" class="skill-section">
-    <div class="skill-header">
-      <h2>Streaming & Broadcast Overlays</h2>
-      <p class="sub">Live‑ready visual systems that blend branding with low‑latency interactivity.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-13">
-        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
-        <h3>Live Data Widgets</h3>
-        <p>Real‑time follower/subscriber counters based on WebSockets.</p>
-      </div>
-      <div class="card" data-modal="modal-id-14">
-        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
-        <h3>Shader‑Powered Overlays</h3>
-        <p>GPU‑accelerated particle effects that run on OBS + Browser Source.</p>
-      </div>
-      <div class="card" data-modal="modal-id-15">
-        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
-        <h3>Multi‑Stream Layout Engine</h3>
-        <p>Dynamic split‑screen compositions for simultaneous feeds.</p>
-      </div>
-    </div>
-  </section>
+          <article class="skill-card"
+            data-modal-title="Platform Overlay Specs – Sample Overlay"
+            data-modal-img="assets/images/platform-overlay.png"
+            data-modal-desc="Embed brand visuals across web, socials, and email.">
+            <h3 class="card-title">Platform Overlays</h3>
+            <p class="card-text">Consistent brand across channels.</p>
+          </article>
 
-  <!-- 6️⃣ AI‑Enhanced Creative Workflows -->
-  <section id="skill-6" class="skill-section">
-    <div class="skill-header">
-      <h2>AI‑Enhanced Creative Workflows</h2>
-      <p class="sub">Prompt‑driven pipelines that turn concept to asset at interactive speed.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-16">
-        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
-        <h3>Prompt‑to‑Design Engine</h3>
-        <p>Stable Diffusion + custom LoRA models generate brand‑consistent visuals.</p>
+          <article class="skill-card"
+            data-modal-title="Analytics Dashboard – Sample UI Spec"
+            data-modal-img="assets/images/analytics-dashboard.png"
+            data-modal-desc="Cross‑platform performance metrics UI.">
+            <h3 class="card-title">Analytics Dashboard</h3>
+            <p class="card-text">Visualize brand health.</p>
+          </article>
+        </div>
       </div>
-      <div class="card" data-modal="modal-id-17">
-        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
-        <h3>Smart Asset Tagging</h3>
-        <p>Vision AI auto‑labels assets for rapid search & repurposing.</p>
-      </div>
-      <div class="card" data-modal="modal-id-18">
-        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
-        <h3>Generative Code Assist</h3>
-        <p>LLM‑powered snippet suggestions integrated into VS Code.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 7️⃣ Game Development / World‑Building Design -->
-  <section id="skill-7" class="skill-section">
-    <div class="skill-header">
-      <h2>Game Development & World‑Building</h2>
-      <p class="sub">Narrative systems & reusable assets that power immersive interactive experiences.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-19">
-        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
-        <h3>Procedural Level Generator</h3>
-        <p>Rule‑based node graphs produce endless ambience zones.</p>
-      </div>
-      <div class="card" data-modal="modal-id-20">
-        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
-        <h3>Modular Asset Library</h3>
-        <p>FBX + glTF bundles with built‑in LODs for performance.</p>
-      </div>
-      <div class="card" data-modal="modal-id-21">
-        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
-        <h3>Live Narrative Engine</h3>
-        <p>Event‑driven story nodes responding to player actions.</p>
-      </div>
-    </div>
-  </section>
+    <!-- ========================= -->
+    <!-- Skill Deck 3: Web Design / UI Systems -->
+    <!-- ========================= -->
+    <section id="skill-3" class="skill-section" aria-labelledby="section-3-title">
+      <div class="section-inner">
+        <h2 id="section-3-title" class="section-title">Web & UI Systems</h2>
+        <p class="section-subtitle">Modular, responsive components for rapid digital deployment.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Component Library – Sample UI Pack"
+            data-modal-img="assets/images/component-library.png"
+            data-modal-desc="Pre‑styled UI elements ready for any front‑end framework.">
+            <h3 class="card-title">Component Library</h3>
+            <p class="card-text">Reusable UI building blocks.</p>
+          </article>
 
-  <!-- 8️⃣ Client Experience / Concierge Skills -->
-  <section id="skill-8" class="skill-section">
-    <div class="skill-header">
-      <h2>Client Experience & Concierge Skills</h2>
-      <p class="sub">High‑touch service flows that treat every stakeholder as a VIP.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-22">
-        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
-        <h3>On‑board Journey Mapping</h3>
-        <p>Personalized roadmaps from kickoff to launch.</p>
-      </div>
-      <div class="card" data-modal="modal-id-23">
-        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
-        <h3>24/7 Live Ops Support</h3>
-        <p>Realtime monitoring and rapid incident response.</p>
-      </div>
-      <div class="card" data-modal="modal-id-24">
-        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
-        <h3>Feedback Loops & Iteration</h3>
-        <p>Quantitative & qualitative data inform next‑step refinements.</p>
-      </div>
-    </div>
-  </section>
+          <article class="skill-card"
+            data-modal-title="Adaptive Grid Logic – Sample Diagram"
+            data-modal-img="assets/images/adaptive-grid.png"
+            data-modal-desc="Fluid grid strategy that scales automatically.">
+            <h3 class="card-title">Adaptive Grid</h3>
+            <p class="card-text">Responsive layout logic.</p>
+          </article>
 
-  <!-- 9️⃣ Platforms / Marketplaces -->
-  <section id="skill-9" class="skill-section">
-    <div class="skill-header">
-      <h2>Platforms & Marketplaces</h2>
-      <p class="sub">Integration blueprints for existing ecosystems – from Unity Asset Store to Shopify.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-25">
-        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
-        <h3>Marketplace SDKs</h3>
-        <p>Plug‑and‑play modules for App Store, Google Play, Steam.</p>
+          <article class="skill-card"
+            data-modal-title="Interaction Heatmap – Sample Overlay"
+            data-modal-img="assets/images/interaction-heatmap.png"
+            data-modal-desc="Dynamic overlay visualizing user flows.">
+            <h3 class="card-title">Interaction Heatmap</h3>
+            <p class="card-text">Visualize micro‑interactions.</p>
+          </article>
+        </div>
       </div>
-      <div class="card" data-modal="modal-id-26">
-        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
-        <h3>Cross‑Channel Automation</h3>
-        <p>Zapier + n8n flows synchronize assets across channels.</p>
-      </div>
-      <div class="card" data-modal="modal-id-27">
-        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
-        <h3>Revenue‑Friendly Licensing</h3>
-        <p>Custom DRM & usage‑based billing models.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 🔟 Documentation / Knowledge Systems -->
-  <section id="skill-10" class="skill-section">
-    <div class="skill-header">
-      <h2>Documentation & Knowledge Systems</h2>
-      <p class="sub">Living docs, searchable knowledge graphs, and versioned API references.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-28">
-        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
-        <h3>MDX‑Powered Docs Site</h3>
-        <p>Component code lives alongside narrative content.</p>
-      </div>
-      <div class="card" data-modal="modal-id-29">
-        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
-        <h3>Semantic Knowledge Graph</h3>
-        <p>RDF triples connect concepts for AI‑assisted lookup.</p>
-      </div>
-      <div class="card" data-modal="modal-id-30">
-        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
-        <h3>Versioned API Catalog</h3>
-        <p>Swagger + Redoc pipelines auto‑publish new contract changes.</p>
-      </div>
-    </div>
-  </section>
+    <!-- ========================= -->
+    <!-- Skill Deck 4: Systems Architecture -->
+    <!-- ========================= -->
+    <section id="skill-4" class="skill-section" aria-labelledby="section-4-title">
+      <div class="section-inner">
+        <h2 id="section-4-title" class="section-title">Systems Architecture</h2>
+        <p class="section-subtitle">Robust back‑end embeddings for future flexibility.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Microservice Blueprint – Sample Diagram"
+            data-modal-img="assets/images/microservice-architecture.png"
+            data-modal-desc="Service outline, data flows, critical endpoints.">
+            <h3 class="card-title">Microservice Blueprint</h3>
+            <p class="card-text">Scalable architecture.</p>
+          </article>
 
-  <!-- 1️⃣1️⃣ Asset Packaging / Delivery -->
-  <section id="skill-11" class="skill-section">
-    <div class="skill-header">
-      <h2>Asset Packaging & Delivery</h2>
-      <p class="sub">Optimized bundles, CDN‑ready manifests, and DRM‑protected pipelines.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card" data-modal="modal-id-31">
-        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
-        <h3>Progressive Asset Streaming</h3>
-        <p>Chunked delivery that lowers start‑up latency.</p>
-      </div>
-      <div class="card" data-modal="modal-id-32">
-        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
-        <h3>Encrypted Delivery</h4>
-        <p>Zero‑knowledge encryption with per‑user decryption keys.</p>
-      </div>
-      <div class="card" data-modal="modal-id-33">
-        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
-        <h3>Automated Manifest Generation</h3>
-        <p>Checksums, content‑type headers, and version tags built on CI.</p>
-      </div>
-    </div>
-  </section>
+          <article class="skill-card"
+            data-modal-title="Database Schema – Sample Scale"
+            data-modal-img="assets/images/database-schema.png"
+            data-modal-desc="Optimized relational & NoSQL schemas.">
+            <h3 class="card-title">Database Schema</h3>
+            <p class="card-text">Data structure design. </p>
+          </article>
 
-  <!-- 1️⃣2️⃣ Ideal Clients -->
-  <section id="skill-12" class="skill-section">
-    <div class="skill-header">
-      <h2>Ideal Clients</h2>
-      <p class="sub">Enterprises and creators who crave premium systems with cinematic polish.</p>
-    </div>
-    <div class="skill-cards">
-      <div class="card">
-        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
-        <h3>Creative Studios</h3>
-        <p>High‑budget production houses seeking modular pipelines.</p>
+          <article class="skill-card"
+            data-modal-title="Security Protocols – Sample Plan"
+            data-modal-img="assets/images/security-protocol.png"
+            data-modal-desc="CSP, auth flows, DDoS protection.">
+            <h3 class="card-title">Security Protocols</h3>
+            <p class="card-text">Safe system design. </p>
+          </article>
+        </div>
       </div>
-      <div class="card">
-        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
-        <h3>Tech‑Forward Enterprises</h3>
-        <p>Companies demanding system‑level reliability with brand excellence.</p>
-      </div>
-      <div class="card">
-        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
-        <h3>Indie Game Creators</h3>
-        <p>Developers who need scalable world‑building without the overhead.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==== MODAL LIGHTBOX (generic, populated via JS) ==== -->
-  <div id="modal" class="modal hidden">
+    <!-- ========================= -->
+    <!-- Skill Deck 5: Streaming / Broadcast / Overlay Design -->
+    <!-- ========================= -->
+    <section id="skill-5" class="skill-section" aria-labelledby="section-5-title">
+      <div class="section-inner">
+        <h2 id="section-5-title" class="section-title">Streaming & Broadcast Design</h2>
+        <p class="section-subtitle">Live‑stream orchestration, overlays, audience engagement tools.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Overlay Blueprint – Sample Design"
+            data-modal-img="assets/images/overlay-blueprint.png"
+            data-modal-desc="Custom assets for multi‑clip overlays, lower thirds, etc.">
+            <h3 class="card-title">Overlay Blueprint</h3>
+            <p class="card-text">Template design for multi‑cam.</p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Stream Control Panel – Sample UI"
+            data-modal-img="assets/images/stream-control-panel.png"
+            data-modal-desc="UI for scene & source management.">
+            <h3 class="card-title">Stream Control Panel</h3>
+            <p class="card-text">Scene and source orchestration. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Audience Engagement – Sample Overlay"
+            data-modal-img="assets/images/audience-engagement.png"
+            data-modal-desc="Polls, vani‑s donation widgets and more.">
+            <h3 class="card-title">Audience Engagement</h3>
+            <p class="card-text">Live interaction tools. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 6: AI-Enhanced Creative Workflows -->
+    <!-- ========================= -->
+    <section id="skill-6" class="skill-section" aria-labelledby="section-6-title">
+      <div class="section-inner">
+        <h2 id="section-6-title" class="section-title">AI‑Enhanced Workflows</h2>
+        <p class="section-subtitle">Automated pipelines for content creation, data‑insights and autonomous design.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Content Generation Script – Sample AI Flow"
+            data-modal-img="assets/images/content-generation.png"
+            data-modal-desc="LLM‑driven copy & image generation.">
+            <h3 class="card-title">Content Generation</h3>
+            <p class="card-text">Generate copy, media & ideas automatically. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Analytics Engine – Sample Dashboard"
+            data-modal-img="assets/images/analytics-engine.png"
+            data-modal-desc="Real‑time sentiment & trend analytics.">
+            <h3 class="card-title">Analytics Engine</h3>
+            <p class="card-text">Data‑driven insights. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Design Auto‑Tagger – Sample Report"
+            data-modal-img="assets/images/design-auto-tagger.png"
+            data-modal-desc="AI tags media for effortless retrieval.">
+            <h3 class="card-title">Design Auto‑Tagger</h3>
+            <p class="card-text">Automated media classification. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 7: Game Development / World‑Building Design -->
+    <!-- ========================= -->
+    <section id="skill-7" class="skill-section" aria-labelledby="section-7-title">
+      <div class="section-inner">
+        <h2 id="section-7-title" class="section-title">Game & World Design</h2>
+        <p class="section-subtitle">Procedural world systems, NPC behaviour, and narrative planning.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Procedural Map Generator – Sample Render"
+            data-modal-img="assets/images/procedural-map.png"
+            data-modal-desc="AI‑powered terrain & asset placement.">
+            <h3 class="card-title">Procedural Map</h3>
+            <p class="card-text">Generate game worlds programmatically. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="NPC Behaviour Tree – Sample Script"
+            data-modal-img="assets/images/npc-behavior.png"
+            data-modal-desc="Adaptive state machine for NPC immersion.">
+            <h3 class="card-title">NPC Behaviour</h3>
+            <p class="card-text">Dynamic NPC logic. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Player Analytics – Sample Report"
+            data-modal-img="assets/images/player-analytics.png"
+            data-modal-desc="Player retention, session analysis & funnel optimization.">
+            <h3 class="card-title">Player Analytics</h3>
+            <p class="card-text">Insights into player behaviour. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 8: Client Experience / Concierge Skills -->
+    <!-- ========================= -->
+    <section id="skill-8" class="skill-section" aria-labelledby="section-8-title">
+      <div class="section-inner">
+        <h2 id="section-8-title" class="section-title">Concierge & Client Experience</h2>
+        <p class="section-subtitle">Seamless onboarding, proactive support, and exclusive account handling.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Onboarding Journey – Sample Flow"
+            data-modal-img="assets/images/onboarding-journey.png"
+            data-modal-desc="Step‑by‑step hand‑holding process.">
+            <h3 class="card-title">Onboarding Journey</h3>
+            <p class="card-text">Smooth first engagement. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Proactive Support Suite – Sample Ticketing"
+            data-modal-img="assets/images/proactive-support.png"
+            data-modal-desc="Real‑time ticketing, AI triage of common issues.">
+            <h3 class="card-title">Proactive Support</h3>
+            <p class="card-text">Rapid issue resolution. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Client Portal – Sample UI"
+            data-modal-img="assets/images/client-portal.png"
+            data-modal-desc="Custom client-facing interface to manage assets.">
+            <h3 class="card-title">Client Portal</h3>
+            <p class="card-text">Dedicated workspace. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 9: Platforms / Marketplaces -->
+    <!-- ========================= -->
+    <section id="skill-9" class="skill-section" aria-labelledby="section-9-title">
+      <div class="section-inner">
+        <h2 id="section-9-title" class="section-title">Platforms & Marketplaces</h2>
+        <p class="section-subtitle">Integration frameworks for monetisation, distribution, and community growth.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Marketplace API – Sample Map"
+            data-modal-img="assets/images/marketplace-api.png"
+            data-modal-desc="Endpoints and flow for listing & order.">
+            <h3 class="card-title">Marketplace API</h3>
+            <p class="card-text">Platform connectivity layer. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="E‑commerce Flow – Sample Checkout"
+            data-modal-img="assets/images/ecommerce-flow.png"
+            data-modal-desc="Payment, shipping and fulfillment workflow.">
+            <h3 class="card-title">E‑commerce Flow</h3>
+            <p class="card-text">Monetisation pathways. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="SEO & Analytics – Sample Dashboard"
+            data-modal-img="assets/images/seo-analytics.png"
+            data-modal-desc="Key metrics around discoverability and traffic.">
+            <h3 class="card-title">SEO & Analytics</h3>
+            <p class="card-text">Visibility & performance. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 10: Documentation / Knowledge Systems -->
+    <!-- ========================= -->
+    <section id="skill-10" class="skill-section" aria-labelledby="section-10-title">
+      <div class="section-inner">
+        <h2 id="section-10-title" class="section-title">Documentation & Knowledge</h2>
+        <p class="section-subtitle">Clear, searchable knowledge repositories to accelerate onboarding.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Developer Docs – Sample Section"
+            data-modal-img="assets/images/developer-docs.png"
+            data-modal-desc="API reference, code examples, SDKs.">
+            <h3 class="card-title">Developer Docs</h3>
+            <p class="card-text">Technical specifications. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Design System Docs – Sample Component"
+            data-modal-img="assets/images/design-system-docs.png"
+            data-modal-desc="Reusable component details and usage guidelines.">
+            <h3 class="card-title">Design System Docs</h3>
+            <p class="card-text">Design specs. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Playbooks – Sample SOP"
+            data-modal-img="assets/images/playbooks.png"
+            data-modal-desc="Standard operating procedures for projects.">
+            <h3 class="card-title">Playbooks</h3>
+            <p class="card-text">Operational blueprints. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 11: Asset Packaging / Delivery -->
+    <!-- ========================= -->
+    <section id="skill-11" class="skill-section" aria-labelledby="section-11-title">
+      <div class="section-inner">
+        <h2 id="section-11-title" class="section-title">Asset Delivery</h2>
+        <p class="section-subtitle">Optimised asset workflow from creation to final hand‑off.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Asset Pipeline – Sample QC Flow"
+            data-modal-img="assets/images/asset-pipeline.png"
+            data-modal-desc="Quality control, compression, versioning.">
+            <h3 class="card-title">Asset Pipeline</h3>
+            <p class="card-text">Pipeline diagram. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Delivery ChatOps – Sample Bot"
+            data-modal-img="assets/images/delivery-chatops.png"
+            data-modal-desc="Automated FTP, SFTP, CI/CD asset pushes.">
+            <h3 class="card-title">Delivery ChatOps</h3>
+            <p class="card-text">Automated asset delivery. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Packaging – Sample ZIP Bundle"
+            data-modal-img="assets/images/packager.png"
+            data-modal-desc="Bundling into ZIP, JAR, or platform‑specific packages.">
+            <h3 class="card-title">Packaging</h3>
+            <p class="card-text">Final delivery format. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- Skill Deck 12: Ideal Clients -->
+    <!-- ========================= -->
+    <section id="skill-12" class="skill-section" aria-labelledby="section-12-title">
+      <div class="section-inner">
+        <h2 id="section-12-title" class="section-title">Ideal Clients</h2>
+        <p class="section-subtitle">Target audiences that thrive under our integrated, system‑driven solutions.</p>
+        <div class="skills-grid">
+          <article class="skill-card"
+            data-modal-title="Content Creators – Sample Channel"
+            data-modal-img="assets/images/ideal-client-1.png"
+            data-modal-desc="YouTubers, Twitch streamers, and podcasters.">
+            <h3 class="card-title">Content Creators</h3>
+            <p class="card-text">Creators & media houses. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Gaming Studios – Sample Project"
+            data-modal-img="assets/images/ideal-client-2.png"
+            data-modal-desc="Indie devs, AAA studios, and modding communities.">
+            <h3 class="card-title">Gaming Studios</h3>
+            <p class="card-text">Game development houses. </p>
+          </article>
+
+          <article class="skill-card"
+            data-modal-title="Enterprise Brands – Sample Campaign"
+            data-modal-img="assets/images/ideal-client-3.png"
+            data-modal-desc="B2B, B2C, digital transformation teams.">
+            <h3 class="card-title">Enterprise Brands</h3>
+            <p class="card-text">Large‑scale corporate accounts. </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- 10. Generic Modal (Lightbox) -->
+  <!-- ========================= -->
+  <div id="generic-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
-      <button class="modal-close" id="modal-close">×</button>
-      <div class="modal-body" id="modal-body">
-        <!-- Sample placeholder; actual content injected by script -->
-        <h3>Sample Deliverable</h3>
-        <img src="https://via.placeholder.com/800x450?text=Deliverable+Preview"
-             alt="Sample deliverable preview" class="modal-img">
-        <p>Replace this modal with any PDF, SVG, PNG, or video asset.</p>
-      </div>
+      <h3 id="modal-title" class="modal-title"></h3>
+      <img class="modal-img" id="modal-img" src="" alt="">
+      <p id="modal-desc" class="modal-desc"></p>
+      <button class="modal-close" aria-label="Close modal">✕</button>
     </div>
   </div>
 
-  <!-- ==== FOOTER ==== -->
-  <footer class="site-footer">
-    <div class="footer-container">
-      <form id="contact-form" action="https://formspree.io/f/your-form-id"
-            method="POST" class="contact-form">
-        <h3>Get in Touch</h3>
+  <!-- ========================= -->
+  <!-- 11. Footer -->
+  <!-- ========================= -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <h2 class="footer-title">Get in Touch</h2>
+      <form action="https://formspree.io/f/mxyz" method="POST" novalidate class="contact-form">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" required placeholder="Your name">
+        <input type="text" id="name" name="name" required>
         <label for="email">Email</label>
-        <input type="email" name="_replyto" id="email" required placeholder="you@example.com">
+        <input type="email" id="email" name="_replyto" required>
         <label for="message">Message</label>
-        <textarea name="message" id="message" rows="4"
-                  placeholder="What can we build together?" required></textarea>
-        <button type="submit">Send</button>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit" class="form-submit">Send Message</button>
       </form>
-
       <div class="social-links">
-        <h3>Follow SATCORP</h3>
-        <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" class="social-icon"></a>
-        <a href="https://github.com/yourhandle" target="_blank" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" class="social-icon"></a>
-        <a href="https://linkedin.com/in/yourhandle" target="_blank" aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+        <a href="https://github.com/username" target="_blank" rel="noopener" aria-label="GitHub"><img src="assets/icons/github.svg" alt="GitHub"></a>
+        <a href="https://linkedin.com/in/username" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
+        <a href="https://twitter.com/username" target="_blank" rel="noopener" aria-label="Twitter"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
       </div>
     </div>
-
-    <div class="footer-legal">
-      <p>© 2024 SATCORP. All rights reserved.</p>
-      <p>Design by <a href="https://github.com/yourhandle">yourhandle</a>. Hosted on GitHub Pages.</p>
-    </div>
+    <div class="legal">© 2026 SATCORP. All rights reserved. • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></div>
   </footer>
 
-  <!-- ==== Scripts (deferred after the libraries) ==== -->
-  <script src="script.js" defer></script>
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
 </body>
 </html>
