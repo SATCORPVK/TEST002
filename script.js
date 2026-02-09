@@ -1,83 +1,87 @@
-const bootLines = [
-  "INITIALIZING SATCORP NODE",
-  "AUTHENTICATING USER",
-  "LOADING OPERATOR PROFILE: ANU",
-  "MOUNTING MODULES",
-  "SYSTEM READY"
+const bootLines=[
+  ">>> INITIALIZING NODE",
+  ">>> VERIFYING CHANNEL",
+  ">>> OPERATOR SIGNATURE: ANU",
+  ">>> LOADING SYSTEM LAYERS",
+  ">>> ACCESS GRANTED"
 ];
 
-const bootLog = document.getElementById("boot-log");
-const system = document.getElementById("system");
+const bootLog=document.getElementById("boot-log");
+const system=document.getElementById("system");
+let b=0;
 
-let i = 0;
-function bootSequence() {
-  if (i < bootLines.length) {
-    bootLog.textContent += bootLines[i] + "\n";
-    i++;
-    setTimeout(bootSequence, 600);
-  } else {
-    setTimeout(() => {
-      document.getElementById("boot").style.display = "none";
+function boot(){
+  if(b<bootLines.length){
+    bootLog.textContent+=bootLines[b++]+"\n";
+    setTimeout(boot,500);
+  }else{
+    setTimeout(()=>{
+      document.getElementById("boot").remove();
       system.classList.remove("hidden");
-    }, 800);
+      activatePanels();
+    },800);
   }
 }
-bootSequence();
+boot();
 
-const capData = {
-  strategy: "Operational foresight, systemic planning, long-range architecture.",
-  identity: "Identity as infrastructure, not branding.",
-  experience: "Designing user flow as executable logic.",
-  interface: "Interfaces as instruments, not decoration.",
-  automation: "Reducing friction through intelligent systems.",
-  creative: "Direction rooted in intent, not trend."
+function activatePanels(){
+  document.querySelectorAll(".panel").forEach((p,i)=>{
+    setTimeout(()=>p.classList.add("active"),400*i);
+  });
+}
+
+const capText={
+  "STR-01":"Systemic foresight. Structural decision modeling.",
+  "IDN-02":"Identity deployed as infrastructure.",
+  "EXP-03":"Behavioral flow engineered under constraint.",
+  "INT-04":"Interfaces calibrated for control.",
+  "AUT-05":"Logic layers reducing human drag.",
+  "CRD-06":"Directional coherence across systems."
 };
 
-document.querySelectorAll(".capabilities li").forEach(li => {
-  li.onclick = () => {
-    document.getElementById("cap-detail").textContent =
-      capData[li.dataset.expand];
+document.querySelectorAll(".matrix li").forEach(li=>{
+  li.onclick=()=>{
+    li.parentElement.nextElementSibling.textContent=capText[li.dataset.id];
   };
 });
 
-const netData = {
-  "ANU·Ki-Ra Studios": "Primary creative intelligence node.",
-  "KYRAX": "Systems research and speculative engineering.",
-  "PULSΞ": "Signal, rhythm, and interaction core.",
-  "SCOPU": "Observation, analysis, reconnaissance."
-};
+const responses=[
+  "COMPATIBILITY UNKNOWN",
+  "REQUEST UNDER REVIEW",
+  "OPERATOR RESPONSE PENDING",
+  "CHANNEL ACCEPTED"
+];
 
-document.querySelectorAll(".nodes div").forEach(n => {
-  n.onclick = () => {
-    document.getElementById("net-detail").textContent =
-      netData[n.dataset.node];
-  };
-});
+const input=document.getElementById("console-input");
+const out=document.getElementById("console-output");
 
-const methodData = {
-  Observe: "Deep observation of context and signal.",
-  Decode: "Extracting patterns and meaning.",
-  Architect: "Designing the system structure.",
-  Construct: "Executing with precision.",
-  Deploy: "Releasing into operation.",
-  Evolve: "Continuous adaptation."
-};
-
-document.querySelectorAll(".steps span").forEach(s => {
-  s.onclick = () => {
-    document.getElementById("method-detail").textContent =
-      methodData[s.dataset.step];
-  };
-});
-
-const input = document.getElementById("console-input");
-const output = document.getElementById("console-output");
-
-input.addEventListener("keydown", e => {
-  if (e.key === "Enter" && input.value.trim()) {
-    output.textContent += "> " + input.value + "\n";
-    output.textContent +=
-      "Transmission received. SATCORP will evaluate compatibility.\n";
-    input.value = "";
+input.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && input.value){
+    const msg=input.value;
+    input.value="";
+    out.textContent+="> "+msg+"\n";
+    input.disabled=true;
+    setTimeout(()=>{
+      typeResponse(responses[Math.floor(Math.random()*responses.length)]);
+    },600);
   }
 });
+
+function typeResponse(text){
+  let i=0;
+  const interval=setInterval(()=>{
+    out.textContent+=text[i++];
+    if(i>=text.length){
+      clearInterval(interval);
+      out.textContent+="\n";
+      input.disabled=false;
+    }
+  },60);
+}
+
+function clock(){
+  const d=new Date();
+  document.getElementById("clock").textContent=d.toISOString().split("T")[1].split(".")[0];
+}
+setInterval(clock,1000);
+clock();
