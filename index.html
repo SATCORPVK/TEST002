@@ -1,569 +1,429 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="light"> <!-- light/dark toggles on <html> -->
 <head>
-  <!-- ==== Core Meta ==== -->
+  <!-- ==== Core meta ==== -->
   <meta charset="UTF-8">
-  <meta name="viewport"     content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SATCORP – System Architecture & Concierge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SATCORP – Concierge | System Architect | Creative Operator</title>
   <meta name="description"
-        content="SATCORP designs end‑to‑end systems. From brand systems to AI workflows, architecture to asset delivery — we engineer clarity, execution, and polish.">
-  <link rel="canonical" href="https://yourusername.github.io/satcorp/">
-
-  <!-- ==== Open Graph / Social ==== -->
-  <meta property="og:title"       content="SATCORP – System Architecture & Concierge">
-  <meta property="og:description" content="Designing high‑end systems, not flashy graphics.">
-  <meta property="og:url"         content="https://yourusername.github.io/satcorp/">
-  <meta property="og:type"        content="website">
-  <meta property="og:image"       content="https://yourusername.github.io/satcorp/assets/placeholder.png">
-
+        content="Explore SATCORP’s premium system‑driven skill deck – from architecture and AI‑enhanced flows to concierge client experiences.">
+  <!-- ==== Open Graph ==== -->
+  <meta property="og:title" content="SATCORP – Premium Systems & Creative Ops">
+  <meta property="og:description"
+        content="Cinematic, interactive showcase of SATCORP’s high‑end skill deck.">
+  <meta property="og:image" content="https://your‑github‑username.github.io/satcorp‑site/assets/og‑image.png">
+  <meta property="og:url" content="https://your‑github‑username.github.io/satcorp‑site/">
+  <meta property="og:type" content="website">
   <!-- ==== Favicon ==== -->
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-
+  <link rel="icon" href="https://your‑github‑username.github.io/satcorp‑site/assets/icon‑identity.svg" type="image/svg+xml">
   <!-- ==== Fonts ==== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-        rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
   <!-- ==== Styles ==== -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- ==== GSAP (core + ScrollTrigger) ==== -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-          integrity="sha512-1Yaf1wohBbz6E4CqO6cGgYVQO/3dB0SKZAIPcoprlGyI66tbAD241Kk5xaF+j2vsl6h7a8Mg8rU5K1je73FmEQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-          integrity="sha512-wd4fOow/0rhPkFVoJM5CDHTEYvbQGO6x+kcGZqU1tZyXKG1RzaJcPGDjYieDHp8dTTUCpKdFxDNLbhCxZfznHg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <!-- ==== Vanta.js background (dots) ==== -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
-          integrity="sha512-1S69bPqI6rixYcGhXcVUSBxjJtjMTwiUVe+U6zuq3gJiJblMwV0EG+Zeb4Fc4uSh54FgRs9EE6qNzhXUSP7AHQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
-
+  <!-- ==== External libs (CDN) ==== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
+  <!-- ==== Custom Cursor ==== -->
+  <div class="custom-cursor"></div>
 
-<!-- -------------------------------------------------
-     1️⃣ GLOBAL UI: Cursor, Dark‑Mode Toggle, Navigation
-  ------------------------------------------------- -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
+  <!-- ==== Navigation / HUD ==== -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="#" class="nav-logo">SATCORP</a>
+      <ul class="nav-links">
+        <li><a href="#skill-1" class="nav-link">Identity</a></li>
+        <li><a href="#skill-2" class="nav-link">Brand / Visual</a></li>
+        <li><a href="#skill-3" class="nav-link">Web / UI</a></li>
+        <li><a href="#skill-4" class="nav-link">Architecture</a></li>
+        <li><a href="#skill-5" class="nav-link">Streaming</a></li>
+        <li><a href="#skill-6" class="nav-link">AI‑Workflows</a></li>
+        <li><a href="#skill-7" class="nav-link">Game / World</a></li>
+        <li><a href="#skill-8" class="nav-link">Concierge</a></li>
+        <li><a href="#skill-9" class="nav-link">Platforms</a></li>
+        <li><a href="#skill-10" class="nav-link">Docs</a></li>
+        <li><a href="#skill-11" class="nav-link">Packaging</a></li>
+        <li><a href="#skill-12" class="nav-link">Ideal Clients</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Toggle dark / light mode">🌓</button>
+    </nav>
+  </header>
 
-<header class="site-header">
-  <a href="#" class="logo"><img src="assets/logo.svg" alt="SATCORP"></a>
+  <!-- ==== HERO SECTION ==== -->
+  <section id="hero" class="hero-section">
+    <div class="hero-overlay"></div> <!-- dark overlay for readability -->
+    <div class="hero-content">
+      <h1 class="hero-title">Concierge • System Architect • Creative Operator</h1>
+      <p class="hero-subtitle">A high‑end, system‑driven interface that turns complexity into cinematic experiences.</p>
+      <button class="cta-btn" id="explore-cta">Explore SATCORP Systems</button>
+    </div>
+    <!-- Vanta will attach to this container (background only) -->
+    <div id="vanta-bg"></div>
+  </section>
 
-  <nav class="main-nav" aria-label="Primary">
-    <ul>
-      <!-- Links scroll to each #section‑id -->
-      <li><a href="#core-identity">Identity</a></li>
-      <li><a href="#brand-systems">Brand</a></li>
-      <li><a href="#web-ui-systems">Web / UI</a></li>
-      <li><a href="#systems-architecture">Architecture</a></li>
-      <li><a href="#streaming-overlay">Streaming</a></li>
-      <li><a href="#ai-workflows">AI</a></li>
-      <li><a href="#game-development">Game</a></li>
-      <li><a href="#client-experience">Client</a></li>
-      <li><a href="#platforms">Platforms</a></li>
-      <li><a href="#documentation">Docs</a></li>
-      <li><a href="#asset-delivery">Delivery</a></li>
-      <li><a href="#ideal-clients">Ideal Clients</a></li>
-    </ul>
-  </nav>
+  <!-- ==== SKILL DECK SECTIONS ==== -->
+  <!-- ==============================================================
+       Each section follows the same pattern:
+       • .skill-section wrapper
+       • .skill-header (h2 + subheading)
+       • .skill-cards grid of interactive cards
+       • GSAP scroll reveal (script.js)
+       -------------------------------------------------------------->
 
-  <button id="theme-toggle" aria-label="Toggle dark / light mode">
-    <svg class="sun" viewBox="0 0 24 24"><path d="M12 4V2m0 20v-2m8.485-9.485l1.414-1.414M4.101 19.899l1.414-1.414M20 12h2M2 12h2m15.364 7.364l1.414 1.414M4.101 4.101l1.414 1.414M12 6a6 6 0 110 12 6 6 0 010-12z"/></svg>
-    <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
-  </button>
-</header>
-
-<!-- -------------------------------------------------
-     2️⃣ HERO SECTION – Vanta background + CTA
-  ------------------------------------------------- -->
-<section id="hero" class="hero-section">
-  <div class="hero-content">
-    <h1 class="hero-title">SATCORP</h1>
-    <p class="hero-subtitle">System Architecture · Concierge · Precision</p>
-    <button class="cta-btn" data-scroll-to="#core-identity">Explore SATCORP Systems</button>
-  </div>
-  <div id="vanta-bg" class="vanta-bg"></div>
-</section>
-
-<!-- -------------------------------------------------
-     3️⃣ SKILL‑DECK SECTIONS (12 total)
-  ------------------------------------------------- -->
-<main>
-
-  <!-- ==== 1️⃣ Core Identity ==== -->
-  <section id="core-identity" class="skill-section">
-    <h2 class="section-title">Core Identity</h2>
-    <p class="section-intro">
-      The DNA of SATCORP – a purposeful, system‑first brand philosophy.
-    </p>
-
-    <div class="card-grid">
+  <!-- 1️⃣ Core Identity / Operator Value -->
+  <section id="skill-1" class="skill-section">
+    <div class="skill-header">
+      <h2>Core Identity</h2>
+      <p class="sub">The foundational operator value that fuses concierge service with system‑scale architecture.</p>
+    </div>
+    <div class="skill-cards">
       <!-- Card 1 -->
-      <article class="skill-card"
-               data-title="Brand Manifesto"
-               data-desc="A living document that defines tone, voice, decision rules, and visual grammar."
-               data-img="assets/placeholder.png">
-        <h3>Brand Manifesto</h3>
-        <p>PDF, 12 pages</p>
-      </article>
-
+      <div class="card" data-modal="modal-id-1">
+        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
+        <h3>Strategic Vision</h3>
+        <p>Blueprints that align business objectives with technical realities.</p>
+      </div>
       <!-- Card 2 -->
-      <article class="skill-card"
-               data-title="Visual Language"
-               data-desc="Pixel‑perfect system of colour, typographic scales, iconography, and motion principles."
-               data-img="assets/placeholder.png">
-        <h3>Visual Language</h3>
-        <p>Design System (Figma)</p>
-      </article>
-
+      <div class="card" data-modal="modal-id-2">
+        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
+        <h3>Human‑Centric Design</h3>
+        <p>Every system respects the end‑user’s cognitive flow.</p>
+      </div>
       <!-- Card 3 -->
-      <article class="skill-card"
-               data-title="Tone of Voice Guide"
-               data-desc="From UI micro‑copy to client-facing proposals – a unified voice across every touchpoint."
-               data-img="assets/placeholder.png">
-        <h3>Tone of Voice</h3>
-        <p>Markdown, 4 KB</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 2️⃣ Brand Systems ==== -->
-  <section id="brand-systems" class="skill-section">
-    <h2 class="section-title">Brand Systems</h2>
-    <p class="section-intro">
-      Systematic assets that scale, stay consistent, and evolve responsibly.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Logo Suite"
-               data-desc="Multi‑format, variable‑size logotype with usage rules and animation hooks."
-               data-img="assets/placeholder.png">
-        <h3>Logo Suite</h3>
-        <p>SVG, AI, PNG</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Brand Guidelines"
-               data-desc="A living PDF + InDesign source – color, spacing, hierarchy, and brand‑system models."
-               data-img="assets/placeholder.png">
-        <h3>Brand Guidelines</h3>
-        <p>PDF, 48 pages</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Icon Library"
-               data-desc="Modular iconography built on a single‑stroke system – ready for UI, documentation, and motion."
-               data-img="assets/placeholder.png">
-        <h3>Icon Library</h3>
-        <p>SVG Sprite, 200 icons</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 3️⃣ Web / UI Systems ==== -->
-  <section id="web-ui-systems" class="skill-section">
-    <h2 class="section-title">Web / UI Systems</h2>
-    <p class="section-intro">
-      Robust, component‑driven front‑ends that feel like engineered platforms.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Component Library"
-               data-desc="React + Storybook, CSS‑in‑JS, accessibility‑first components with theming."
-               data-img="assets/placeholder.png">
-        <h3>Component Library</h3>
-        <p>React, 120 components</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Design System Tokens"
-               data-desc="Figma + JSON tokens for colour, spacing, elevation – single source of truth."
-               data-img="assets/placeholder.png">
-        <h3>Design Tokens</h3>
-        <p>JSON, 64 KB</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Performance Dashboard"
-               data-desc="Real‑time Lighthouse + custom metrics integrated via CI."
-               data-img="assets/placeholder.png">
-        <h3>Performance Dashboard</h3>
-        <p>Web, 5 pages</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 4️⃣ Systems Architecture ==== -->
-  <section id="systems-architecture" class="skill-section">
-    <h2 class="section-title">Systems Architecture</h2>
-    <p class="section-intro">
-      Blueprint‑level thinking – data pipelines, micro‑services, and event‑driven flows.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Service Mesh Blueprint"
-               data-desc="Kubernetes, Istio, and API‑gateway patterns for resilient back‑ends."
-               data-img="assets/placeholder.png">
-        <h3>Service Mesh Blueprint</h3>
-        <p>PDF, 30 pages</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Data Lake Architecture"
-               data-desc="Scalable storage, CDC pipelines, and analytics layer – all as code."
-               data-img="assets/placeholder.png">
-        <h3>Data Lake Architecture</h3>
-        <p>Mermaid diagrams + Terraform</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Event‑Driven Design System"
-               data-desc="Domain‑driven events, schema management, and real‑time UI sync."
-               data-img="assets/placeholder.png">
-        <h3>Event‑Driven Design System</h3>
-        <p>Docs + Node examples</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 5️⃣ Streaming / Overlay ==== -->
-  <section id="streaming-overlay" class="skill-section">
-    <h2 class="section-title">Streaming / Overlay</h2>
-    <p class="section-intro">
-      Integrated live‑production pipelines, custom overlays, and brand‑infused streams.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="OBS Plugin Kit"
-               data-desc="Modular Overlay SDK – graphics, alerts, and real‑time data bindings."
-               data-img="assets/placeholder.png">
-        <h3>OBS Plugin Kit</h3>
-        <p>Node + JavaScript</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Live Data Integration"
-               data-desc="WebSocket + GraphQL for live stats, chat, and automations."
-               data-img="assets/placeholder.png">
-        <h3>Live Data Integration</h3>
-        <p>APIs, 500 KB</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Brand‑Sync Overlays"
-               data-desc="Fully branded lower-thirds, dashboards, and splash screens – dynamically themed."
-               data-img="assets/placeholder.png">
-        <h3>Brand‑Sync Overlays</h3>
-        <p>After‑Effects / Lottie</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 6️⃣ AI Workflows ==== -->
-  <section id="ai-workflows" class="skill-section">
-    <h2 class="section-title">AI Workflows</h2>
-    <p class="section-intro">
-      Prompt‑driven pipelines that turn raw data into production‑ready assets.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Prompt Library"
-               data-desc="Versioned, annotated prompts for copy, design, code, and video synthesis."
-               data-img="assets/placeholder.png">
-        <h3>Prompt Library</h3>
-        <p>Git‑repo, 150 prompts</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Automated Asset Generation"
-               data-desc="CI‑integrated Midjourney / DALL·E pipelines delivering ready‑to‑use assets."
-               data-img="assets/placeholder.png">
-        <h3>Asset Generation</h3>
-        <p>Python, 30 scripts</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="LLM‑Powered Docs"
-               data-desc="Dynamic documentation generated from source code and system logs."
-               data-img="assets/placeholder.png">
-        <h3>LLM‑Docs</h3>
-        <p>Node + OpenAI API</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 7️⃣ Game Development ==== -->
-  <section id="game-development" class="skill-section">
-    <h2 class="section-title">Game Development</h2>
-    <p class="section-intro">
-      Systems libraries, procedural pipelines, and cross‑platform deployment frameworks.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Entity‑Component Framework"
-               data-desc="Modular, data‑driven ECS for Unity & Godot – built for scalability."
-               data-img="assets/placeholder.png">
-        <h3>ECS Framework</h3>
-        <p>C#, 25 KB</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Procedural Asset Pipeline"
-               data-desc="Blender + Python scripts auto‑generating textures, meshes, and LODs."
-               data-img="assets/placeholder.png">
-        <h3>Procedural Pipeline</h3>
-        <p>Blender, 15 GB</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Cross‑Platform Build System"
-               data-desc="GitHub Actions + Fastlane – one‑click builds to Steam, consoles, and mobile."
-               data-img="assets/placeholder.png">
-        <h3>Cross‑Platform CI</h3>
-        <p>YAML, 8 KB</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 8️⃣ Client Experience ==== -->
-  <section id="client-experience" class="skill-section">
-    <h2 class="section-title">Client Experience</h2>
-    <p class="section-intro">
-      End‑to‑end concierge workflows that make collaboration feel like an engineered system.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="On‑boarding Engine"
-               data-desc="Self‑serve portal with automated SOW generation and milestone tracking."
-               data-img="assets/placeholder.png">
-        <h3>On‑boarding Engine</h3>
-        <p>Web, 12 pages</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Live Collaboration Suite"
-               data-desc="Shared whiteboard, versioned design files, and real‑time feedback loops."
-               data-img="assets/placeholder.png">
-        <h3>Collaboration Suite</h3>
-        <p>Figma + Miro plugins</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Post‑Delivery Dashboard"
-               data-desc="Analytics on asset usage, performance, and impact – auto‑generated PDFs."
-               data-img="assets/placeholder.png">
-        <h3>Post‑Delivery Dashboard</h3>
-        <p>Power‑BI, 5 reports</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 9️⃣ Platforms ==== -->
-  <section id="platforms" class="skill-section">
-    <h2 class="section-title">Platforms</h2>
-    <p class="section-intro">
-      Tailored ecosystems – from internal tooling to public SaaS – built on systematic foundations.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Internal Knowledge Base"
-               data-desc="GraphQL + MDX, searchable, versioned, and integrated with CI."
-               data-img="assets/placeholder.png">
-        <h3>Knowledge Base</h3>
-        <p>Next.js, 200 docs</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Customer‑Facing Portal"
-               data-desc="White‑labeled dashboard with role‑based access and real‑time updates."
-               data-img="assets/placeholder.png">
-        <h3>Customer Portal</h3>
-        <p>React, 12 modules</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="API Marketplace"
-               data-desc="Self‑service API provisioning, rate‑limiting, billing & analytics."
-               data-img="assets/placeholder.png">
-        <h3>API Marketplace</h3>
-        <p>Node + Kong, 10 endpoints</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 🔟 Documentation ==== -->
-  <section id="documentation" class="skill-section">
-    <h2 class="section-title">Documentation</h2>
-    <p class="section-intro">
-      Living, code‑first docs that stay in sync with your systems.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Architecture Docs"
-               data-desc="Diagrams + format‑as‑code with PlantUML and Markdown."
-               data-img="assets/placeholder.png">
-        <h3>Architecture Docs</h3>
-        <p>Markdown, 100 files</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="API Reference Generator"
-               data-desc="OpenAPI → static site, fully versioned, with request‑/response examples."
-               data-img="assets/placeholder.png">
-        <h3>API Reference</h3>
-        <p>Swagger, 30 endpoints</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Component Storybook"
-               data-desc="Interactive UI component gallery with test cases and accessibility checks."
-               data-img="assets/placeholder.png">
-        <h3>Storybook</h3>
-        <p>React, 150 stories</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 1️⃣1️⃣ Asset Delivery ==== -->
-  <section id="asset-delivery" class="skill-section">
-    <h2 class="section-title">Asset Delivery</h2>
-    <p class="section-intro">
-      Automated, secure, CDN‑backed pipelines that guarantee integrity and traceability.
-    </p>
-
-    <div class="card-grid">
-      <article class="skill-card"
-               data-title="Versioned CDN"
-               data-desc="S3 + CloudFront + signed URLs – every asset is immutable and auditable."
-               data-img="assets/placeholder.png">
-        <h3>Versioned CDN</h3>
-        <p>Terraform, 10 modules</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Automated Conversion Suite"
-               data-desc="Batch processing of PSD → SVG, MP4 → WebM, with checksum validation."
-               data-img="assets/placeholder.png">
-        <h3>Conversion Suite</h3>
-        <p>Node + FFmpeg</p>
-      </article>
-
-      <article class="skill-card"
-               data-title="Secure Transfer Portal"
-               data-desc="One‑click encrypted file drop with expiration and audit logs."
-               data-img="assets/placeholder.png">
-        <h3>Secure Portal</h3>
-        <p>Next.js, 5 pages</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==== 1️⃣2️⃣ Ideal Clients ==== -->
-  <section id="ideal-clients" class="skill-section">
-    <h2 class="section-title">Ideal Clients</h2>
-    <p class="section-intro">
-      Companies who value **systems**, **process**, and **precision** over vanity.
-    </p>
-
-    <div class="ideal-client-grid">
-      <div class="client-card">
-        <h3>Tech‑Scale SaaS</h3>
-        <p>Complex product stacks that need a robust brand + infrastructure system.</p>
-      </div>
-      <div class="client-card">
-        <h3>Live‑Entertainment Brands</h3>
-        <p>Streaming, overlay, and real‑time data pipelines integrated with brand DNA.</p>
-      </div>
-      <div class="client-card">
-        <h3>Interactive Game Studios</h3>
-        <p>Procedural asset pipelines, cross‑platform CI, and system‑driven UI/UX.</p>
-      </div>
-      <div class="client-card">
-        <h3>Enterprise Data Teams</h3>
-        <p>Data‑lake, service‑mesh, and AI‑powered documentation frameworks.</p>
+      <div class="card" data-modal="modal-id-3">
+        <img src="assets/icon-identity.svg" alt="Identity icon" class="card-icon">
+        <h3>Zero‑Tolerance Debugging</h3>
+        <p>Operative resilience built‑in, not bolted on.</p>
       </div>
     </div>
   </section>
 
-</main>
+  <!-- 2️⃣ Brand, Visual / Platform Systems -->
+  <section id="skill-2" class="skill-section">
+    <div class="skill-header">
+      <h2>Brand & Visual Systems</h2>
+      <p class="sub">Unified visual language across every platform, delivered as a living system.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-4">
+        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
+        <h3>Dynamic Brand Tokens</h3>
+        <p>Color palettes, typography, and iconography that evolve with product releases.</p>
+      </div>
+      <div class="card" data-modal="modal-id-5">
+        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
+        <h3>Style‑Code Integration</h3>
+        <p>CSS‑in‑JS pipelines that guarantee pixel‑perfect variance across devices.</p>
+      </div>
+      <div class="card" data-modal="modal-id-6">
+        <img src="assets/icon-brand.svg" alt="Brand icon" class="card-icon">
+        <h3>Meta‑Brand Storytelling</h3>
+        <p>Interactive narratives that adapt based on user engagement data.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- -------------------------------------------------
-     4️⃣ MODAL (re‑used for all cards)
-  ------------------------------------------------- -->
-<div id="modal" class="modal" aria-hidden="true" role="dialog">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Close">&times;</button>
-    <h2 class="modal-title"></h2>
-    <p class="modal-desc"></p>
-    <img class="modal-img" src="" alt="Deliverable preview">
+  <!-- 3️⃣ Web Design / UI Systems -->
+  <section id="skill-3" class="skill-section">
+    <div class="skill-header">
+      <h2>Web Design & UI Systems</h2>
+      <p class="sub">Component‑driven interfaces that feel like premium software, not just a website.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-7">
+        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
+        <h3>Atomic Design Library</h3>
+        <p>Reusable UI primitives built on React + Storybook.</p>
+      </div>
+      <div class="card" data-modal="modal-id-8">
+        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
+        <h3>Motion‑First Prototyping</h3>
+        <p>GSAP‑driven micro‑interactions that stage the user journey.</p>
+      </div>
+      <div class="card" data-modal="modal-id-9">
+        <img src="assets/icon-web.svg" alt="Web UI icon" class="card-icon">
+        <h3>Responsive Scaling Engine</h3>
+        <p>Fluid grids that calculate optimal breakpoints algorithmically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4️⃣ Systems Architecture -->
+  <section id="skill-4" class="skill-section">
+    <div class="skill-header">
+      <h2>Systems Architecture</h2>
+      <p class="sub">Scalable back‑ends, event‑driven pipelines, and data‑centric orchestration.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-10">
+        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
+        <h3>Event‑Sourcing Core</h3>
+        <p>Immutable logs powering audit trails and roll‑backs.</p>
+      </div>
+      <div class="card" data-modal="modal-id-11">
+        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
+        <h3>GraphQL‑Layer Fusion</h3>
+        <p>Unified data mesh that merges SaaS and internal services.</p>
+      </div>
+      <div class="card" data-modal="modal-id-12">
+        <img src="assets/icon-architecture.svg" alt="Architecture icon" class="card-icon">
+        <h3>Serverless Orchestration</h3>
+        <p>Zero‑ops pipelines on AWS Lambda + Cloudflare Workers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5️⃣ Streaming / Broadcast / Overlay Design -->
+  <section id="skill-5" class="skill-section">
+    <div class="skill-header">
+      <h2>Streaming & Broadcast Overlays</h2>
+      <p class="sub">Live‑ready visual systems that blend branding with low‑latency interactivity.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-13">
+        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
+        <h3>Live Data Widgets</h3>
+        <p>Real‑time follower/subscriber counters based on WebSockets.</p>
+      </div>
+      <div class="card" data-modal="modal-id-14">
+        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
+        <h3>Shader‑Powered Overlays</h3>
+        <p>GPU‑accelerated particle effects that run on OBS + Browser Source.</p>
+      </div>
+      <div class="card" data-modal="modal-id-15">
+        <img src="assets/icon-stream.svg" alt="Stream icon" class="card-icon">
+        <h3>Multi‑Stream Layout Engine</h3>
+        <p>Dynamic split‑screen compositions for simultaneous feeds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6️⃣ AI‑Enhanced Creative Workflows -->
+  <section id="skill-6" class="skill-section">
+    <div class="skill-header">
+      <h2>AI‑Enhanced Creative Workflows</h2>
+      <p class="sub">Prompt‑driven pipelines that turn concept to asset at interactive speed.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-16">
+        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
+        <h3>Prompt‑to‑Design Engine</h3>
+        <p>Stable Diffusion + custom LoRA models generate brand‑consistent visuals.</p>
+      </div>
+      <div class="card" data-modal="modal-id-17">
+        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
+        <h3>Smart Asset Tagging</h3>
+        <p>Vision AI auto‑labels assets for rapid search & repurposing.</p>
+      </div>
+      <div class="card" data-modal="modal-id-18">
+        <img src="assets/icon-ai.svg" alt="AI icon" class="card-icon">
+        <h3>Generative Code Assist</h3>
+        <p>LLM‑powered snippet suggestions integrated into VS Code.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7️⃣ Game Development / World‑Building Design -->
+  <section id="skill-7" class="skill-section">
+    <div class="skill-header">
+      <h2>Game Development & World‑Building</h2>
+      <p class="sub">Narrative systems & reusable assets that power immersive interactive experiences.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-19">
+        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
+        <h3>Procedural Level Generator</h3>
+        <p>Rule‑based node graphs produce endless ambience zones.</p>
+      </div>
+      <div class="card" data-modal="modal-id-20">
+        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
+        <h3>Modular Asset Library</h3>
+        <p>FBX + glTF bundles with built‑in LODs for performance.</p>
+      </div>
+      <div class="card" data-modal="modal-id-21">
+        <img src="assets/icon-game.svg" alt="Game icon" class="card-icon">
+        <h3>Live Narrative Engine</h3>
+        <p>Event‑driven story nodes responding to player actions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8️⃣ Client Experience / Concierge Skills -->
+  <section id="skill-8" class="skill-section">
+    <div class="skill-header">
+      <h2>Client Experience & Concierge Skills</h2>
+      <p class="sub">High‑touch service flows that treat every stakeholder as a VIP.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-22">
+        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
+        <h3>On‑board Journey Mapping</h3>
+        <p>Personalized roadmaps from kickoff to launch.</p>
+      </div>
+      <div class="card" data-modal="modal-id-23">
+        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
+        <h3>24/7 Live Ops Support</h3>
+        <p>Realtime monitoring and rapid incident response.</p>
+      </div>
+      <div class="card" data-modal="modal-id-24">
+        <img src="assets/icon-concierge.svg" alt="Concierge icon" class="card-icon">
+        <h3>Feedback Loops & Iteration</h3>
+        <p>Quantitative & qualitative data inform next‑step refinements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9️⃣ Platforms / Marketplaces -->
+  <section id="skill-9" class="skill-section">
+    <div class="skill-header">
+      <h2>Platforms & Marketplaces</h2>
+      <p class="sub">Integration blueprints for existing ecosystems – from Unity Asset Store to Shopify.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-25">
+        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
+        <h3>Marketplace SDKs</h3>
+        <p>Plug‑and‑play modules for App Store, Google Play, Steam.</p>
+      </div>
+      <div class="card" data-modal="modal-id-26">
+        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
+        <h3>Cross‑Channel Automation</h3>
+        <p>Zapier + n8n flows synchronize assets across channels.</p>
+      </div>
+      <div class="card" data-modal="modal-id-27">
+        <img src="assets/icon-platforms.svg" alt="Platforms icon" class="card-icon">
+        <h3>Revenue‑Friendly Licensing</h3>
+        <p>Custom DRM & usage‑based billing models.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔟 Documentation / Knowledge Systems -->
+  <section id="skill-10" class="skill-section">
+    <div class="skill-header">
+      <h2>Documentation & Knowledge Systems</h2>
+      <p class="sub">Living docs, searchable knowledge graphs, and versioned API references.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-28">
+        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
+        <h3>MDX‑Powered Docs Site</h3>
+        <p>Component code lives alongside narrative content.</p>
+      </div>
+      <div class="card" data-modal="modal-id-29">
+        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
+        <h3>Semantic Knowledge Graph</h3>
+        <p>RDF triples connect concepts for AI‑assisted lookup.</p>
+      </div>
+      <div class="card" data-modal="modal-id-30">
+        <img src="assets/icon-docs.svg" alt="Docs icon" class="card-icon">
+        <h3>Versioned API Catalog</h3>
+        <p>Swagger + Redoc pipelines auto‑publish new contract changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1️⃣1️⃣ Asset Packaging / Delivery -->
+  <section id="skill-11" class="skill-section">
+    <div class="skill-header">
+      <h2>Asset Packaging & Delivery</h2>
+      <p class="sub">Optimized bundles, CDN‑ready manifests, and DRM‑protected pipelines.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card" data-modal="modal-id-31">
+        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
+        <h3>Progressive Asset Streaming</h3>
+        <p>Chunked delivery that lowers start‑up latency.</p>
+      </div>
+      <div class="card" data-modal="modal-id-32">
+        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
+        <h3>Encrypted Delivery</h4>
+        <p>Zero‑knowledge encryption with per‑user decryption keys.</p>
+      </div>
+      <div class="card" data-modal="modal-id-33">
+        <img src="assets/icon-packaging.svg" alt="Packaging icon" class="card-icon">
+        <h3>Automated Manifest Generation</h3>
+        <p>Checksums, content‑type headers, and version tags built on CI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1️⃣2️⃣ Ideal Clients -->
+  <section id="skill-12" class="skill-section">
+    <div class="skill-header">
+      <h2>Ideal Clients</h2>
+      <p class="sub">Enterprises and creators who crave premium systems with cinematic polish.</p>
+    </div>
+    <div class="skill-cards">
+      <div class="card">
+        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
+        <h3>Creative Studios</h3>
+        <p>High‑budget production houses seeking modular pipelines.</p>
+      </div>
+      <div class="card">
+        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
+        <h3>Tech‑Forward Enterprises</h3>
+        <p>Companies demanding system‑level reliability with brand excellence.</p>
+      </div>
+      <div class="card">
+        <img src="assets/icon-clients.svg" alt="Clients icon" class="card-icon">
+        <h3>Indie Game Creators</h3>
+        <p>Developers who need scalable world‑building without the overhead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== MODAL LIGHTBOX (generic, populated via JS) ==== -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">×</button>
+      <div class="modal-body" id="modal-body">
+        <!-- Sample placeholder; actual content injected by script -->
+        <h3>Sample Deliverable</h3>
+        <img src="https://via.placeholder.com/800x450?text=Deliverable+Preview"
+             alt="Sample deliverable preview" class="modal-img">
+        <p>Replace this modal with any PDF, SVG, PNG, or video asset.</p>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- -------------------------------------------------
-     5️⃣ FOOTER & CONTACT FORM
-  ------------------------------------------------- -->
-<footer class="site-footer">
-  <section class="contact-section">
-    <h2>Get in Touch</h2>
+  <!-- ==== FOOTER ==== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <form id="contact-form" action="https://formspree.io/f/your-form-id"
+            method="POST" class="contact-form">
+        <h3>Get in Touch</h3>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required placeholder="Your name">
+        <label for="email">Email</label>
+        <input type="email" name="_replyto" id="email" required placeholder="you@example.com">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="4"
+                  placeholder="What can we build together?" required></textarea>
+        <button type="submit">Send</button>
+      </form>
 
-    <!-- Simple static form – replace ACTION with Formspree endpoint -->
-    <form id="contact-form"
-          method="POST"
-          action="https://formspree.io/f/your-form-id"
-          class="contact-form">
-      <label>
-        <span class="sr-only">Your Name</span>
-        <input type="text" name="name" placeholder="Name" required>
-      </label>
-      <label>
-        <span class="sr-only">Your Email</span>
-        <input type="email" name="_replyto" placeholder="Email" required>
-      </label>
-      <label>
-        <span class="sr-only">Message</span>
-        <textarea name="message" rows="4" placeholder="Your Message…" required></textarea>
-      </label>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
-  </section>
+      <div class="social-links">
+        <h3>Follow SATCORP</h3>
+        <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" class="social-icon"></a>
+        <a href="https://github.com/yourhandle" target="_blank" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" class="social-icon"></a>
+        <a href="https://linkedin.com/in/yourhandle" target="_blank" aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+      </div>
+    </div>
 
-  <section class="social-section">
-    <a href="https://github.com/yourusername" target="_blank" rel="noopener"
-       class="social-link">
-      <img src="assets/icons/github.svg" alt="GitHub">
-    </a>
-    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener"
-       class="social-link">
-      <img src="assets/icons/twitter.svg" alt="Twitter">
-    </a>
-    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener"
-       class="social-link">
-      <img src="assets/icons/linkedin.svg" alt="LinkedIn">
-    </a>
-  </section>
+    <div class="footer-legal">
+      <p>© 2024 SATCORP. All rights reserved.</p>
+      <p>Design by <a href="https://github.com/yourhandle">yourhandle</a>. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
 
-  <small class="legal">&copy; <span id="year"></span> SATCORP. All rights reserved. |
-                  <a href="/privacy.html">Privacy Policy</a></small>
-</footer>
-
-<!-- -------------------------------------------------
-     6️⃣ SCRIPTS – load after DOM
-  ------------------------------------------------- -->
-<script src="script.js"></script>
+  <!-- ==== Scripts (deferred after the libraries) ==== -->
+  <script src="script.js" defer></script>
 </body>
 </html>
