@@ -1,87 +1,168 @@
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body, #Stage { width:100%; height:100%; font-family: 'nbarchitekt', sans-serif; background:#000; color:#0ff; overflow:hidden; }
-
-/* Background Grid */
-.bg-grid {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background-image: 
-    linear-gradient(0deg, rgba(0,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index:0;
-  animation: gridScroll 60s linear infinite;
-}
-@keyframes gridScroll {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 1000px 1000px, 1000px 1000px; }
+:root {
+  --bg: #0a0a0f;
+  --fg: #eaeaea;
+  --accent: #8b5cf6;
+  --border: #242437;
+  --font-main: Inter, sans-serif;
 }
 
-/* HUD Overlay */
+[data-theme="light"] {
+  --bg: #f5f5f7;
+  --fg: #111;
+  --border: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .hud {
-  position: fixed;
-  top:0; left:0;
-  width:100%; display:flex; justify-content:space-between; padding:1rem 2rem;
-  font-size:0.9rem; color:#0ff; z-index:10;
-  text-shadow: 0 0 4px #0ff, 0 0 8px #0ff;
-}
-.hud-left, .hud-right { display:flex; flex-direction:column; gap:0.2rem; }
-.status { font-weight:700; letter-spacing:1px; }
-.time { font-weight:300; }
-
-/* Interface Section */
-.interface {
-  position:relative;
-  z-index:5;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-}
-.interface h1 {
-  font-size:5rem; font-weight:700;
-  color:#0ff; text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-}
-.interface p {
-  font-size:1.5rem; font-weight:300; margin-bottom:3rem;
-  opacity:0.8;
+  position: sticky;
+  top: 0;
+  background: rgba(10,10,15,0.9);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
 }
 
-/* Module Cards */
+.hud__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav a, .theme-toggle {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--fg);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.hero-title span {
+  color: var(--accent);
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
 .modules {
-  display:flex; gap:2rem; flex-wrap:wrap; justify-content:center;
+  display: grid;
+  gap: 2rem;
 }
+
 .module {
-  background: rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
-  padding:2rem 3rem;
-  border-radius:10px;
-  font-size:1.2rem;
-  text-align:center;
-  backdrop-filter: blur(5px);
-  cursor:pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.module:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 20px #0ff;
-  border-color: #0ff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.02);
 }
 
-/* Footer HUD */
-.footer-hud {
-  position: fixed; bottom:0; width:100%; text-align:center;
-  font-size:0.8rem; color:#0ff; padding:1rem 0;
-  text-shadow: 0 0 4px #0ff;
+.module h3 {
+  margin-top: 0;
+  color: var(--accent);
 }
 
-/* Neon Glow Animations */
-@keyframes neonPulse {
-  0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
-  50% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-h1, .status, .module { animation: neonPulse 2s infinite; }
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1 1 200px;
+}
+
+.simulation {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sim-controls button {
+  margin-right: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.grid div {
+  background: var(--border);
+  height: 150px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.progress-bar {
+  height: 4px;
+  background: #222;
+}
+
+#progress {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.2s ease;
+}
