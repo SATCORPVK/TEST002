@@ -1,61 +1,1320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SATCORP – System Design and Digital Experiences">
-  <title>SATCORP – Systems Thinking, Not Graphics</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SATCORP: Advanced systems architecture and creative operations">
+    <meta name="keywords" content="system architecture, creative operator, concierge, web design, AI workflows">
+    <meta property="og:title" content="SATCORP | System Architecture & Creative Operations">
+    <meta property="og:description" content="Concierge / System Architect / Creative Operator">
+    <meta property="og:image" content="https://satcorp.systems/satcorp-og.jpg">
+    <meta property="og:url" content="https://satcorp.systems">
+    <title>SATCORP | System Architecture & Creative Operations</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & Vanta.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    
+    <style>
+        /* === GLOBAL STYLES === */
+        :root {
+            --dark-bg: #0a0a15;
+            --darker-bg: #06060e;
+            --neon-purple: #b388ff;
+            --plasma-blue: #84ccff;
+            --ember-orange: #ff9800;
+            --text-primary: #e0e0ff;
+            --text-secondary: #a0a0c0;
+            --card-bg: rgba(20, 20, 40, 0.7);
+            --card-border: rgba(50, 50, 100, 0.3);
+            --glow-purple: 0 0 15px rgba(179, 136, 255, 0.4);
+            --glow-blue: 0 0 15px rgba(132, 204, 255, 0.4);
+            --glow-orange: 0 0 15px rgba(255, 152, 0, 0.4);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* === CUSTOM CURSOR === */
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--neon-purple);
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: var(--transition);
+            opacity: 0.7;
+            box-shadow: var(--glow-purple);
+        }
+
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(179, 136, 255, 0.2);
+            box-shadow: 0 0 30px 5px rgba(179, 136, 255, 0.6);
+        }
+
+        .custom-cursor.hover-blue {
+            background: rgba(132, 204, 255, 0.2);
+            box-shadow: 0 0 30px 5px rgba(132, 204, 255, 0.6);
+        }
+
+        .custom-cursor.hover-orange {
+            background: rgba(255, 152, 0, 0.2);
+            box-shadow: 0 0 30px 5px rgba(255, 152, 0, 0.6);
+        }
+
+        /* === HEADER & NAVIGATION === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-purple), var(--plasma-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--neon-purple);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-purple);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 25px;
+            background: var(--card-bg);
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle.dark::before {
+            left: 27px;
+            background: var(--plasma-blue);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--neon-purple), var(--plasma-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(90deg, var(--neon-purple), var(--plasma-blue));
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            box-shadow: var(--glow-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), var(--glow-purple);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* === PROGRESS BAR === */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--neon-purple);
+            z-index: 1001;
+            width: 0%;
+        }
+
+        /* === SKILL SECTIONS === */
+        .skill-section {
+            padding: 12rem 5% 8rem;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-purple), var(--plasma-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-purple);
+            box-shadow: var(--glow-purple);
+        }
+
+        .card-header {
+            padding: 2rem;
+            background: rgba(30, 30, 60, 0.5);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-purple);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+        }
+
+        .card-content {
+            padding: 2.5rem;
+        }
+
+        .capability {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .capability-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--darker-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .capability-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--neon-purple);
+        }
+
+        .capability h4 {
+            color: var(--plasma-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .capability p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* === MODAL === */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 25, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: var(--darker-bg);
+            border-radius: 20px;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: var(--darker-bg);
+            border: 1px solid var(--card-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: var(--card-bg);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            padding: 2.5rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .modal-header h3 {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+        }
+
+        .modal-header p {
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .asset-preview {
+            width: 100%;
+            height: 400px;
+            background: var(--darker-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .asset-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .asset-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .asset-label svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--plasma-blue);
+        }
+
+        /* === FOOTER === */
+        footer {
+            padding: 6rem 5% 3rem;
+            background: var(--darker-bg);
+            border-top: 1px solid var(--card-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-purple);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: var(--glow-purple);
+        }
+
+        .submit-btn {
+            padding: 1.2rem;
+            background: linear-gradient(90deg, var(--neon-purple), var(--plasma-blue));
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--glow-purple);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), var(--glow-purple);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--neon-purple);
+            color: white;
+            border-color: var(--neon-purple);
+            box-shadow: var(--glow-purple);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav id="navbar">
-      <ul>
-        <li><a href="#core">Core Identity</a></li>
-        <li><a href="#brand">Brand Systems</a></li>
-        <!-- Add remaining skill deck links -->
-      </ul>
-    </nav>
-  </header>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <canvas id="vanta-bg"></canvas>
-    <div class="hero-content">
-      <h1>SATCORP</h1>
-      <p>Systems, Not Graphics</p>
-      <button id="exploreBtn">Explore SATCORP Systems</button>
-    </div>
-  </section>
+    <!-- Progress Bar -->
+    <div class="scroll-progress"></div>
 
-  <!-- Skill Deck Sections -->
-  <main>
-    <section id="core" class="skill-section">
-      <h2>Core Identity</h2>
-      <div class="skill-cards"></div>
+    <!-- Header -->
+    <header>
+        <div class="logo">SATCORP</div>
+        <nav>
+            <ul>
+                <li><a href="#core-identity">Core Identity</a></li>
+                <li><a href="#brand-systems">Brand Systems</a></li>
+                <li><a href="#web-design">Web Design</a></li>
+                <li><a href="#systems-arch">Architecture</a></li>
+            </ul>
+        </nav>
+        <div class="theme-toggle"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Concierge / System Architect / Creative Operator</h1>
+            <p>Advanced systems engineering for the digital frontier. Precision-engineered solutions for complex creative and technical challenges.</p>
+            <a href="#core-identity" class="cta-button">Explore SATCORP Systems</a>
+        </div>
     </section>
-    <section id="brand" class="skill-section">
-      <h2>Brand Systems</h2>
-      <div class="skill-cards"></div>
+
+    <!-- Skill Section 1: Core Identity -->
+    <section id="core-identity" class="skill-section">
+        <div class="section-header">
+            <h2>Core Identity / Operator Value</h2>
+            <p>The fundamental architecture of SATCORP's operational framework and strategic value proposition</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Operational Philosophy</h3>
+                    <p>Foundational principles driving all SATCORP engagements</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>System-First Approach</h4>
+                            <p>Every solution begins with architectural mapping before implementation</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Concierge Engineering</h4>
+                            <p>Personalized technical stewardship for complex project ecosystems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Value Proposition</h3>
+                    <p>Distinctive advantages delivered through SATCORP's operational model</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Reduced Technical Debt</h4>
+                            <p>Architectural foresight that prevents future system constraints</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Accelerated Deployment</h4>
+                            <p>Modular systems that enable rapid implementation and iteration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Operational Framework</h3>
+                    <p>Systematic approach to project engagement and delivery</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>System Mapping</h4>
+                            <p>Comprehensive architectural visualization before development</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Concierge Integration</h4>
+                            <p>Seamless client team augmentation with operational continuity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- Repeat for all 12 sections -->
-  </main>
 
-  <!-- Footer / Contact -->
-  <footer>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" placeholder="Your Inquiry"></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <div class="social-links">
-      <!-- SVG icons linked -->
+    <!-- Skill Section 2: Brand Systems -->
+    <section id="brand-systems" class="skill-section">
+        <div class="section-header">
+            <h2>Brand, Visual / Platform Systems</h2>
+            <p>Strategic development of visual language and brand architecture across digital ecosystems</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Visual Architecture</h3>
+                    <p>Creating cohesive visual systems that adapt across platforms</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Adaptive Identity Systems</h4>
+                            <p>Brand elements that respond intelligently to context and platform</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Dynamic Style Frameworks</h4>
+                            <p>Scalable design systems that evolve with platform requirements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Platform Integration</h3>
+                    <p>Creating unified brand experiences across diverse digital environments</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Cross-Platform Consistency</h4>
+                            <p>Brand expression that maintains integrity across all touchpoints</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Platform-Specific Optimization</h4>
+                            <p>Adaptation of core identity to leverage platform-specific capabilities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Strategic Implementation</h3>
+                    <p>Operational framework for brand system deployment and evolution</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Modular Brand Components</h4>
+                            <p>Interchangeable elements that enable rapid brand adaptation</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Evolutionary Roadmaps</h4>
+                            <p>Strategic planning for brand system maturation and adaptation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Section 3: Web Design -->
+    <section id="web-design" class="skill-section">
+        <div class="section-header">
+            <h2>Web Design / UI Systems</h2>
+            <p>Architectural development of sophisticated web interfaces and user experience frameworks</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Interface Architecture</h3>
+                    <p>Strategic framework for interface development and user interaction patterns</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>System-Driven UI Components</h4>
+                            <p>Modular interface elements that scale across applications</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Contextual Interaction Design</h4>
+                            <p>Interfaces that adapt to user context and workflow patterns</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Technical Implementation</h3>
+                    <p>Advanced engineering practices for high-performance web interfaces</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Performance-Optimized Rendering</h4>
+                            <p>Interfaces engineered for maximum speed and minimal resource consumption</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Adaptive Layout Systems</h4>
+                            <p>Fluid interfaces that maintain integrity across all device contexts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Experience Engineering</h3>
+                    <p>Strategic development of user journeys and interaction frameworks</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Systematic Journey Mapping</h4>
+                            <p>Architectural planning of user pathways through complex systems</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Cognitive Load Optimization</h4>
+                            <p>Interface design that minimizes user cognitive processing requirements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Section 4: Systems Architecture -->
+    <section id="systems-arch" class="skill-section">
+        <div class="section-header">
+            <h2>Systems Architecture</h2>
+            <p>Strategic design and implementation of complex technical ecosystems</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Architectural Frameworks</h3>
+                    <p>Strategic development of system foundations and structural patterns</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Modular System Design</h4>
+                            <p>Creating interchangeable system components that enable flexible adaptation</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Future-Proof Integration</h4>
+                            <p>Architectural patterns designed for seamless technology evolution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Technical Implementation</h3>
+                    <p>Advanced engineering practices for high-performance system deployment</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Performance-Optimized Infrastructure</h4>
+                            <p>Systems engineered for maximum throughput and minimal latency</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Scalability Engineering</h4>
+                            <p>Architectural planning for seamless system growth and expansion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Strategic Systems Planning</h3>
+                    <p>Operational framework for system development and evolution</p>
+                </div>
+                <div class="card-content">
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Technical Debt Mitigation</h4>
+                            <p>Proactive architectural planning to prevent system constraints</p>
+                        </div>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Evolutionary Architecture</h4>
+                            <p>Systems designed for continuous adaptation and improvement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact SATCORP</h4>
+                <p>For system integration and concierge engineering services</p>
+                <form class="contact-form" action="https://formspree.io/f/mqknyyrg" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">System Requirements</label>
+                        <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit System Request</button>
+                </form>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With SATCORP</h4>
+                <p>Follow our system development and engineering insights</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 4.99 3.66 9.13 8.44 9.87v-6.98h-2.54v-2.89h2.54v-2.2c0-2.51 1.49-3.87 3.77-3.87 1.08 0 2.2.19 2.2.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.85h2.78l-.45 3.43h-2.33v6.98c4.78-.74 8.44-4.88 8.44-9.87 0-5.53-4.5-10.02-10-10.02z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.5 17c-2.33 0-4.417-1.063-5.889-2.729l1.57-1.658c1.133 1.107 2.558 1.87 4.31 1.87 2.67 0 4.9-2.25 4.9-5.048 0-2.76-2.2-5.02-4.9-5.02-2.77 0-4.9 2.23-4.9 5.02 0 .76.205 1.49.558 2.107l-1.57 1.658c-.51-.93-.82-2-.82-3.132 0-3.5 2.7-6.312 6.04-6.312s5.87 2.678 5.87 6.312-2.77 6.308-6.04 6.308z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 4.99 3.66 9.13 8.44 9.87v-6.98h-2.54v-2.89h2.54v-2.2c0-2.51 1.49-3.87 3.77-3.87 1.08 0 2.2.19 2.2.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.85h2.78l-.45 3.43h-2.33v6.98c4.78-.74 8.44-4.88 8.44-9.87 0-5.53-4.5-10.02-10-10.02zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 SATCORP. All systems rights reserved. Engineered with precision for the digital frontier.</p>
+            <p>Concierge / System Architect / Creative Operator | SATCORP is a division of System Architecture Technologies Corporation</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal">
+        <div class="modal-content">
+            <div class="close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                </svg>
+            </div>
+            <div class="modal-header">
+                <h3>System Architecture Blueprint</h3>
+                <p>Advanced modular system framework for enterprise deployment</p>
+            </div>
+            <div class="modal-body">
+                <div class="asset-preview">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCAxMDI0IDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSIjYmM4OGZmIiBkPSJNNTExLjUgMzUxLjVjLTQwLjggMC03OC41LTE4LjctMTAyLjMtNDUuOGMtNDYuMi0NTIuMS03OC41LTEyOS45LTc4LjUtMjE2LjVjMC05My4zIDQwLjYtMTc4LjEgMTA3LjEtMjM4LjZjMjIuMS0yNC44IDUxLjUtMzguNyA4Mi4zLTM4LjdoMS45YzMwLjcgMCA2MC4yIDEzLjkgODIuMyAzOC43YzY2LjUgNjAuNSAxMDcuMSAxNDUuMyAxMDcuMSAyMzguNnM0MC42IDE3OC4xIDEwNy4xIDIzOC42YzIyLjEgMjQuOCA1MS41IDM4LjcgODIuMyAzOC43aDEuOUM4MzAuMSAzNjEuOSA3ODkuNSAzMDIuOCA3NzcuOSAyMzQuNGMtMTAuNy00MC44LTMwLjItNzcuNi01Ni40LTEwNi40QzY5NS4xIDEwMC4xIDY1MS43IDc2LjUgNjA0LjIgNzYuNWMtNDcuNiAwLTkyLjUgMjMuNi0xMTguOSA1MS41Yy0xMi45IDEzLjgtMjQuMyAyOS4yLTMzLjYgNDYuNWMtMTQuNCAyNi41LTIzLjMgNTYuOS0yMy4zIDg5LjNzOC45IDYyLjggMjMuMyA4OS4zYzkuMyAxNy40IDIwLjcgMzIuOCAzMy42IDQ2LjVjMjYuNCAyNy45IDcxLjMgNTEuNSAxMTguOSA1MS41YzQ3LjUgMCw5MC45LTIzLjYsMTE3LjMtNTEuNWMxMy4yLTEzLjcgMjQuOS0yOS4zIDM0LjQtNDYuOWMxNC40LTI2LjUgMjMuMy01Ni45IDIzLjMtODkuM3MtOC45LTYyLjggMjMuMy04OS4zYzkuNS0xNy42IDIxLjItMzMuMiAzNC40LTQ2LjljMjYuNC0yNy45IDcxLjMtNTEuNSAxMTguOS01MS41YzQ3LjUgMCw5MC45IDIzLjYsMTE3LjMgNTEuNWMxMy4yIDEzLjcgMjQuOSAzMS4yIDM0LjQgNDkuM2MyMS4xIDQwLjUgMzMuMyA4OS4yIDMzLjMgMTQwLjJjMCA1MS4xLTEyLjIgOTkuNy0zMy4zIDE0MC4yYy05LjUgMTguMS0yMS4yIDM1LjYtMzQuNCA0OS4zYy0yNi40IDI3LjktNzEuMyA1MS41LTExOC45IDUxLjVjLTQ3LjUgMC05MC45LTIzLjYtMTE3LjMtNTEuNUM2NTguMSA0ODIuMSA2MzcuNiA0NTkuNCA2MjIuNCA0MzkuOGMxNS4xIDIxLjMgMzMuNyAzOC45IDU1LjMgNTAuN2MzMy4zIDE4LjIgNzAuNSAyOC4zIDEwOS4zIDI4LjNjNTIuOSAwIDEwMC4yLTIyLjkgMTM2LjUtNTkuMmMzNi4zLTM2LjMgNTkuMi04My42IDU5LjItMTM2LjVjMC01MyAtMjIuOS0xMDAuMi01OS4yLTEzNi41Yy0zNi4zLTM2LjMtODMuNi01OS4yLTEzNi41LTU5LjJjLTUzIDAtMTAwLjIgMjIuOS0xMzYuNSA1OS4yYy0zNi4zIDM2LjMtNTkuMiA4My41LTU5LjIgMTM2LjVjMCAzNC41IDkuMyA2Ni45IDI1LjUgOTQuNGMxNi4yIDI3LjUgMzkuMiA1MC41IDY2LjcgNjYuN2MxMy43IDguMiAyOC4zIDEyLjUgNDQuMSAxMi41YzIyLjQgMCw0My4yLTcuMyA2MC4xLTIxLjVsNi4yIDguN2MxMS40IDE2LjEgMjcuMSAyOC43IDQ1LjUgMzcuN2MxOC41IDkgMzkuNCAxMy41IDYyLjMgMTMuNWgyLjFjMTguMyAwIDM1LjQgMy44IDUwLjUgMTEuN2MxNS4xIDcuOSAyOC4xIDE4LjIgMzguOSAzMC45YzEwLjcgMTIuNyAxOS4xIDI3LjUgMjUuMSA0NC4yYzYgMTYuNiA5LjEgMzQuNiA5LjEgNTQuMWMwIDQxLjYtMTEuMSA4MC4xLTMwLjMgMTE1LjVjLTE5LjIgMzUuNC00Ny4yIDY1LjMtODMuOCA4Ny4xYy0zNi42IDIxLjgtNzkuOCAzMi4yLTEyOS4zIDMyLjJjLTQ5LjUgMC05Mi43LTEwLjQtMTI5LjMtMzIuMmMtMzYuNi0yMS44LTY0LjYtNTEuNy04My44LTg3LjFjLTE5LjItMzUuNC0zMC4zLTc0LjEtMzAtMTE1LjVjMC0xOS42IDMuMS0zNy42IDkuMS01NC4yYzYtMTYuNyAxNC40LTMxLjUgMjUuMS00NC4yYzEwLjctMTIuNyAyMy43LTIzIDM4LjktMzAuOWMxNS4xLTcuOSAzMi4yLTExLjcgNTAuNS0xMS43aDIuMWMyMi45IDAgNDMuOCA0LjYgNjIuMyAxMy41YzE4LjQgOC45IDM0LjEgMjEuNCA0NS41IDM3LjVsNi4yLTguN2MxNi45IDE0LjIgMzcuNyAyMS41IDYwLjEgMjEuNWMyMi40IDAgNDMuMi03LjMgNjAuMS0yMS41YzE2LjktMTQuMiAyOS44LTMzLjMgMzcuNi01Ni4yYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42Yy0yMi40IDAtNDMuMiAxMS41LTYwLjEgMjkuNmMtMTYuOSAxOC4xLTI5LjggMzcuMi0zNy42IDYwLjFjLTcuOC0yMi45LTExLjYtNDcuOS0xMS42LTc0LjVjMC0yNi42IDMuOC01MS42IDExLjYtNzQuNWM3LjgtMjIuOSAyMC43LTQyIDM3LjYtNjAuMWMxNi45LTE4LjEgMzcuNy0yOS42IDYwLjEtMjkuNmMyMi40IDAgNDMuMiAxMS41IDYwLjEgMjkuNmMxNi45IDE4LjEgMjkuOCAzNy4yIDM3LjYgNjAuMWM3LjggMjIuOSAxMS42IDQ3LjkgMTEuNiA3NC41YzAgMjYuNi0zLjggNTEuNi0xMS42IDc0LjVjLTcuOC0yMi45LTIwLjctNDIgMzcuNi02MC4xYzE2LjktMTguMSAzNy43LTI5LjYgNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC01MS42LTExLjYtNzQuNWMtNy44LTIyLjktMjAuNy00Mi0zNy42LTYwLjFjLTE2LjktMTguMS0zNy43LTI5LjYtNjAuMS0yOS42YzIyLjQgMCA0My4yIDExLjUgNjAuMSAyOS42YzE2LjkgMTguMSAyOS44IDM3LjIgMzcuNiA2MC4xYzcuOC0yMi45IDExLjYtNDcuOSAxMS42LTc0LjVjMC0yNi42LTMuOC05MS42LTExLjYtMTY0LjVjLTcuOC03Mi45LTIwLjctMTQyLjUtMzcuNi0yMDguNWMtMTYuOS02Ni0zNy43LTEyOC02MC4xLTE4Ni4xYy0yMi40LTYuMS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYy0yMi40LTUuOS00My4yLTEyLjMtNjAuMS0xOC41Yy0xNi45LTUuOS0zNy43LTEyLjItNjAuMS0xOC4zYc=" alt="System Architecture Blueprint">
+                    <div class="asset-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Modular Framework v3.2
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
 
-  <script src="script.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
+    <script>
+        // System Architecture
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Vanta.js background
+            VANTA.NET({
+                el: "#vanta",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x0a0a15,
+                backgroundColor: 0x06060e,
+                points: 10.00,
+                maxDistance: 25.00,
+                spacing: 15.00,
+                showLines: true,
+                linesColor: 0x3c3c6c,
+                lineWidth: 0.50,
+                pointsColor: 0xb388ff,
+                backgroundAlpha: 0.00,
+                zoom: 0.8,
+                forceMax: 0.2,
+                randomness: 1.5
+            });
+
+            // Custom cursor
+            const cursor = document.querySelector('.custom-cursor');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            // Hover effects for interactive elements
+            const hoverElements = document.querySelectorAll('a, button, .card, .capability');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                    if (el.classList.contains('cta-button')) {
+                        cursor.classList.add('hover-orange');
+                    } else if (el.classList.contains('card') || el.classList.contains('capability')) {
+                        cursor.classList.add('hover-blue');
+                    }
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover', 'hover-orange', 'hover-blue');
+                });
+            });
+
+            // Theme toggle
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                themeToggle.classList.toggle('dark');
+                if (themeToggle.classList.contains('dark')) {
+                    document.documentElement.style.setProperty('--dark-bg', '#f0f0f7');
+                    document.documentElement.style.setProperty('--darker-bg', '#e0e0e7');
+                    document.documentElement.style.setProperty('--text-primary', '#202030');
+                    document.documentElement.style.setProperty('--text-secondary', '#505070');
+                    document.documentElement.style.setProperty('--card-bg', 'rgba(230, 230, 250, 0.7)');
+                    document.documentElement.style.setProperty('--card-border', 'rgba(200, 200, 240, 0.3)');
+                    document.documentElement.style.setProperty('--glow-purple', '0 0 15px rgba(179, 136, 255, 0.7)');
+                    document.documentElement.style.setProperty('--glow-blue', '0 0 15px rgba(132, 204, 255, 0.7)');
+                    document.documentElement.style.setProperty('--glow-orange', '0 0 15px rgba(255, 152, 0, 0.7)');
+                } else {
+                    document.documentElement.style.setProperty('--dark-bg', '#0a0a15');
+                    document.documentElement.style.setProperty('--darker-bg', '#06060e');
+                    document.documentElement.style.setProperty('--text-primary', '#e0e0ff');
+                    document.documentElement.style.setProperty('--text-secondary', '#a0a0c0');
+                    document.documentElement.style.setProperty('--card-bg', 'rgba(20, 20, 40, 0.7)');
+                    document.documentElement.style.setProperty('--card-border', 'rgba(50, 50, 100, 0.3)');
+                    document.documentElement.style.setProperty('--glow-purple', '0 0 15px rgba(179, 136, 255, 0.4)');
+                    document.documentElement.style.setProperty('--glow-blue', '0 0 15px rgba(132, 204, 255, 0.4)');
+                    document.documentElement.style.setProperty('--glow-orange', '0 0 15px rgba(255, 152, 0, 0.4)');
+                }
+            });
+
+            // GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero animation
+            gsap.from('.hero-content', {
+                opacity: 0,
+                y: 30,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+
+            // Section headers
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+
+            // Cards
+            gsap.utils.toArray('.card').forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.6,
+                    delay: i * 0.1,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+
+            // Progress bar
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
+                const scrollPercent = (scrollPosition / (docHeight - windowHeight)) * 100;
+                document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+            });
+
+            // Modal functionality
+            const modal = document.querySelector('.modal');
+            const closeModal = document.querySelector('.close-modal');
+            const viewBlueprintBtn = document.querySelector('.view-blueprint');
+
+            if (viewBlueprintBtn) {
+                viewBlueprintBtn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Add keyboard support for modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Sample modal trigger (for demonstration)
+            setTimeout(() => {
+                const sampleCard = document.querySelector('.card');
+                if (sampleCard) {
+                    sampleCard.addEventListener('click', () => {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
