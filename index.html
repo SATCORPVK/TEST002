@@ -1,80 +1,668 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SATCORP — Concierge / System Architect / Creative Operator</title>
-  <meta name="description" content="A cinematic, system-driven showcase of SATCORP’s skill deck." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%238b5cf6'/></svg>" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATCORP | System-Driven Creative Excellence</title>
+    <meta name="description" content="SATCORP: Concierge, System Architect, Creative Operator - Premium creative systems and solutions">
+    <meta property="og:title" content="SATCORP | System-Driven Creative Excellence">
+    <meta property="og:description" content="Premium creative systems architecture and concierge services">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://satcorp.dev/og-image.jpg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta@master/dist/vanta.clouds.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hud">
-    <div class="container hud__inner">
-      <div class="logo">◎ SATCORP</div>
-      <nav class="nav">
-        <button class="theme-toggle" id="themeToggle">🌙</button>
-        <a href="#deck">Deck</a>
-        <a href="#concierge">Concierge</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-    <div class="progress-bar"><span id="progress"></span></div>
-  </header>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
 
-  <main>
-    <section id="hero" class="hero">
-      <div class="container hero__content">
-        <h1 class="hero-title">
-          Concierge <span>/</span> System Architect <span>/</span> Creative Operator
-        </h1>
-        <p>I design resilient creative systems for brands, products, and stages—fusing concierge-level care with cinematic craft.</p>
-        <button class="btn primary" onclick="scrollToSection('#deck')">Explore SATCORP Systems</button>
-      </div>
-    </section>
-
-    <section id="deck" class="deck container">
-      <h2>Skill Deck</h2>
-      <div id="skillModules" class="modules"></div>
-    </section>
-
-    <section id="concierge" class="concierge container">
-      <h2>Concierge Simulation</h2>
-      <div class="simulation">
-        <div class="sim-controls">
-          <button onclick="simulate('brand')">Brand Systems</button>
-          <button onclick="simulate('web')">Web/UI</button>
-          <button onclick="simulate('ai')">AI Workflows</button>
+    <!-- Navigation HUD -->
+    <nav class="nav-hud">
+        <div class="nav-logo">
+            <div class="logo-text">SATCORP</div>
         </div>
-        <div class="sim-result" id="simResult"></div>
-      </div>
+        <div class="nav-menu">
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <div class="nav-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div id="vanta-bg"></div>
+        <div class="hero-content">
+            <div class="hero-intro">
+                <span class="role-tag">CONCIERGE</span>
+                <span class="role-tag">SYSTEM ARCHITECT</span>
+                <span class="role-tag">CREATIVE OPERATOR</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">SATCORP</span>
+                <span class="title-sub">System-Driven Creative Excellence</span>
+            </h1>
+            <p class="hero-desc">
+                Architecting comprehensive creative systems with precision, elegance, and operational intelligence.
+            </p>
+            <button class="cta-primary" data-scroll-to="skill-deck">
+                <span>Explore SATCORP Systems</span>
+                <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+        <div class="hero-metrics">
+            <div class="metric">
+                <span class="metric-value">12</span>
+                <span class="metric-label">Core Competencies</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">100%</span>
+                <span class="metric-label">System-Driven</span>
+            </div>
+            <div class="metric">
+                <span class="metric-value">∞</span>
+                <span class="metric-label">Scalable Solutions</span>
+            </div>
+        </div>
     </section>
 
-    <section id="gallery" class="gallery container">
-      <h2>Gallery</h2>
-      <div id="galleryGrid" class="grid"></div>
+    <!-- Skill Deck Container -->
+    <main id="skill-deck" class="skill-deck">
+        <!-- Skill 1: Core Identity / Operator Value -->
+        <section class="skill-section" data-skill="1">
+            <div class="skill-header">
+                <h2 class="skill-number">01</h2>
+                <div class="skill-title-group">
+                    <h3>Core Identity</h3>
+                    <h4>Operator Value</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="capability-grid">
+                    <div class="cap-card interactive">
+                        <div class="card-icon">⚡</div>
+                        <h5>System Integration</h5>
+                        <p>Seamless fusion of creative and technical systems with operational intelligence</p>
+                        <div class="card-tags">
+                            <span>Integration</span>
+                            <span>Architecture</span>
+                            <span>Workflow</span>
+                        </div>
+                    </div>
+                    <div class="cap-card interactive">
+                        <div class="card-icon">🎯</div>
+                        <h5>Precision Delivery</h5>
+                        <p>White-glove service with enterprise-grade execution and attention to detail</p>
+                        <div class="card-tags">
+                            <span>Quality</span>
+                            <span>Excellence</span>
+                            <span>Professional</span>
+                        </div>
+                    </div>
+                    <div class="cap-card interactive">
+                        <div class="card-icon">🔮</div>
+                        <h5>Strategic Vision</h5>
+                        <p>Transforming complex requirements into elegant, scalable solutions</p>
+                        <div class="card-tags">
+                            <span>Strategy</span>
+                            <span>Innovation</span>
+                            <span>Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 2: Brand, Visual / Platform Systems -->
+        <section class="skill-section" data-skill="2">
+            <div class="skill-header">
+                <h2 class="skill-number">02</h2>
+                <div class="skill-title-group">
+                    <h3>Brand Systems</h3>
+                    <h4>Visual Platform Architecture</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="system-diagram">
+                    <div class="diagram-node" data-system="identity">
+                        <span>Identity</span>
+                    </div>
+                    <div class="diagram-node" data-system="typography">
+                        <span>Typography</span>
+                    </div>
+                    <div class="diagram-node" data-system="color">
+                        <span>Color</span>
+                    </div>
+                    <div class="diagram-node" data-system="assets">
+                        <span>Assets</span>
+                    </div>
+                    <div class="diagram-node" data-system="guidelines">
+                        <span>Guidelines</span>
+                    </div>
+                </div>
+                <div class="capability-list">
+                    <div class="capability-item">
+                        <span class="capability-icon">🎨</span>
+                        <div>
+                            <h5>Brand Architecture</h5>
+                            <p>Comprehensive visual identity systems with modular scalability</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="capability-icon">📐</span>
+                        <div>
+                            <h5>Design Systems</h5>
+                            <p>Component-based platforms for consistent brand deployment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 3: Web Design / UI Systems -->
+        <section class="skill-section" data-skill="3">
+            <div class="skill-header">
+                <h2 class="skill-number">03</h2>
+                <div class="skill-title-group">
+                    <h3>Web Design</h3>
+                    <h4>UI/UX System Architecture</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="ui-showcase">
+                    <div class="ui-preview">
+                        <div class="mock-browser">
+                            <div class="mock-header">
+                                <span class="mock-dot"></span>
+                                <span class="mock-dot"></span>
+                                <span class="mock-dot"></span>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-nav"></div>
+                                <div class="mock-hero"></div>
+                                <div class="mock-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-capabilities">
+                        <div class="tech-stack">
+                            <span>React</span>
+                            <span>Vue</span>
+                            <span>Tailwind</span>
+                            <span>Figma</span>
+                            <span>Webflow</span>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature">
+                                <div class="feature-icon">🎭</div>
+                                <h6>Interactive Prototypes</h6>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">🚀</div>
+                                <h6>Performance Optimization</h6>
+                            </div>
+                            <div class="feature">
+                                <div class="feature-icon">📱</div>
+                                <h6>Responsive Architecture</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 4: Systems Architecture -->
+        <section class="skill-section" data-skill="4">
+            <div class="skill-header">
+                <h2 class="skill-number">04</h2>
+                <div class="skill-title-group">
+                    <h3>Systems Architecture</h3>
+                    <h4>Technical Infrastructure Design</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="arch-flow">
+                    <div class="flow-layer">
+                        <div class="layer-title">Frontend</div>
+                        <div class="layer-tech">React/Vue/Static Sites</div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-layer">
+                        <div class="layer-title">Backend</div>
+                        <div class="layer-tech">Node.js/Python/Serverless</div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-layer">
+                        <div class="layer-title">Database</div>
+                        <div class="layer-tech">PostgreSQL/MongoDB/Firebase</div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-layer">
+                        <div class="layer-title">Infrastructure</div>
+                        <div class="layer-tech">AWS/Vercel/Netlify</div>
+                    </div>
+                </div>
+                <div class="architecture-features">
+                    <div class="arch-feature">
+                        <span>🏗️</span>
+                        <h5>Scalable Infrastructure</h5>
+                        <p>Cloud-native architectures designed for growth</p>
+                    </div>
+                    <div class="arch-feature">
+                        <span>🔒</span>
+                        <h5>Security First</h5>
+                        <p>Enterprise-grade security implementations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 5: Streaming / Broadcast / Overlay Design -->
+        <section class="skill-section" data-skill="5">
+            <div class="skill-header">
+                <h2 class="skill-number">05</h2>
+                <div class="skill-title-group">
+                    <h3>Streaming Systems</h3>
+                    <h4>Broadcast & Overlay Architecture</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="broadcast-demo">
+                    <div class="stream-preview">
+                        <div class="stream-overlay">
+                            <div class="overlay-bracket top-left"></div>
+                            <div class="overlay-bracket top-right"></div>
+                            <div class="overlay-bracket bottom-left"></div>
+                            <div class="overlay-bracket bottom-right"></div>
+                            <div class="overlay-data">
+                                <span>LIVE</span>
+                                <span class="pulse"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="broadcast-tools">
+                    <div class="tool-card">
+                        <h6>OBS Studio</h6>
+                        <p>Advanced scene management & transitions</p>
+                    </div>
+                    <div class="tool-card">
+                        <h6>Streamlabs</h6>
+                        <p>Custom overlays & alerts systems</p>
+                    </div>
+                    <div class="tool-card">
+                        <h6>vMix</h6>
+                        <p>Professional broadcast production</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 6: AI-Enhanced Creative Workflows -->
+        <section class="skill-section" data-skill="6">
+            <div class="skill-header">
+                <h2 class="skill-number">06</h2>
+                <div class="skill-title-group">
+                    <h3>AI Workflows</h3>
+                    <h4>Enhanced Creative Processes</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="ai-workflow">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h5>Input Analysis</h5>
+                        <p>AI-powered requirement parsing & specification generation</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h5>Creative Generation</h5>
+                        <p>Automated asset creation with human oversight</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h5>Quality Assurance</h5>
+                        <p>AI-assisted review & optimization</p>
+                    </div>
+                </div>
+                <div class="ai-tools-grid">
+                    <div class="ai-tool">Midjourney</div>
+                    <div class="ai-tool">Stable Diffusion</div>
+                    <div class="ai-tool">ChatGPT</div>
+                    <div class="ai-tool">GitHub Copilot</div>
+                    <div class="ai-tool">RunwayML</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 7: Game Development / World-Building Design -->
+        <section class="skill-section" data-skill="7">
+            <div class="skill-header">
+                <h2 class="skill-number">07</h2>
+                <div class="skill-title-group">
+                    <h3>Game Development</h3>
+                    <h4>World-Building Systems</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="game-showcase">
+                    <div class="game-preview">
+                        <div class="isometric-grid">
+                            <div class="grid-tile"></div>
+                            <div class="grid-tile"></div>
+                            <div class="grid-tile"></div>
+                            <div class="grid-tile"></div>
+                            <div class="grid-tile"></div>
+                            <div class="grid-tile"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-tech">
+                    <h5>Development Stack</h5>
+                    <div class="tech-badges">
+                        <span>Unity</span>
+                        <span>Unreal Engine</span>
+                        <span>Godot</span>
+                        <span>WebGL</span>
+                        <span>Three.js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 8: Client Experience / Concierge Skills -->
+        <section class="skill-section" data-skill="8">
+            <div class="skill-header">
+                <h2 class="skill-number">08</h2>
+                <div class="skill-title-group">
+                    <h3>Client Experience</h3>
+                    <h4>White-Glove Concierge Service</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="concierge-flow">
+                    <div class="service-promise">
+                        <div class="promise-icon">💎</div>
+                        <h5>Premium Service Delivery</h5>
+                        <p>Exceptional client management with proactive communication and transparent project evolution</p>
+                    </div>
+                    <div class="service-pillars">
+                        <div class="pillar">
+                            <span>📊</span>
+                            <h6>Project Clarity</h6>
+                            <p>Crystal-clear scoping and milestone delivery</p>
+                        </div>
+                        <div class="pillar">
+                            <span>🚀</span>
+                            <h6>Rapid Response</h6>
+                            <p>24/7 availability and immediate issue resolution</p>
+                        </div>
+                        <div class="pillar">
+                            <span>🎯</span>
+                            <h6>Strategic Partnership</h6>
+                            <p>Beyond vendor - true creative collaboration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 9: Platforms / Marketplaces -->
+        <section class="skill-section" data-skill="9">
+            <div class="skill-header">
+                <h2 class="skill-number">09</h2>
+                <div class="skill-title-group">
+                    <h3>Platform Mastery</h3>
+                    <h4>Multi-Channel Deployment</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <div class="platform-icon">🛒</div>
+                        <h5>E-commerce</h5>
+                        <p>Shopify, WooCommerce, Custom Solutions</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">📱</div>
+                        <h5>Mobile</h5>
+                        <p>React Native, Flutter, PWA Development</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">☁️</div>
+                        <h5>Cloud</h5>
+                        <p>AWS, GCP, Azure Architecture</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">🎮</div>
+                        <h5>Gaming</h5>
+                        <p>Steam, Epic Games Store, Web Gaming</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 10: Documentation / Knowledge Systems -->
+        <section class="skill-section" data-skill="10">
+            <div class="skill-header">
+                <h2 class="skill-number">10</h2>
+                <div class="skill-title-group">
+                    <h3>Knowledge Systems</h3>
+                    <h4>Documentation Architecture</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="doc-showcase">
+                    <div class="doc-preview">
+                        <div class="markdown-preview">
+                            <h6># System Documentation</h6>
+                            <p>Comprehensive, version-controlled knowledge bases with interactive examples and API references.</p>
+                            <div class="code-block">
+                                <span>// Code example with syntax highlighting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc-tools">
+                    <h5>Documentation Stack</h5>
+                    <div class="tool-list">
+                        <span>GitBook</span>
+                        <span>Notion</span>
+                        <span>Docusaurus</span>
+                        <span>Storybook</span>
+                        <span>Postman</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 11: Asset Packaging / Delivery -->
+        <section class="skill-section" data-skill="11">
+            <div class="skill-header">
+                <h2 class="skill-number">11</h2>
+                <div class="skill-title-group">
+                    <h3>Asset Systems</h3>
+                    <h4>Intelligent Packaging & Delivery</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="asset-pipeline">
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">📁</div>
+                        <h5>Source Organization</h5>
+                        <p>Structured asset hierarchies with naming conventions</p>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">⚙️</div>
+                        <h5>Optimization</h5>
+                        <p>Automated compression and format optimization</p>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage">
+                        <div class="stage-icon">📦</div>
+                        <h5>Package Generation</h5>
+                        <p>Versioned deliverables with deployment manifests</p>
+                    </div>
+                </div>
+                <div class="delivery-methods">
+                    <div class="delivery-method">
+                        <span>🌐</span>
+                        <h6>Cloud Delivery</h6>
+                        <p>AWS S3, CloudFront, CDN distribution</p>
+                    </div>
+                    <div class="delivery-method">
+                        <span>🔗</span>
+                        <h6>API Integration</h6>
+                        <p>RESTful endpoints for dynamic asset serving</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill 12: Ideal Clients -->
+        <section class="skill-section" data-skill="12">
+            <div class="skill-header">
+                <h2 class="skill-number">12</h2>
+                <div class="skill-title-group">
+                    <h3>Ideal Partners</h3>
+                    <h4>Client Archetype Systems</h4>
+                </div>
+            </div>
+            <div class="skill-content">
+                <div class="client-matrix">
+                    <div class="client-type">
+                        <div class="client-icon">🚀</div>
+                        <h5>Startups & Scale-ups</h5>
+                        <p>Visionary companies building their foundational systems from the ground up</p>
+                    </div>
+                    <div class="client-type">
+                        <div class="client-icon">🏢</div>
+                        <h5>Enterprise Innovation</h5>
+                        <p>Established organizations transforming through digital excellence</p>
+                    </div>
+                    <div class="client-type">
+                        <div class="client-icon">🎯</div>
+                        <h5>Creative Agencies</h5>
+                        <p>Partners seeking technical architecture for ambitious creative visions</p>
+                    </div>
+                </div>
+                <div class="partnership-attributes">
+                    <h5>Partnership Principles</h5>
+                    <div class="attribute-list">
+                        <div class="attribute">• Technical Maturity</div>
+                        <div class="attribute">• Innovation Focus</div>
+                        <div class="attribute">• Long-term Vision</div>
+                        <div class="attribute">• Quality Commitment</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Initiate System</h2>
+                <p>Begin your SATCORP partnership journey</p>
+            </div>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" required placeholder="Organization Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" required placeholder="Contact Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select name="project-type" id="project-type" required>
+                        <option value="">Select Project Type</option>
+                        <option value="web-system">Web System Architecture</option>
+                        <option value="brand-system">Brand System Design</option>
+                        <option value="full-stack">Full-Stack Development</option>
+                        <option value="consulting">Strategic Consulting</option>
+                        <option value="other">Custom Solution</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" rows="4" required placeholder="Project scope, timeline, and objectives"></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                    <span>Deploy Request</span>
+                    <svg class="submit-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="contact container">
-      <h2>Contact</h2>
-      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="post">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="_replyto" placeholder="Your Email" required />
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn primary">Send</button>
-      </form>
-    </section>
-  </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">SATCORP</span>
+                <span class="footer-tagline">System-Driven Creative Excellence</span>
+            </div>
+            <div class="footer-legal">
+                <p>© 2024 SATCORP. All systems reserved.</p>
+                <p>Architecting creative futures with precision and innovation.</p>
+            </div>
+        </div>
+    </footer>
 
-  <footer class="footer">
-    <div class="container">
-      © <span id="year"></span> SATCORP. All rights reserved.
-    </div>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="script.js" defer></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
