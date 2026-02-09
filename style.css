@@ -1,420 +1,195 @@
-/* ==============================================================
-   SATCORP – Premium System Interface
-   --------------------------------------------------------------
-   Author:  (replace with your name)
-   License: MIT
-   ============================================================= */
+/* style.css */
 
-/* --------------------------------------------------------------
-   1️⃣ Root variables – dark palette with neon accents.
-   -------------------------------------------------------------- */
-:root {
-  /* Base colors */
-  --color-bg: #0a0a0a;
-  --color-surface: #111111;
-  --color-text: #e2e2e2;
-  --color-muted: #777;
-  /* Neon accents */
-  --color-primary: #9d00ff;   /* Neon purple */
-  --color-accent: #00e5ff;    /* Plasma blue */
-  --color-warm: #ff4600;      /* Ember orange */
-  /* Typography */
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Playfair Display', serif;
-  /* Layout */
-  --max-width: 1200px;
+/* --------------------------------------------------------
+   1. Global palette & typography
+-------------------------------------------------------- */
+:root{
+  --bg-color:#111;
+  --text-color:#f0f0f0;
+  --accent1:#8A2BE2;   /* neon purple */
+  --accent2:#1E90FF;   /* plasma blue */
+  --accent3:#FF4500;   /* ember orange */
+  --card-bg:rgba(0,0,0,0.6);
+  --transition: all 0.3s ease;
 }
-
-/* Dark mode – flips background, keep neon accents */
-html.dark {
-  --color-bg: #0c0c0c;
-  --color-surface: #141414;
-  --color-text: #f0f0f0;
+[data-theme="light"]{
+  --bg-color:#f8f8f8;
+  --text-color:#222;
 }
-
-/* --------------------------------------------------------------
-   2️⃣ Global resets & base styles
-   -------------------------------------------------------------- */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*::after{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg-color);
+  color:var(--text-color);
+  line-height:1.45;
+  scroll-behavior:smooth;
+}
+a{color:var(--accent2);transition:color .3s;}
+a:hover,a:focus{color:var(--accent1);}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  margin-bottom:.5rem;
+  color:var(--text-color);
+}
+h1{font-size:3.5rem;line-height:1.2;}
+h2{font-size:2.75rem;}
+h3{font-size:2.25rem;}
+h4{font-size:1.8rem;}
+h5{font-size:1.4rem;}
+p{margin-bottom:1.2rem;}
+
+/* --------------------------------------------------------
+   2. Navigation
+-------------------------------------------------------- */
+nav#nav{
+  position:fixed; top:0; inset-inline:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);
+  display:flex; align-items:center;
+  justify-content:space-between; padding:.75rem 1.5rem;
+  z-index:999;
+  transition:background .3s;
+}
+.logo{font-size:1.5rem;font-weight:700;}
+.nav-links{
+  list-style:none; display:flex; gap:1.25rem;
+}
+.nav-links li a{
+  color:var(--text-color);font-weight:500;padding:.5rem .75rem;
+  border-radius:3px;transition:var(--transition);
+}
+.nav-links li a.active,
+.nav-links li a:hover{background:var(--accent1);color:#fff;}
+.theme-toggle{cursor:pointer;font-size:1.3rem;}
+.theme-toggle:hover{color:var(--accent3);}
+
+/* --------------------------------------------------------
+   3. Custom Cursor
+-------------------------------------------------------- */
+#cursor{
+  position:fixed; top:0; left:0;
+  width:12px;height:12px;
+  border-radius:50%;background:var(--accent1);
+  mix-blend-mode:difference;
+  pointer-events:none;transform:translate(-50%,-50%);
+  transition:transform .2s ease-out,background .3s;
+  z-index:9999;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+/* --------------------------------------------------------
+   4. Hero Section
+-------------------------------------------------------- */
+header#hero{
+  position:relative;width:100%;height:100vh;
+  display:flex;align-items:center;justify-content:center;
 }
+header#hero .hero-overlay{
+  text-align:center;background:rgba(0,0,0,.3);
+  border-radius:12px;padding:1.5rem;backdrop-filter:blur(5px);
+  opacity:0;transform:translateY(-30px);
+}
+.hero-title{font-size:4rem; margin-bottom:.5rem;}
+.hero-subtitle{font-size:1.75rem;margin-bottom:1.5rem;}
+.cta-button{
+  display:inline-block;padding:.8rem 2rem;
+  border-radius:4px;background:var(--accent1);color:#fff;
+  font-weight:600;transition:var(--transition);
+}
+.cta-button:hover{background:var(--accent2);}
 
-/* Prevent double‑tap zoom on mobile */
-body {
-  font-family: var(--font-sans);
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  min-height: 100vh;
+/* --------------------------------------------------------
+   5. Skill Sections
+-------------------------------------------------------- */
+.skill-section{padding:4rem 0;}
+.section-inner{max-width:1100px;margin-inline:auto;padding-inline:1.5rem;}
+.section-title{text-align:center;margin-bottom:.5rem;}
+.section-subtitle{text-align:center;margin-bottom:3rem;opacity:.8;}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:2rem;
 }
+.skill-card{
+  background:var(--card-bg);padding:1.75rem;border-radius:8px;
+  backdrop-filter:blur(4px);cursor:pointer;border:2px solid transparent;
+  transition:var(--transition);
+}
+.skill-card:hover{
+  border-color:var(--accent1);transform:translateY(-6px);z-index:1;
+}
+.card-title{margin-bottom:.5rem;font-size:1.25rem;color:#fff;}
+.card-text{font-size:.95rem;color:#bbb;}
 
-/* --------------------------------------------------------------
-   3️⃣ Custom cursor
-   -------------------------------------------------------------- */
-.custom-cursor {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: transform .15s ease, background .2s;
-  z-index: 9999;
+/* --------------------------------------------------------
+   6. Modal / Lightbox
+-------------------------------------------------------- */
+.modal{
+  position:fixed; inset:0;background:rgba(0,0,0,.85);
+  backdrop-filter:blur(3px);display:flex;align-items:center;
+  justify-content:center;z-index:1000;
 }
+.hidden{display:none;}
+.modal-content{
+  background:var(--card-bg);padding:2rem;border-radius:8px;
+  max-width:760px;width:90%;position:relative;
+}
+.modal-title{margin-bottom:1rem;font-size:1.75rem;color:#fff;}
+.modal-img{max-width:100%;height:auto;border-radius:4px;margin-bottom:1.25rem;}
+.modal-desc{font-size:1rem;color:#ccc;margin-bottom:1.5rem;}
+.modal-close{
+  background:transparent;color:#fff;font-size:1.3rem;
+  border:none;position:absolute;top:.75rem;right:.75rem;
+  cursor:pointer;transition:var(--transition);
+}
+.modal-close:hover{color:var(--accent3);}
 
-/* Scale during hover on interactive elements */
-.interactive:hover ~ .custom-cursor,
-.interactive:focus ~ .custom-cursor {
-  transform: translate(-50%, -50%) scale(2);
-  background: var(--color-accent);
-}
-
-/* --------------------------------------------------------------
-   4️⃣ Header & Navigation (HUD)
-   -------------------------------------------------------------- */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(10,10,10,.9);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
-}
-.nav-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: .5rem 1rem;
-}
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  color: var(--color-primary);
-  text-decoration: none;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: .75rem;
-}
-.nav-link {
-  font-size: .95rem;
-  color: var(--color-muted);
-  text-decoration: none;
-  padding: .25rem .5rem;
-  border-radius: 4px;
-  transition: color .2s;
-}
-.nav-link:hover,
-.nav-link.active {
-  color: var(--color-primary);
-}
-#theme-toggle {
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: transform .2s;
-}
-#theme-toggle:hover {
-  transform: rotate(20deg);
-}
-
-/* --------------------------------------------------------------
-   5️⃣ Hero section – full-screen with Vanta background
-   -------------------------------------------------------------- */
-.hero-section {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(10,10,10,.85), rgba(20,20,20,.75));
-  pointer-events: none;
-  z-index: 10;
-}
-.hero-content {
-  position: relative;
-  text-align: center;
-  z-index: 20;
-  max-width: 800px;
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 4rem);
-  color: var(--color-primary);
-  margin-bottom: .75rem;
-  opacity: 0;
-}
-.hero-subtitle {
-  color: var(--color-muted);
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  margin-bottom: 2rem;
-  opacity: 0;
-}
-.cta-btn {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: .75rem 1.5rem;
-  cursor: pointer;
-  opacity: 0;
-  transition: background .3s;
-}
-.cta-btn:hover {
-  background: var(--color-accent);
-}
-
-/* --------------------------------------------------------------
-   6️⃣ Skill Section Layout
-   -------------------------------------------------------------- */
-.skill-section {
-  padding: 4rem 1rem;
-  background: var(--color-surface);
-  overflow: hidden;
-}
-.skill-header {
-  max-width: var(--max-width);
-  margin: 0 auto 2rem;
-  text-align: center;
-}
-.skill-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--color-primary);
-  margin-bottom: .5rem;
-  opacity: 0;
-}
-.skill-header .sub {
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  color: var(--color-muted);
-  opacity: 0;
-}
-
-/* Card grid – responsive */
-.skill-cards {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-.card {
-  background: #111;
-  border-radius: 8px;
-  padding: 1.5rem;
-  text-align: center;
-  color: var(--color-text);
-  transition: transform .3s, box-shadow .3s;
-  cursor: pointer;
-}
-.card:hover,
-.card:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,.4);
-}
-.card-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: .75rem;
-  filter: drop-shadow(0 0 2px var(--color-primary));
-}
-.card h3 {
-  font-size: 1.15rem;
-  margin-bottom: .5rem;
-  color: var(--color-primary);
-}
-.card p {
-  font-size: .9rem;
-  line-height: 1.4;
-  color: var(--color-muted);
-}
-
-/* --------------------------------------------------------------
-   7️⃣ Modal / Lightbox (generic)
-   -------------------------------------------------------------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  z-index: 2000;
-}
-.modal.hidden {
-  display: none;
-}
-.modal-content {
-  background: var(--color-surface);
-  border-radius: 8px;
-  max-width: 800px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  padding: 1.5rem;
-}
-.modal-close {
-  position: absolute;
-  top: .5rem;
-  right: .5rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--color-muted);
-  cursor: pointer;
-}
-.modal-body h3 {
-  font-family: var(--font-display);
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-}
-.modal-img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
-/* --------------------------------------------------------------
-   8️⃣ Footer & Contact Form
-   -------------------------------------------------------------- */
-.site-footer {
-  background: #050505;
-  color: var(--color-muted);
-  font-size: .9rem;
-  padding: 3rem 1rem 2rem;
-}
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-.contact-form {
-  flex: 1 1 300px;
-  display: flex;
-  flex-direction: column;
-}
-.contact-form h3 {
-  color: var(--color-primary);
-  margin-bottom: .75rem;
-  font-family: var(--font-display);
-}
-.contact-form label {
-  margin-top: .5rem;
-}
+/* --------------------------------------------------------
+   7. Footer
+-------------------------------------------------------- */
+footer#footer{background:var(--bg-color);color:var(--text-color);padding:3rem 1.5rem;}
+.footer-inner{max-width:1100px;margin-inline:auto;text-align:center;}
+.footer-title{font-size:2rem;margin-bottom:1rem;}
+.contact-form{display:grid;grid-template-columns:1fr;gap:1rem;
+  max-width:400px;margin-inline:auto;margin-bottom:2rem;}
+.contact-form label{color:#bbb;margin-bottom:.25rem;}
 .contact-form input,
-.contact-form textarea {
-  font-family: var(--font-sans);
-  background: #111;
-  border: 1px solid var(--color-muted);
-  border-radius: 4px;
-  padding: .5rem;
-  margin-top: .25rem;
-  color: var(--color-text);
+.contact-form textarea{padding:.75rem;border-radius:5px;border:1px solid var(--accent1);
+  background:rgba(0,0,0,.5);color:var(--text-color);width:100%;}
+.form-submit{
+  background:var(--accent2);border:none;color:#fff;font-weight:600;
+  padding:.75rem .5rem;border-radius:5px;cursor:pointer;transition:var(--transition);
 }
-.contact-form button {
-  margin-top: 1rem;
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  padding: .75rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background .2s;
-}
-.contact-form button:hover {
-  background: var(--color-accent);
-}
-.social-links {
-  flex: 1 1 200px;
-}
-.social-links h3 {
-  color: var(--color-primary);
-  margin-bottom: .75rem;
-  font-family: var(--font-display);
-}
-.social-icon {
-  width: 28px;
-  height: 28px;
-  fill: var(--color-primary);
-  margin-right: .5rem;
-  transition: transform .2s, fill .2s;
-}
-.social-icon:hover {
-  transform: scale(1.2);
-  fill: var(--color-accent);
-}
-.footer-legal {
-  text-align: center;
-  margin-top: 2rem;
-  color: var(--color-muted);
-}
-.footer-legal a {
-  color: var(--color-primary);
-  text-decoration: none;
+.form-submit:hover{background:var(--accent1);}
+.social-links{margin-top:1rem;display:flex;justify-content:center;gap:1.5rem;}
+.social-links a img{width:30px;height:30px;filter:brightness(0) invert(1);transition:var(--transition);}
+.social-links a:hover img{filter:brightness(1.5);}
+.legal{margin-top:1.5rem;font-size:.875rem;color:#bbb;}
+.legal a{color:var(--accent3);}
+
+/* --------------------------------------------------------
+   8. Scroll Progress Bar
+-------------------------------------------------------- */
+#scroll-progress{
+  position:fixed; inset-inline-end:20px; inset-block-start:0;
+  width:4px;height:0;background:var(--accent1);
+  z-index:9998;
 }
 
-/* --------------------------------------------------------------
-   9️⃣ Responsive tweaks
-   -------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none; /* could turn into a hamburger later */
-  }
-  .hero-title {
-    font-size: 2rem;
-  }
+/* --------------------------------------------------------
+   9. Responsive Tweaks
+-------------------------------------------------------- */
+@media (max-width:992px){
+  .skill-section{padding:3rem 0;}
 }
-
-/* --------------------------------------------------------------
-   10️⃣ Utility classes
-   -------------------------------------------------------------- */
-.hidden {
-  visibility: hidden;
+@media (max-width:768px){
+  .nav-links{display:none;}
+  .hero-title{font-size:3rem;}
+  .hero-subtitle{font-size:1.5rem;}
 }
-.visible {
-  visibility: visible;
+@media (max-width:480px){
+  .hero-title{font-size:2.5rem;}
+  .hero-subtitle{font-size:1.25rem;}
 }
-.fade-in {
-  animation: fadeIn .8s forwards;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --------------------------------------------------------------
-   End of styles
-   -------------------------------------------------------------- */
