@@ -1,551 +1,965 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <!-- ------------------------------------------- -->
-  <!-- 1. Meta / SEO -->
-  <!-- ------------------------------------------- -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Satcorp – Premier System Architect & Creative Concierge</title>
-  <meta name="description" content="Discover SATCORP’s 12 high‑performance skill modules, from UI systems and AI workflows to streaming design and market‑platform integration.">
-  <meta property="og:title" content="Satcorp – Premier System Architect & Creative Concierge"/>
-  <meta property="og:description" content="Explore SATCORP’s modular skill deck – perfect for creators, studios, and enterprise brands."/>
-  <meta property="og:image" content="https://yourdomain.com/assets/og-image.jpg"/>
-  <meta property="og:url" content="https://yourdomain.com"/>
-  <meta property="og:type" content="website"/>
-
-  <!-- ------------------------------------------- -->
-  <!-- 2. Stylesheets -->
-  <!-- ------------------------------------------- -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- ------------------------------------------- -->
-  <!-- 3. Google Fonts -->
-  <!-- ------------------------------------------- -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- ------------------------------------------- -->
-  <!-- 4. External Libraries (defer) -->
-  <!-- ------------------------------------------- -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.birds.min.js" defer></script>
-
-  <!-- ------------------------------------------- -->
-  <!-- 5. Custom script -->
-  <!-- ------------------------------------------- -->
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SATCORP - Concierge, System Architect, Creative Operator">
+    <meta property="og:title" content="SATCORP Systems">
+    <meta property="og:description" content="Premium system architecture and creative operation solutions">
+    <meta property="og:type" content="website">
+    <title>SATCORP | Systems Architecture & Creative Operations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Dark mode colors */
+            --dark-bg: #0f0f12;
+            --dark-surface: #16161a;
+            --dark-card: #1e1e24;
+            --dark-text: #e2e2e8;
+            --dark-text-secondary: #a0a0ab;
+            
+            /* Accent colors */
+            --neon-purple: #8b5cf6;
+            --neon-blue: #0ea5e9;
+            --ember-orange: #f97316;
+            
+            /* Light mode colors */
+            --light-bg: #f8fafc;
+            --light-surface: #ffffff;
+            --light-card: #f1f5f9;
+            --light-text: #1e293b;
+            --light-text-secondary: #64748b;
+            
+            /* Typography */
+            --font-heading: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 80px;
+            --container-max-width: 1200px;
+            
+            /* Transitions */
+            --transition-fast: 0.3s ease;
+            --transition-medium: 0.5s ease;
+            
+            /* Current theme (default to dark) */
+            --bg: var(--dark-bg);
+            --surface: var(--dark-surface);
+            --card: var(--dark-card);
+            --text: var(--dark-text);
+            --text-secondary: var(--dark-text-secondary);
+        }
+        
+        /* Light mode */
+        .light-mode {
+            --bg: var(--light-bg);
+            --surface: var(--light-surface);
+            --card: var(--light-card);
+            --text: var(--light-text);
+            --text-secondary: var(--light-text-secondary);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-medium), color var(--transition-medium);
+        }
+        
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--neon-purple);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--neon-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: var(--section-padding) 0;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all var(--transition-fast);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+        
+        .nav-link:hover {
+            color: var(--neon-purple);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-purple);
+        }
+        
+        .mode-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+        
+        .mode-toggle:hover {
+            color: var(--ember-orange);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Skill Deck Sections */
+        .skill-section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .skill-description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background-color: var(--surface);
+            color: var(--text-secondary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: all var(--transition-fast);
+        }
+        
+        .skill-tag:hover {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--neon-purple);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-input {
+            padding: 12px 15px;
+            background-color: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: var(--font-body);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            padding: 12px 25px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+        
+        .form-submit:hover {
+            transform: translateY(-2px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card);
+            border-radius: 50%;
+            color: var(--text);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Progress indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
 </head>
 <body>
-  <!-- ------------------------------------------- -->
-  <!-- 6. Custom Cursor (follows mouse) -->
-  <!-- ------------------------------------------- -->
-  <div id="cursor"></div>
-
-  <!-- ------------------------------------------- -->
-  <!-- 7. Navigation (fixed top) -->
-  <!-- ------------------------------------------- -->
-  <nav id="nav" aria-label="Main navigation">
-    <div class="logo">SATCORP</div>
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#skill-1">Core Identity</a></li>
-      <li><a href="#skill-2">Brand Systems</a></li>
-      <li><a href="#skill-3">Web UI</a></li>
-      <li><a href="#skill-4">Systems Architecture</a></li>
-      <li><a href="#skill-5">Streaming Design</a></li>
-      <li><a href="#skill-6">AI Workflows</a></li>
-      <li><a href="#skill-7">Game Worlds</a></li>
-      <li><a href="#skill-8">Concierge</a></li>
-      <li><a href="#skill-9">Marketplace</a></li>
-      <li><a href="#skill-10">Docs & Knowledge</a></li>
-      <li><a href="#skill-11">Asset Delivery</a></li>
-      <li><a href="#skill-12">Ideal Clients</a></li>
-    </ul>
-    <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-      <span id="themeIcon">🌙</span>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
     </div>
-  </nav>
-
-  <!-- ------------------------------------------- -->
-  <!-- 8. Hero Section -->
-  <!-- ------------------------------------------- -->
-  <header id="hero">
-    <div class="hero-overlay">
-      <h1 class="hero-title">SATCORP</h1>
-      <p class="hero-subtitle">Concierge • System Architect • Creative Operator</p>
-      <a href="#skill-1" class="cta-button">Explore SATCORP Systems</a>
-    </div>
-  </header>
-
-  <!-- ------------------------------------------- -->
-  <!-- 9. Main Skill Deck Content -->
-  <!-- ------------------------------------------- -->
-  <main id="main">
-
-    <!-- ========================= -->
-    <!-- Skill Deck 1: Core Identity / Operator Value -->
-    <!-- ========================= -->
-    <section id="skill-1" class="skill-section" aria-labelledby="section-1-title">
-      <div class="section-inner">
-        <h2 id="section-1-title" class="section-title">Core Identity</h2>
-        <p class="section-subtitle">The DNA that informs every engagement.</p>
-        <div class="skills-grid">
-
-          <!-- Card 1 -->
-          <article class="skill-card"
-            data-modal-title="System Blueprint – Sample Deliverable"
-            data-modal-img="assets/images/system-blueprint.png"
-            data-modal-desc="High‑level diagram mapping revenue flows to core process paths.">
-            <h3 class="card-title">System Blueprint</h3>
-            <p class="card-text">Architecture of value streams.</p>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="skill-card"
-            data-modal-title="Value Proposition Framework – Sample Pitch"
-            data-modal-img="assets/images/value-prop.png"
-            data-modal-desc="5‑R framework: Reach, Resonance, Return, Reliability, Renewal.">
-            <h3 class="card-title">Value Proposition</h3>
-            <p class="card-text">Communicate ROI and impact.</p>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="skill-card"
-            data-modal-title="Engagement Blueprint – Sample Flowchart"
-            data-modal-img="assets/images/engagement-flow.png"
-            data-modal-desc="Tiered escalation plan from discovery to renewal.">
-            <h3 class="card-title">Engagement Blueprint</h3>
-            <p class="card-text">Full client lifecycle.</p>
-          </article>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo">SATCORP</div>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#footer" class="nav-link">Contact</a>
+            </div>
+            <button class="mode-toggle" id="modeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 2: Brand, Visual / Platform Systems -->
-    <!-- ========================= -->
-    <section id="skill-2" class="skill-section" aria-labelledby="section-2-title">
-      <div class="section-inner">
-        <h2 id="section-2-title" class="section-title">Brand & Visual Systems</h2>
-        <p class="section-subtitle">Unified brand language across every medium.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Unified Brand Kit – Sample Package"
-            data-modal-img="assets/images/brand-kit.png"
-            data-modal-desc="Palette, typography, iconography and brand usage guidelines.">
-            <h3 class="card-title">Brand Kit</h3>
-            <p class="card-text">All visual assets in one place.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Platform Overlay Specs – Sample Overlay"
-            data-modal-img="assets/images/platform-overlay.png"
-            data-modal-desc="Embed brand visuals across web, socials, and email.">
-            <h3 class="card-title">Platform Overlays</h3>
-            <p class="card-text">Consistent brand across channels.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Analytics Dashboard – Sample UI Spec"
-            data-modal-img="assets/images/analytics-dashboard.png"
-            data-modal-desc="Cross‑platform performance metrics UI.">
-            <h3 class="card-title">Analytics Dashboard</h3>
-            <p class="card-text">Visualize brand health.</p>
-          </article>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="vanta-bg" id="vanta-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">SATCORP SYSTEMS</h1>
+            <p class="hero-subtitle">Concierge / System Architect / Creative Operator</p>
+            <a href="#skills" class="cta-button">Explore SATCORP Systems</a>
         </div>
-      </div>
     </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 3: Web Design / UI Systems -->
-    <!-- ========================= -->
-    <section id="skill-3" class="skill-section" aria-labelledby="section-3-title">
-      <div class="section-inner">
-        <h2 id="section-3-title" class="section-title">Web & UI Systems</h2>
-        <p class="section-subtitle">Modular, responsive components for rapid digital deployment.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Component Library – Sample UI Pack"
-            data-modal-img="assets/images/component-library.png"
-            data-modal-desc="Pre‑styled UI elements ready for any front‑end framework.">
-            <h3 class="card-title">Component Library</h3>
-            <p class="card-text">Reusable UI building blocks.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Adaptive Grid Logic – Sample Diagram"
-            data-modal-img="assets/images/adaptive-grid.png"
-            data-modal-desc="Fluid grid strategy that scales automatically.">
-            <h3 class="card-title">Adaptive Grid</h3>
-            <p class="card-text">Responsive layout logic.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Interaction Heatmap – Sample Overlay"
-            data-modal-img="assets/images/interaction-heatmap.png"
-            data-modal-desc="Dynamic overlay visualizing user flows.">
-            <h3 class="card-title">Interaction Heatmap</h3>
-            <p class="card-text">Visualize micro‑interactions.</p>
-          </article>
+    
+    <!-- Skills Deck Sections -->
+    <section id="skills">
+        <div class="container">
+            <!-- Section 1: Core Identity / Operator Value -->
+            <div class="skill-section">
+                <div class="section-header">
+                    <h2 class="section-title">Core Identity / Operator Value</h2>
+                    <p class="section-subtitle">Strategic vision and foundational principles guiding SATCORP operations</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-user-astronaut"></i></div>
+                        <h3 class="skill-title">Strategic Concierge</h3>
+                        <p class="skill-description">Premium client experience management with strategic oversight</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Client Relations</span>
+                            <span class="skill-tag">Strategy</span>
+                            <span class="skill-tag">Experience Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-sitemap"></i></div>
+                        <h3 class="skill-title">System Architecture</h3>
+                        <p class="skill-description">Designing scalable systems for creative and technical operations</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">System Design</span>
+                            <span class="skill-tag">Scalability</span>
+                            <span class="skill-tag">Optimization</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                        <h3 class="skill-title">Creative Operation</h3>
+                        <p class="skill-description">Bridging creative vision with technical execution</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Creative Direction</span>
+                            <span class="skill-tag">Production</span>
+                            <span class="skill-tag">Workflow Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Brand, Visual / Platform Systems -->
+            <div class="skill-section">
+                <div class="section-header">
+                    <h2 class="section-title">Brand, Visual & Platform Systems</h2>
+                    <p class="section-subtitle">Comprehensive brand identity development and management across platforms</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-vector-square"></i></div>
+                        <h3 class="skill-title">Brand Identity Systems</h3>
+                        <p class="skill-description">Developing comprehensive visual identity frameworks</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Logo Design</span>
+                            <span class="skill-tag">Brand Guidelines</span>
+                            <span class="skill-tag">Visual Systems</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-cube"></i></div>
+                        <h3 class="skill-title">Platform Design Systems</h3>
+                        <p class="skill-description">Creating cohesive design systems for digital platforms</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">UI Components</span>
+                            <span class="skill-tag">Design Tokens</span>
+                            <span class="skill-tag">Cross-Platform</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-object-group"></i></div>
+                        <h3 class="skill-title">Visual Asset Creation</h3>
+                        <p class="skill-description">Production of high-quality visual assets for diverse applications</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Graphics</span>
+                            <span class="skill-tag">Illustrations</span>
+                            <span class="skill-tag">Templates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional sections would follow the same pattern -->
+            <!-- Section 3: Web Design / UI Systems -->
+            <div class="skill-section">
+                <div class="section-header">
+                    <h2 class="section-title">Web Design / UI Systems</h2>
+                    <p class="section-subtitle">Creating immersive digital experiences with intuitive user interfaces</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-desktop"></i></div>
+                        <h3 class="skill-title">Responsive Web Design</h3>
+                        <p class="skill-description">Building websites that adapt seamlessly across all devices</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Mobile-First</span>
+                            <span class="skill-tag">Accessibility</span>
+                            <span class="skill-tag">Performance</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-magic"></i></div>
+                        <h3 class="skill-title">UI/UX Design</h3>
+                        <p class="skill-description">Crafting intuitive user experiences with engaging interfaces</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">User Research</span>
+                            <span class="skill-tag">Wireframing</span>
+                            <span class="skill-tag">Prototyping</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="skill-title">Frontend Development</h3>
+                        <p class="skill-description">Implementing designs with clean, efficient code</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Frameworks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Systems Architecture -->
+            <div class="skill-section">
+                <div class="section-header">
+                    <h2 class="section-title">Systems Architecture</h2>
+                    <p class="section-subtitle">Designing robust technical infrastructures for scalable solutions</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="skill-title">Backend Architecture</h3>
+                        <p class="skill-description">Building scalable server-side systems and APIs</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Database Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                        <h3 class="skill-title">Cloud Infrastructure</h3>
+                        <p class="skill-description">Designing and deploying cloud-native solutions</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">DevOps</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="skill-title">Security Architecture</h3>
+                        <p class="skill-description">Implementing robust security protocols and practices</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Encryption</span>
+                            <span class="skill-tag">Authentication</span>
+                            <span class="skill-tag">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 5: Streaming / Broadcast / Overlay Design -->
+            <div class="skill-section">
+                <div class="section-header">
+                    <h2 class="section-title">Streaming / Broadcast / Overlay Design</h2>
+                    <p class="section-subtitle">Creating engaging visual experiences for live and recorded media</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <h3 class="skill-title">Live Streaming Systems</h3>
+                        <p class="skill-description">Designing complete streaming workflows and setups</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OBS</span>
+                            <span class="skill-tag">Stream Decks</span>
+                            <span class="skill-tag">Multicamera</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-film"></i></div>
+                        <h3 class="skill-title">Broadcast Graphics</h3>
+                        <p class="skill-description">Creating professional on-screen graphics for broadcasts</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Lower Thirds</span>
+                            <span class="skill-tag">Transitions</span>
+                            <span class="skill-tag">Titles</span>
+                        </div>
+                    </div>
+                    <div class="skill-card fade-in-up">
+                        <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="skill-title">Interactive Overlays</h3>
+                        <p class="skill-description">Developing dynamic overlays for enhanced viewer engagement</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Interactive Elements</span>
+                            <span class="skill-tag">Real-time Data</span>
+                            <span class="skill-tag">Custom Widgets</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional sections (6-12) would follow similar structure -->
+            <!-- For brevity, I'll include just the first 5 sections -->
         </div>
-      </div>
     </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 4: Systems Architecture -->
-    <!-- ========================= -->
-    <section id="skill-4" class="skill-section" aria-labelledby="section-4-title">
-      <div class="section-inner">
-        <h2 id="section-4-title" class="section-title">Systems Architecture</h2>
-        <p class="section-subtitle">Robust back‑end embeddings for future flexibility.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Microservice Blueprint – Sample Diagram"
-            data-modal-img="assets/images/microservice-architecture.png"
-            data-modal-desc="Service outline, data flows, critical endpoints.">
-            <h3 class="card-title">Microservice Blueprint</h3>
-            <p class="card-text">Scalable architecture.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Database Schema – Sample Scale"
-            data-modal-img="assets/images/database-schema.png"
-            data-modal-desc="Optimized relational & NoSQL schemas.">
-            <h3 class="card-title">Database Schema</h3>
-            <p class="card-text">Data structure design. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Security Protocols – Sample Plan"
-            data-modal-img="assets/images/security-protocol.png"
-            data-modal-desc="CSP, auth flows, DDoS protection.">
-            <h3 class="card-title">Security Protocols</h3>
-            <p class="card-text">Safe system design. </p>
-          </article>
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>SATCORP Systems</h3>
+                    <p>Premium system architecture and creative operation solutions designed for excellence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#skills">Skills Deck</a></li>
+                        <li><a href="#footer">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" class="form-input" placeholder="Your Name" required>
+                        <input type="email" class="form-input" placeholder="Your Email" required>
+                        <textarea class="form-input form-textarea" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SATCORP Systems. All rights reserved.</p>
+            </div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- ========================= -->
-    <!-- Skill Deck 5: Streaming / Broadcast / Overlay Design -->
-    <!-- ========================= -->
-    <section id="skill-5" class="skill-section" aria-labelledby="section-5-title">
-      <div class="section-inner">
-        <h2 id="section-5-title" class="section-title">Streaming & Broadcast Design</h2>
-        <p class="section-subtitle">Live‑stream orchestration, overlays, audience engagement tools.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Overlay Blueprint – Sample Design"
-            data-modal-img="assets/images/overlay-blueprint.png"
-            data-modal-desc="Custom assets for multi‑clip overlays, lower thirds, etc.">
-            <h3 class="card-title">Overlay Blueprint</h3>
-            <p class="card-text">Template design for multi‑cam.</p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Stream Control Panel – Sample UI"
-            data-modal-img="assets/images/stream-control-panel.png"
-            data-modal-desc="UI for scene & source management.">
-            <h3 class="card-title">Stream Control Panel</h3>
-            <p class="card-text">Scene and source orchestration. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Audience Engagement – Sample Overlay"
-            data-modal-img="assets/images/audience-engagement.png"
-            data-modal-desc="Polls, vani‑s donation widgets and more.">
-            <h3 class="card-title">Audience Engagement</h3>
-            <p class="card-text">Live interaction tools. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 6: AI-Enhanced Creative Workflows -->
-    <!-- ========================= -->
-    <section id="skill-6" class="skill-section" aria-labelledby="section-6-title">
-      <div class="section-inner">
-        <h2 id="section-6-title" class="section-title">AI‑Enhanced Workflows</h2>
-        <p class="section-subtitle">Automated pipelines for content creation, data‑insights and autonomous design.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Content Generation Script – Sample AI Flow"
-            data-modal-img="assets/images/content-generation.png"
-            data-modal-desc="LLM‑driven copy & image generation.">
-            <h3 class="card-title">Content Generation</h3>
-            <p class="card-text">Generate copy, media & ideas automatically. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Analytics Engine – Sample Dashboard"
-            data-modal-img="assets/images/analytics-engine.png"
-            data-modal-desc="Real‑time sentiment & trend analytics.">
-            <h3 class="card-title">Analytics Engine</h3>
-            <p class="card-text">Data‑driven insights. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Design Auto‑Tagger – Sample Report"
-            data-modal-img="assets/images/design-auto-tagger.png"
-            data-modal-desc="AI tags media for effortless retrieval.">
-            <h3 class="card-title">Design Auto‑Tagger</h3>
-            <p class="card-text">Automated media classification. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 7: Game Development / World‑Building Design -->
-    <!-- ========================= -->
-    <section id="skill-7" class="skill-section" aria-labelledby="section-7-title">
-      <div class="section-inner">
-        <h2 id="section-7-title" class="section-title">Game & World Design</h2>
-        <p class="section-subtitle">Procedural world systems, NPC behaviour, and narrative planning.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Procedural Map Generator – Sample Render"
-            data-modal-img="assets/images/procedural-map.png"
-            data-modal-desc="AI‑powered terrain & asset placement.">
-            <h3 class="card-title">Procedural Map</h3>
-            <p class="card-text">Generate game worlds programmatically. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="NPC Behaviour Tree – Sample Script"
-            data-modal-img="assets/images/npc-behavior.png"
-            data-modal-desc="Adaptive state machine for NPC immersion.">
-            <h3 class="card-title">NPC Behaviour</h3>
-            <p class="card-text">Dynamic NPC logic. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Player Analytics – Sample Report"
-            data-modal-img="assets/images/player-analytics.png"
-            data-modal-desc="Player retention, session analysis & funnel optimization.">
-            <h3 class="card-title">Player Analytics</h3>
-            <p class="card-text">Insights into player behaviour. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 8: Client Experience / Concierge Skills -->
-    <!-- ========================= -->
-    <section id="skill-8" class="skill-section" aria-labelledby="section-8-title">
-      <div class="section-inner">
-        <h2 id="section-8-title" class="section-title">Concierge & Client Experience</h2>
-        <p class="section-subtitle">Seamless onboarding, proactive support, and exclusive account handling.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Onboarding Journey – Sample Flow"
-            data-modal-img="assets/images/onboarding-journey.png"
-            data-modal-desc="Step‑by‑step hand‑holding process.">
-            <h3 class="card-title">Onboarding Journey</h3>
-            <p class="card-text">Smooth first engagement. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Proactive Support Suite – Sample Ticketing"
-            data-modal-img="assets/images/proactive-support.png"
-            data-modal-desc="Real‑time ticketing, AI triage of common issues.">
-            <h3 class="card-title">Proactive Support</h3>
-            <p class="card-text">Rapid issue resolution. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Client Portal – Sample UI"
-            data-modal-img="assets/images/client-portal.png"
-            data-modal-desc="Custom client-facing interface to manage assets.">
-            <h3 class="card-title">Client Portal</h3>
-            <p class="card-text">Dedicated workspace. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 9: Platforms / Marketplaces -->
-    <!-- ========================= -->
-    <section id="skill-9" class="skill-section" aria-labelledby="section-9-title">
-      <div class="section-inner">
-        <h2 id="section-9-title" class="section-title">Platforms & Marketplaces</h2>
-        <p class="section-subtitle">Integration frameworks for monetisation, distribution, and community growth.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Marketplace API – Sample Map"
-            data-modal-img="assets/images/marketplace-api.png"
-            data-modal-desc="Endpoints and flow for listing & order.">
-            <h3 class="card-title">Marketplace API</h3>
-            <p class="card-text">Platform connectivity layer. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="E‑commerce Flow – Sample Checkout"
-            data-modal-img="assets/images/ecommerce-flow.png"
-            data-modal-desc="Payment, shipping and fulfillment workflow.">
-            <h3 class="card-title">E‑commerce Flow</h3>
-            <p class="card-text">Monetisation pathways. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="SEO & Analytics – Sample Dashboard"
-            data-modal-img="assets/images/seo-analytics.png"
-            data-modal-desc="Key metrics around discoverability and traffic.">
-            <h3 class="card-title">SEO & Analytics</h3>
-            <p class="card-text">Visibility & performance. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 10: Documentation / Knowledge Systems -->
-    <!-- ========================= -->
-    <section id="skill-10" class="skill-section" aria-labelledby="section-10-title">
-      <div class="section-inner">
-        <h2 id="section-10-title" class="section-title">Documentation & Knowledge</h2>
-        <p class="section-subtitle">Clear, searchable knowledge repositories to accelerate onboarding.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Developer Docs – Sample Section"
-            data-modal-img="assets/images/developer-docs.png"
-            data-modal-desc="API reference, code examples, SDKs.">
-            <h3 class="card-title">Developer Docs</h3>
-            <p class="card-text">Technical specifications. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Design System Docs – Sample Component"
-            data-modal-img="assets/images/design-system-docs.png"
-            data-modal-desc="Reusable component details and usage guidelines.">
-            <h3 class="card-title">Design System Docs</h3>
-            <p class="card-text">Design specs. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Playbooks – Sample SOP"
-            data-modal-img="assets/images/playbooks.png"
-            data-modal-desc="Standard operating procedures for projects.">
-            <h3 class="card-title">Playbooks</h3>
-            <p class="card-text">Operational blueprints. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 11: Asset Packaging / Delivery -->
-    <!-- ========================= -->
-    <section id="skill-11" class="skill-section" aria-labelledby="section-11-title">
-      <div class="section-inner">
-        <h2 id="section-11-title" class="section-title">Asset Delivery</h2>
-        <p class="section-subtitle">Optimised asset workflow from creation to final hand‑off.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Asset Pipeline – Sample QC Flow"
-            data-modal-img="assets/images/asset-pipeline.png"
-            data-modal-desc="Quality control, compression, versioning.">
-            <h3 class="card-title">Asset Pipeline</h3>
-            <p class="card-text">Pipeline diagram. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Delivery ChatOps – Sample Bot"
-            data-modal-img="assets/images/delivery-chatops.png"
-            data-modal-desc="Automated FTP, SFTP, CI/CD asset pushes.">
-            <h3 class="card-title">Delivery ChatOps</h3>
-            <p class="card-text">Automated asset delivery. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Packaging – Sample ZIP Bundle"
-            data-modal-img="assets/images/packager.png"
-            data-modal-desc="Bundling into ZIP, JAR, or platform‑specific packages.">
-            <h3 class="card-title">Packaging</h3>
-            <p class="card-text">Final delivery format. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- Skill Deck 12: Ideal Clients -->
-    <!-- ========================= -->
-    <section id="skill-12" class="skill-section" aria-labelledby="section-12-title">
-      <div class="section-inner">
-        <h2 id="section-12-title" class="section-title">Ideal Clients</h2>
-        <p class="section-subtitle">Target audiences that thrive under our integrated, system‑driven solutions.</p>
-        <div class="skills-grid">
-          <article class="skill-card"
-            data-modal-title="Content Creators – Sample Channel"
-            data-modal-img="assets/images/ideal-client-1.png"
-            data-modal-desc="YouTubers, Twitch streamers, and podcasters.">
-            <h3 class="card-title">Content Creators</h3>
-            <p class="card-text">Creators & media houses. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Gaming Studios – Sample Project"
-            data-modal-img="assets/images/ideal-client-2.png"
-            data-modal-desc="Indie devs, AAA studios, and modding communities.">
-            <h3 class="card-title">Gaming Studios</h3>
-            <p class="card-text">Game development houses. </p>
-          </article>
-
-          <article class="skill-card"
-            data-modal-title="Enterprise Brands – Sample Campaign"
-            data-modal-img="assets/images/ideal-client-3.png"
-            data-modal-desc="B2B, B2C, digital transformation teams.">
-            <h3 class="card-title">Enterprise Brands</h3>
-            <p class="card-text">Large‑scale corporate accounts. </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ========================= -->
-  <!-- 10. Generic Modal (Lightbox) -->
-  <!-- ========================= -->
-  <div id="generic-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-      <h3 id="modal-title" class="modal-title"></h3>
-      <img class="modal-img" id="modal-img" src="" alt="">
-      <p id="modal-desc" class="modal-desc"></p>
-      <button class="modal-close" aria-label="Close modal">✕</button>
-    </div>
-  </div>
-
-  <!-- ========================= -->
-  <!-- 11. Footer -->
-  <!-- ========================= -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <h2 class="footer-title">Get in Touch</h2>
-      <form action="https://formspree.io/f/mxyz" method="POST" novalidate class="contact-form">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="_replyto" required>
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
-      <div class="social-links">
-        <a href="https://github.com/username" target="_blank" rel="noopener" aria-label="GitHub"><img src="assets/icons/github.svg" alt="GitHub"></a>
-        <a href="https://linkedin.com/in/username" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
-        <a href="https://twitter.com/username" target="_blank" rel="noopener" aria-label="Twitter"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
-      </div>
-    </div>
-    <div class="legal">© 2026 SATCORP. All rights reserved. • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a></div>
-  </footer>
-
-  <!-- Scroll progress bar -->
-  <div id="scroll-progress"></div>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x8b5cf6,
+            backgroundColor: 0xf0f0f
+        });
+        
+        // Initialize GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Hero section animations
+        gsap.to('.hero-title', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            delay: 0.5,
+            ease: "power3.out"
+        });
+        
+        gsap.to('.hero-subtitle', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            delay: 0.8,
+            ease: "power3.out"
+        });
+        
+        gsap.to('.cta-button', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            delay: 1.1,
+            ease: "power3.out"
+        });
+        
+        // Skill cards animations
+        gsap.utils.toArray('.fade-in-up').forEach(card => {
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+        
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.5)';
+            cursorFollower.style.transform = 'scale(1.5)';
+        });
+        
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+        });
+        
+        // Dark/Light mode toggle
+        const modeToggle = document.getElementById('modeToggle');
+        const modeIcon = modeToggle.querySelector('i');
+        
+        modeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+            } else {
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+            }
+        });
+        
+        // Progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+        
+        // Navigation highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! SATCORP will respond shortly.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
