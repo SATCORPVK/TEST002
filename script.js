@@ -1,87 +1,107 @@
-const bootLines=[
-  ">>> INITIALIZING NODE",
-  ">>> VERIFYING CHANNEL",
-  ">>> OPERATOR SIGNATURE: ANU",
-  ">>> LOADING SYSTEM LAYERS",
-  ">>> ACCESS GRANTED"
+// Boot Sequence
+const bootLogs = [
+    "INITIALIZING SATCORP NODE",
+    "AUTHENTICATING USER",
+    "LOADING OPERATOR PROFILE: ANU",
+    "MOUNTING MODULES",
+    "SYSTEM READY"
 ];
 
-const bootLog=document.getElementById("boot-log");
-const system=document.getElementById("system");
-let b=0;
+let currentLog = 0;
 
-function boot(){
-  if(b<bootLines.length){
-    bootLog.textContent+=bootLines[b++]+"\n";
-    setTimeout(boot,500);
-  }else{
-    setTimeout(()=>{
-      document.getElementById("boot").remove();
-      system.classList.remove("hidden");
-      activatePanels();
-    },800);
-  }
-}
-boot();
-
-function activatePanels(){
-  document.querySelectorAll(".panel").forEach((p,i)=>{
-    setTimeout(()=>p.classList.add("active"),400*i);
-  });
-}
-
-const capText={
-  "STR-01":"Systemic foresight. Structural decision modeling.",
-  "IDN-02":"Identity deployed as infrastructure.",
-  "EXP-03":"Behavioral flow engineered under constraint.",
-  "INT-04":"Interfaces calibrated for control.",
-  "AUT-05":"Logic layers reducing human drag.",
-  "CRD-06":"Directional coherence across systems."
-};
-
-document.querySelectorAll(".matrix li").forEach(li=>{
-  li.onclick=()=>{
-    li.parentElement.nextElementSibling.textContent=capText[li.dataset.id];
-  };
-});
-
-const responses=[
-  "COMPATIBILITY UNKNOWN",
-  "REQUEST UNDER REVIEW",
-  "OPERATOR RESPONSE PENDING",
-  "CHANNEL ACCEPTED"
-];
-
-const input=document.getElementById("console-input");
-const out=document.getElementById("console-output");
-
-input.addEventListener("keydown",e=>{
-  if(e.key==="Enter" && input.value){
-    const msg=input.value;
-    input.value="";
-    out.textContent+="> "+msg+"\n";
-    input.disabled=true;
-    setTimeout(()=>{
-      typeResponse(responses[Math.floor(Math.random()*responses.length)]);
-    },600);
-  }
-});
-
-function typeResponse(text){
-  let i=0;
-  const interval=setInterval(()=>{
-    out.textContent+=text[i++];
-    if(i>=text.length){
-      clearInterval(interval);
-      out.textContent+="\n";
-      input.disabled=false;
+function typeBootLine() {
+    if (currentLog < bootLogs.length) {
+        const bootLogsElement = document.getElementById('boot-logs');
+        const line = document.createElement('div');
+        line.className = 'boot-line';
+        line.textContent = bootLogs[currentLog];
+        bootLogsElement.appendChild(line);
+        
+        currentLog++;
+        setTimeout(typeBootLine, 800);
+    } else {
+        setTimeout(showInterface, 1000);
     }
-  },60);
 }
 
-function clock(){
-  const d=new Date();
-  document.getElementById("clock").textContent=d.toISOString().split("T")[1].split(".")[0];
+function showInterface() {
+    document.getElementById('boot-sequence').classList.add('hidden');
+    document.getElementById('interface').classList.remove('hidden');
 }
-setInterval(clock,1000);
-clock();
+
+// Capability Modules
+document.querySelectorAll('.capability-module').forEach(module => {
+    module.addEventListener('click', () => {
+        // Close other modules
+        document.querySelectorAll('.capability-module').forEach(m => {
+            if (m !== module) m.classList.remove('active');
+        });
+        
+        // Toggle current module
+        module.classList.toggle('active');
+    });
+});
+
+// Network Nodes
+document.querySelectorAll('.network-node').forEach(node => {
+    node.addEventListener('click', () => {
+        // Close other nodes
+        document.querySelectorAll('.network-node').forEach(n => {
+            if (n !== node) n.classList.remove('active');
+        });
+        
+        // Toggle current node
+        node.classList.toggle('active');
+    });
+});
+
+// Methodology Timeline
+document.querySelectorAll('.timeline-step').forEach((step, index) => {
+    step.addEventListener('click', () => {
+        // Update active step
+        document.querySelectorAll('.timeline-step').forEach(s => {
+            s.classList.remove('active');
+        });
+        step.classList.add('active');
+        
+        // Show corresponding content
+        document.querySelectorAll('.step-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        
+        const stepId = `step-${step.dataset.step}`;
+        document.getElementById(stepId).classList.remove('hidden');
+    });
+});
+
+// Contact Protocol
+const messageInput = document.getElementById('message-input');
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && messageInput.value.trim()) {
+        const consoleOutput = document.querySelector('.console-output');
+        const userMessage = document.createElement('div');
+        userMessage.className = 'console-line';
+        userMessage.textContent = `USER: ${messageInput.value}`;
+        consoleOutput.appendChild(userMessage);
+        
+        const systemResponse = document.createElement('div');
+        systemResponse.className = 'console-line';
+        systemResponse.textContent = "SYSTEM: Transmission received. SATCORP will evaluate compatibility.";
+        consoleOutput.appendChild(systemResponse);
+        
+        messageInput.value = '';
+        
+        // Scroll to bottom
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    // Start boot sequence
+    typeBootLine();
+    
+    // Set first methodology step as active
+    document.querySelector('.timeline-step').classList.add('active');
+    document.getElementById('step-observe').classList.remove('hidden');
+});
