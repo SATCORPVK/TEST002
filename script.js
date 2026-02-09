@@ -1,267 +1,202 @@
-/* ================================================================
-   SATCORP – Site Interactions
-   ============================================================= */
+/* ==============================================================
+   SATCORP – Interactive UI Logic
+   --------------------------------------------------------------
+   1️⃣ Vanta background init (hero)
+   2️⃣ GSAP scroll-triggered reveals for hero & skill sections
+   3️⃣ Navigation active‑link highlighting
+   4️⃣ Theme (dark/light) toggle
+   5️⃣ Custom cursor movement
+   6️⃣ Modal lightbox handler for card clicks
+   -------------------------------------------------------------- */
 
 (() => {
-  const doc = document.documentElement;
-  const body = document.body;
+  // -----------------------------------------------------------------
+  // 0️⃣ Utility functions
+  // -----------------------------------------------------------------
+  const qs = s => document.querySelector(s);
+  const qsa = s => document.querySelectorAll(s);
 
-  /* -------------------------------------------------
-     1️⃣ Custom Cursor
-     ------------------------------------------------- */
-  const cursor = document.querySelector('.cursor');
-  const follower = document.querySelector('.cursor-follower');
-  let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
-
-  window.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    // position the small dot instantly
-    cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-  });
-
-  // follower lags behind for a subtle trailing effect
-  const animateFollower = () => {
-    followerX += (mouseX - followerX) * 0.12;
-    followerY += (mouseY - followerY) * 0.12;
-    follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
-    requestAnimationFrame(animateFollower);
-  };
-  animateFollower();
-
-  /* -------------------------------------------------
-     2️⃣ Dark / Light Theme
-     ------------------------------------------------- */
-  const themeToggle = document.getElementById('theme-toggle');
-  const THEME_KEY = 'satcorp-theme';
-
-  const setTheme = (mode) => {
-    if (mode === 'light') {
-      doc.classList.add('light-mode');
-      localStorage.setItem(THEME_KEY, 'light');
-    } else {
-      doc.classList.remove('light-mode');
-      localStorage.setItem(THEME_KEY, 'dark');
-    }
-  };
-
-  // Load persisted preference
-  const persisted = localStorage.getItem(THEME_KEY);
-  if (persisted) setTheme(persisted);
-  else setTheme('dark'); // default
-
-  themeToggle.addEventListener('click', () => {
-    if (doc.classList.contains('light-mode')) setTheme('dark');
-    else setTheme('light');
-  });
-
-  /* -------------------------------------------------
-     3️⃣ VANTA.JS – Hero Background
-     ------------------------------------------------- */
+  // -----------------------------------------------------------------
+  // 1️⃣ VANTA – hero background
+  // -----------------------------------------------------------------
   let vantaEffect;
-  const initVanta = () => {
-    const hero = document.getElementById('vanta-bg');
-    if (!hero) return;
-
-    // Only enable on larger screens for performance
-    if (window.innerWidth < 768) return;
-
-    vantaEffect = VANTA.DOTS({
-      el: hero,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 300.00,
-      minWidth: 300.00,
-      backgroundColor: 0x0b0c10,
-      color: 0x6c5ce7,
-      spacing: 20.0,
-      // subtle motion, not too distracting
-      speed: 0.5
-    });
-  };
-  initVanta();
-  window.addEventListener('resize', () => {
-    if (vantaEffect) vantaEffect.destroy();
-    initVanta();
-  });
-
-  /* -------------------------------------------------
-     4️⃣ GSAP – Scroll‑Triggered Animations
-     ------------------------------------------------- */
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Section titles fade‑in + slide-up when entering viewport
-  document.querySelectorAll('.skill-section').forEach(section => {
-    const title = section.querySelector('.section-title');
-    const intro = section.querySelector('.section-intro');
-
-    gsap.from(title, {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    gsap.from(intro, {
-      y: 30,
-      opacity: 0,
-      delay: 0.15,
-      duration: 0.6,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Cards – staggered fade + scale
-    const cards = section.querySelectorAll('.skill-card');
-    gsap.from(cards, {
-      opacity: 0,
-      scale: 0.95,
-      stagger: 0.1,
-      duration: 0.6,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
-  });
-
-  // Hero text animation
-  gsap.from('.hero-title', {
-    y: -60,
-    opacity: 0,
-    ease: "power3.out",
-    duration: 1
-  });
-  gsap.from('.hero-subtitle', {
-    y: -40,
-    opacity: 0,
-    delay: 0.2,
-    ease: "power3.out",
-    duration: 0.9
-  });
-  gsap.from('.cta-btn', {
-    y: 20,
-    opacity: 0,
-    delay: 0.4,
-    ease: "power3.out",
-    duration: 0.8
-  });
-
-  /* -------------------------------------------------
-     5️⃣ Modal – Unified for all skill cards
-     ------------------------------------------------- */
-  const modal = document.getElementById('modal');
-  const modalTitle = modal.querySelector('.modal-title');
-  const modalDesc = modal.querySelector('.modal-desc');
-  const modalImg = modal.querySelector('.modal-img');
-  const modalClose = modal.querySelector('.modal-close');
-
-  const openModal = (title, desc, img) => {
-    modalTitle.textContent = title;
-    modalDesc.textContent = desc;
-    modalImg.src = img;
-    modalImg.alt = title;
-    modal.setAttribute('aria-hidden', 'false');
-    // Lock scroll
-    body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    modal.setAttribute('aria-hidden', 'true');
-    body.style.overflow = '';
-  };
-
-  // Clicking a skill card reads data- attributes and opens the modal
-  document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const title = card.dataset.title;
-      const desc = card.dataset.desc;
-      const img = card.dataset.img;
-      openModal(title, desc, img);
-    });
-  });
-
-  // Modal close actions
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal(); // click outside content
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
-      closeModal();
+  function initVanta() {
+    if (typeof VANTA !== 'undefined') {
+      vantaEffect = VANTA.WAVES({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        waveHeight: 18.00,
+        waveSpeed: 1.0,
+        zoom: 0.85,
+        color: 0x9d00ff, // neon purple
+        shininess: 50.00,
+        speed: 1.2
+      });
     }
-  });
+  }
 
-  /* -------------------------------------------------
-     6️⃣ CTA Scroll‑To (Hero button)
-     ------------------------------------------------- */
-  const cta = document.querySelector('.cta-btn');
-  if (cta) {
-    cta.addEventListener('click', () => {
-      const target = document.querySelector(cta.dataset.scrollTo);
-      if (target) {
-        gsap.to(window, {duration: 0.8, scrollTo: target});
+  // -----------------------------------------------------------------
+  // 2️⃣ GSAP – entrance & scroll animations
+  // -----------------------------------------------------------------
+  function initAnimations() {
+    // Hero elements fade in on page load
+    const heroTl = gsap.timeline({ defaults: { duration: 0.8, ease: "power3.out" } });
+    heroTl.from(".hero-title", { y: 40, opacity: 0 })
+          .from(".hero-subtitle", { y: 30, opacity: 0 }, "-=0.5")
+          .from(".cta-btn", { opacity: 0, scale: 0.9 }, "-=0.4");
+
+    // Skill sections: heading + cards reveal on scroll
+    qsa(".skill-section").forEach(section => {
+      const heading = section.querySelector(".skill-header h2");
+      const sub = section.querySelector(".skill-header .sub");
+      const cards = section.querySelectorAll(".card");
+
+      // Animate heading & sub
+      gsap.from([heading, sub], {
+        scrollTrigger: { trigger: section, start: "top 80%" },
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+
+      // Animate cards with a staggered fade/slide
+      gsap.from(cards, {
+        scrollTrigger: { trigger: section, start: "top 85%" },
+        y: 20,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    });
+  }
+
+  // -----------------------------------------------------------------
+  // 3️⃣ Navigation – active link highlighting on scroll
+  // -----------------------------------------------------------------
+  function initNavHighlight() {
+    const sections = qsa(".skill-section");
+    const navLinks = qsa(".nav-link");
+
+    // Helper: get top offset of each section
+    const sectionTops = Array.from(sections).map(sec => ({
+      id: sec.id,
+      offsetTop: sec.offsetTop
+    }));
+
+    window.addEventListener("scroll", () => {
+      const scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+      // find the current section
+      let currentId = "";
+      for (let i = sectionTops.length - 1; i >= 0; i--) {
+        if (scrollPos + 150 >= sectionTops[i].offsetTop) { // 150px buffer
+          currentId = sectionTops[i].id;
+          break;
+        }
       }
+      // update nav links
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+      });
     });
   }
 
-  /* -------------------------------------------------
-     7️⃣ Contact Form – Success Message (Formspree)
-     ------------------------------------------------- */
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      // Formspree redirects back to the page with a hash #success on success.
-      // We'll just show a temporary toast if the URL contains that hash.
+  // -----------------------------------------------------------------
+  // 4️⃣ Dark / Light mode toggle
+  // -----------------------------------------------------------------
+  function initThemeToggle() {
+    const btn = qs("#theme-toggle");
+    btn.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      const isDark = document.documentElement.classList.contains("dark");
+      btn.textContent = isDark ? "☀️" : "🌓";
     });
   }
-  // Toast logic – check hash on load
-  if (window.location.hash === '#success') {
-    const toast = document.createElement('div');
-    toast.textContent = '✅ Message sent! I’ll be in touch shortly.';
-    toast.style.position = 'fixed';
-    toast.style.bottom = '2rem';
-    toast.style.left = '50%';
-    toast.style.transform = 'translateX(-50%)';
-    toast.style.background = 'var(--color-primary)';
-    toast.style.color = '#fff';
-    toast.style.padding = '0.9rem 1.6rem';
-    toast.style.borderRadius = '4px';
-    toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
-    toast.style.zIndex = 5000;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 5000);
-    // Clean hash so it's not shown on refresh
-    history.replaceState(null, null, ' ');
+
+  // -----------------------------------------------------------------
+  // 5️⃣ Custom cursor
+  // -----------------------------------------------------------------
+  function initCustomCursor() {
+    const cursor = qs(".custom-cursor");
+    const moveCursor = e => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.08,
+        ease: "power2.out"
+      });
+    };
+    window.addEventListener("mousemove", moveCursor);
+    // Add interactive class to any element that should enlarge cursor
+    qsa(".card, .cta-btn, .nav-link, .social-icon, .modal-close, button, a")
+      .forEach(el => el.classList.add("interactive"));
   }
 
-  /* -------------------------------------------------
-     8️⃣ Footer – Current Year
-     ------------------------------------------------- */
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // -----------------------------------------------------------------
+  // 6️⃣ Modal Lightbox – generic handler for all cards
+  // -----------------------------------------------------------------
+  function initModals() {
+    const modal = qs("#modal");
+    const body = qs("#modal-body");
+    const closeBtn = qs("#modal-close");
 
-  /* -------------------------------------------------
-     9️⃣ Misc – Smooth scroll for anchor links (fallback)
-     ------------------------------------------------- */
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
+    // Close when clicking X or outside content
+    closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
+    modal.addEventListener("click", e => {
+      if (e.target === modal) modal.classList.add("hidden");
+    });
+
+    // Example: using data-modal attribute to load sample content.
+    // In a real project you would load actual assets based on ID.
+    qsa(".card[data-modal]").forEach(card => {
+      card.addEventListener("click", () => {
+        const modalId = card.dataset.modal;
+        // Populate modal with placeholder content – you can replace this
+        // with ajax fetch or static HTML fragments.
+        body.innerHTML = `
+          <h3>${card.querySelector('h3').innerText} – Sample</h3>
+          <img src="https://via.placeholder.com/800x450?text=${encodeURIComponent(modalId)}"
+               alt="${modalId}" class="modal-img">
+          <p>This is a placeholder for a deliverable (PNG, SVG, PDF, video, etc.). Replace the source URL with your real asset.</p>`;
+        modal.classList.remove("hidden");
+      });
+    });
+  }
+
+  // -----------------------------------------------------------------
+  // 7️⃣ CTA – smooth scroll to first skill deck
+  // -----------------------------------------------------------------
+  function initCTA() {
+    const btn = qs("#explore-cta");
+    btn.addEventListener("click", e => {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        gsap.to(window, {duration: 0.9, scrollTo: target});
-      }
+      document.querySelector("#skill-1").scrollIntoView({ behavior: "smooth" });
     });
+  }
+
+  // -----------------------------------------------------------------
+  // 8️⃣ Init everything after DOM ready
+  // -----------------------------------------------------------------
+  document.addEventListener("DOMContentLoaded", () => {
+    initVanta();
+    initAnimations();
+    initNavHighlight();
+    initThemeToggle();
+    initCustomCursor();
+    initModals();
+    initCTA();
   });
+
+  // -----------------------------------------------------------------
+  // 9️⃣ Optional: Clean up Vanta on page unload (good practice)
+  // -----------------------------------------------------------------
+  window.addEventListener("beforeunload", () => {
+    if (vantaEffect) vantaEffect.destroy();
+  });
+
 })();
