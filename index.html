@@ -13,190 +13,222 @@
     </div>
 
     <div id="interface" class="hidden">
-        <header class="panel">
-            <div class="header-grid">
-                <div class="corp-identity">
-                    <h1>SATCORP</h1>
-                    <div class="operator-tag">Concierge / System Architect / Creative Operation</div>
-                </div>
-                <div class="status-display">
-                    <div class="status-line">SYSTEM: ONLINE</div>
-                    <div class="status-line">NODE: PRIME</div>
-                </div>
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="system-status">
+                <span class="led active"></span>
+                <span>SATCORP NODE PRIME</span>
             </div>
-        </header>
+            <div class="system-time" id="system-time">--:--:-- UTC</div>
+            <div class="access-level">ACCESS: OPERATOR</div>
+        </div>
+
+        <!-- Corner Markers -->
+        <div class="corner-marker top-left">SATCORP SYSTEM v4.2.7</div>
+        <div class="corner-marker top-right">NODE PRIME [ACTIVE]</div>
+        <div class="corner-marker bottom-left">SECURITY LEVEL: CLASSIFIED</div>
+        <div class="corner-marker bottom-right">SESSION #8472</div>
 
         <main class="dashboard">
-            <section class="panel philosophy-panel">
-                <div class="philosophy-text">
-                    "We do not design visuals.<br>
-                    We design functioning structures."
+            <!-- Operator Identity Panel -->
+            <section class="panel identity-panel">
+                <div class="panel-header">
+                    <span class="panel-id">ID-001</span>
+                    <span class="panel-coords">45.678, -122.345</span>
+                </div>
+                <div class="identity-grid">
+                    <h1 class="system-title">SATCORP</h1>
+                    <div class="operator-status">
+                        <div class="role-tag">CONCIERGE</div>
+                        <div class="role-tag">SYSTEM ARCHITECT</div>
+                        <div class="role-tag">CREATIVE OPERATION</div>
+                    </div>
+                    <div class="philosophy-block">
+                        <div class="philosophy-line">WE DO NOT DESIGN VISUALS</div>
+                        <div class="philosophy-line">WE DESIGN FUNCTIONING STRUCTURES</div>
+                    </div>
                 </div>
             </section>
 
+            <!-- Capability Matrix -->
             <section class="panel capabilities-panel">
-                <h2 class="panel-title">CAPABILITY MATRIX</h2>
-                <div class="capability-grid">
-                    <div class="capability-module" data-module="strategy">
+                <div class="panel-header">
+                    <span class="panel-id">CM-002</span>
+                    <span class="panel-coords">45.679, -122.346</span>
+                </div>
+                <h2 class="panel-label">CAPABILITY MATRIX</h2>
+                <div class="matrix-grid">
+                    <div class="matrix-module" data-module="strategy">
                         <div class="module-header">
-                            <span class="module-id">ST-001</span>
-                            <h3>Strategy Architecture</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Structural planning of operational systems and procedural frameworks for complex creative endeavors.
+                            <span class="module-code">STR-001</span>
+                            <h3>STRATEGY ARCHITECTURE</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
-                    
-                    <div class="capability-module" data-module="identity">
+                    <div class="matrix-module" data-module="identity">
                         <div class="module-header">
-                            <span class="module-id">ID-002</span>
-                            <h3>Identity Systems</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Development of cohesive identity architectures that function across multiple operational layers.
+                            <span class="module-code">IDS-002</span>
+                            <h3>IDENTITY SYSTEMS</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
-                    
-                    <div class="capability-module" data-module="experience">
+                    <div class="matrix-module" data-module="experience">
                         <div class="module-header">
-                            <span class="module-id">XP-003</span>
-                            <h3>Experience Engineering</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Construction of interactive environments and procedural user pathways.
+                            <span class="module-code">EXP-003</span>
+                            <h3>EXPERIENCE ENGINEERING</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
-                    
-                    <div class="capability-module" data-module="interface">
+                    <div class="matrix-module" data-module="interface">
                         <div class="module-header">
-                            <span class="module-id">IF-004</span>
-                            <h3>Interface Design</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Creation of control systems and information architectures for operational dashboards.
+                            <span class="module-code">INT-004</span>
+                            <h3>INTERFACE DESIGN</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
-                    
-                    <div class="capability-module" data-module="automation">
+                    <div class="matrix-module" data-module="automation">
                         <div class="module-header">
-                            <span class="module-id">AU-005</span>
-                            <h3>Automation Logic</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Implementation of systematic automation and procedural optimization protocols.
+                            <span class="module-code">AUT-005</span>
+                            <h3>AUTOMATION LOGIC</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
-                    
-                    <div class="capability-module" data-module="creative">
+                    <div class="matrix-module" data-module="creative">
                         <div class="module-header">
-                            <span class="module-id">CR-006</span>
-                            <h3>Creative Direction</h3>
-                            <div class="module-indicator"></div>
-                        </div>
-                        <div class="module-description">
-                            Orchestration of creative resources and strategic artistic implementation.
+                            <span class="module-code">CRT-006</span>
+                            <h3>CREATIVE DIRECTION</h3>
+                            <div class="module-status">READY</div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Network Map -->
             <section class="panel network-panel">
-                <h2 class="panel-title">OPERATIONS NETWORK</h2>
-                <div class="network-grid">
+                <div class="panel-header">
+                    <span class="panel-id">NW-003</span>
+                    <span class="panel-coords">45.680, -122.347</span>
+                </div>
+                <h2 class="panel-label">OPERATIONS NETWORK</h2>
+                <div class="network-map">
+                    <div class="network-line"></div>
                     <div class="network-node" data-node="anu">
-                        <span class="node-id">ANU·Ki-Ra Studios</span>
-                        <div class="node-info">Creative Research & Development</div>
+                        <div class="node-pulse"></div>
+                        <span class="node-label">ANU·Ki-Ra Studios</span>
+                        <div class="node-info">CREATIVE RESEARCH & DEVELOPMENT</div>
                     </div>
                     <div class="network-node" data-node="kyrax">
-                        <span class="node-id">KYRAX</span>
-                        <div class="node-info">Technical Infrastructure</div>
+                        <div class="node-pulse"></div>
+                        <span class="node-label">KYRAX</span>
+                        <div class="node-info">TECHNICAL INFRASTRUCTURE</div>
                     </div>
                     <div class="network-node" data-node="pulse">
-                        <span class="node-id">PULSΞ</span>
-                        <div class="node-info">Rhythmic Implementation</div>
+                        <div class="node-pulse"></div>
+                        <span class="node-label">PULSΞ</span>
+                        <div class="node-info">RHYTHMIC IMPLEMENTATION</div>
                     </div>
                     <div class="network-node" data-node="scopu">
-                        <span class="node-id">SCOPU</span>
-                        <div class="node-info">Strategic Observation</div>
+                        <div class="node-pulse"></div>
+                        <span class="node-label">SCOPU</span>
+                        <div class="node-info">STRATEGIC OBSERVATION</div>
                     </div>
                 </div>
             </section>
 
+            <!-- Methodology Sequence -->
             <section class="panel methodology-panel">
-                <h2 class="panel-title">METHODOLOGY SEQUENCE</h2>
-                <div class="timeline">
-                    <div class="timeline-step" data-step="observe">
+                <div class="panel-header">
+                    <span class="panel-id">MT-004</span>
+                    <span class="panel-coords">45.681, -122.348</span>
+                </div>
+                <h2 class="panel-label">METHODOLOGY SEQUENCE</h2>
+                <div class="sequence-track">
+                    <div class="sequence-step active" data-step="observe">
                         <div class="step-marker">01</div>
-                        <div class="step-label">Observe</div>
+                        <div class="step-label">OBSERVE</div>
+                        <div class="step-progress"></div>
                     </div>
-                    <div class="timeline-step" data-step="decode">
+                    <div class="sequence-step" data-step="decode">
                         <div class="step-marker">02</div>
-                        <div class="step-label">Decode</div>
+                        <div class="step-label">DECODE</div>
+                        <div class="step-progress"></div>
                     </div>
-                    <div class="timeline-step" data-step="architect">
+                    <div class="sequence-step" data-step="architect">
                         <div class="step-marker">03</div>
-                        <div class="step-label">Architect</div>
+                        <div class="step-label">ARCHITECT</div>
+                        <div class="step-progress"></div>
                     </div>
-                    <div class="timeline-step" data-step="construct">
+                    <div class="sequence-step" data-step="construct">
                         <div class="step-marker">04</div>
-                        <div class="step-label">Construct</div>
+                        <div class="step-label">CONSTRUCT</div>
+                        <div class="step-progress"></div>
                     </div>
-                    <div class="timeline-step" data-step="deploy">
+                    <div class="sequence-step" data-step="deploy">
                         <div class="step-marker">05</div>
-                        <div class="step-label">Deploy</div>
+                        <div class="step-label">DEPLOY</div>
+                        <div class="step-progress"></div>
                     </div>
-                    <div class="timeline-step" data-step="evolve">
+                    <div class="sequence-step" data-step="evolve">
                         <div class="step-marker">06</div>
-                        <div class="step-label">Evolve</div>
+                        <div class="step-label">EVOLVE</div>
+                        <div class="step-progress"></div>
                     </div>
                 </div>
-                <div class="step-details">
-                    <div class="step-content" id="step-observe">
-                        <h3>Observe</h3>
-                        <p>Systematic analysis of existing structures, patterns, and operational gaps.</p>
+                <div class="sequence-details">
+                    <div class="step-description active" id="desc-observe">
+                        SYSTEMATIC ANALYSIS OF EXISTING STRUCTURES, PATTERNS, AND OPERATIONAL GAPS
                     </div>
-                    <div class="step-content hidden" id="step-decode">
-                        <h3>Decode</h3>
-                        <p>Translation of observations into actionable intelligence and system requirements.</p>
+                    <div class="step-description" id="desc-decode">
+                        TRANSLATION OF OBSERVATIONS INTO ACTIONABLE INTELLIGENCE AND SYSTEM REQUIREMENTS
                     </div>
-                    <div class="step-content hidden" id="step-architect">
-                        <h3>Architect</h3>
-                        <p>Structural design of solutions with scalability and integration capabilities.</p>
+                    <div class="step-description" id="desc-architect">
+                        STRUCTURAL DESIGN OF SOLUTIONS WITH SCALABILITY AND INTEGRATION CAPABILITIES
                     </div>
-                    <div class="step-content hidden" id="step-construct">
-                        <h3>Construct</h3>
-                        <p>Precise implementation of designed systems with rigorous quality protocols.</p>
+                    <div class="step-description" id="desc-construct">
+                        PRECISE IMPLEMENTATION OF DESIGNED SYSTEMS WITH RIGOROUS QUALITY PROTOCOLS
                     </div>
-                    <div class="step-content hidden" id="step-deploy">
-                        <h3>Deploy</h3>
-                        <p>Strategic rollout and integration of systems into operational environments.</p>
+                    <div class="step-description" id="desc-deploy">
+                        STRATEGIC ROLLOUT AND INTEGRATION OF SYSTEMS INTO OPERATIONAL ENVIRONMENTS
                     </div>
-                    <div class="step-content hidden" id="step-evolve">
-                        <h3>Evolve</h3>
-                        <p>Continuous optimization and adaptation based on performance metrics.</p>
+                    <div class="step-description" id="desc-evolve">
+                        CONTINUOUS OPTIMIZATION AND ADAPTATION BASED ON PERFORMANCE METRICS
                     </div>
                 </div>
             </section>
 
+            <!-- Contact Protocol -->
             <section class="panel contact-panel">
-                <h2 class="panel-title">CONTACT PROTOCOL</h2>
-                <div class="console">
-                    <div class="console-output">
-                        <div class="console-line">SATCORP NODE READY FOR TRANSMISSION</div>
-                        <div class="console-line">ENTER MESSAGE BELOW</div>
+                <div class="panel-header">
+                    <span class="panel-id">CP-005</span>
+                    <span class="panel-coords">45.682, -122.349</span>
+                </div>
+                <h2 class="panel-label">CONTACT PROTOCOL</h2>
+                <div class="console-interface">
+                    <div class="console-output" id="console-output">
+                        <div class="console-line">SATCORP NODE PRIME ACTIVE</div>
+                        <div class="console-line">TRANSMISSION CHANNEL OPEN</div>
+                        <div class="console-line">READY FOR INPUT</div>
                     </div>
                     <div class="console-input">
-                        <span class="prompt">&gt;</span>
-                        <input type="text" id="message-input" placeholder="TYPE YOUR MESSAGE..." autocomplete="off">
+                        <span class="console-prompt">&gt;</span>
+                        <input type="text" id="transmission-input" placeholder="ENTER TRANSMISSION..." autocomplete="off">
+                        <div class="input-status">PRESS ENTER TO TRANSMIT</div>
                     </div>
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Module Detail Overlay -->
+    <div id="module-detail" class="overlay hidden">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <span class="overlay-id" id="detail-id"></span>
+                <button class="overlay-close">&times;</button>
+            </div>
+            <h3 id="detail-title"></h3>
+            <div class="overlay-body" id="detail-content"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
